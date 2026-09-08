@@ -4,151 +4,149 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Karat Interview Prep — Study Guide</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-:root {
-  --bg: #0f1117;
-  --surface: #1a1d27;
-  --surface2: #21253a;
-  --border: rgba(255,255,255,0.08);
-  --border-strong: rgba(255,255,255,0.15);
-  --text: #e8eaf0;
-  --text-secondary: #8b92a8;
-  --text-muted: #555c72;
-  --sql-color: #4f9eff;
-  --sql-bg: rgba(79,158,255,0.1);
-  --py-color: #3ecf8e;
-  --py-bg: rgba(62,207,142,0.1);
-  --concept-color: #f0a23a;
-  --concept-bg: rgba(240,162,58,0.1);
-  --accent: #4f9eff;
-  --radius: 8px;
-  --radius-lg: 12px;
-  --mono: 'JetBrains Mono', monospace;
-  --sans: 'Inter', system-ui, sans-serif;
+:root{
+  --bg:#0d0d0d;--c1:#141414;--c2:#1a1a1a;
+  --text:#f0f0f0;--t2:#a0a0a0;--t3:#555;
+  --accent:#4f8ef7;--adim:rgba(79,142,247,.12);--ab:rgba(79,142,247,.3);
+  --green:#3ecf8e;--gdim:rgba(62,207,142,.12);--gb:rgba(62,207,142,.3);
+  --amber:#f0a23a;--amber-dim:rgba(240,162,58,.12);--amber-b:rgba(240,162,58,.3);
+  --purple:#c084fc;--pdim:rgba(192,132,252,.12);--pb:rgba(192,132,252,.3);
+  --cyan:#22d3ee;--cdim:rgba(34,211,238,.12);
+  --orange:#fb923c;--odim:rgba(251,146,60,.12);
+  --border:rgba(255,255,255,.07);--border2:rgba(255,255,255,.13);
+  --radius:8px;--rlg:12px;
+  --mono:'Courier New',Courier,monospace;
+  --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,Arial,sans-serif;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{font-family:var(--sans);background:var(--bg);color:var(--text);line-height:1.6;font-size:15px}
-.section{scroll-margin-top:68px}
-.hero{scroll-margin-top:68px}
 
-/* Nav */
-nav{position:sticky;top:0;z-index:100;background:rgba(15,17,23,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 2rem}
-.nav-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;gap:2rem;height:56px}
-.nav-logo{font-weight:600;font-size:15px;color:var(--text);white-space:nowrap}
-.nav-logo span{color:var(--sql-color)}
-.nav-links{display:flex;gap:4px;flex:1;flex-wrap:wrap}
-.nav-links a{font-size:13px;color:var(--text-secondary);text-decoration:none;padding:5px 10px;border-radius:var(--radius);transition:color .15s,background .15s}
-.nav-links a:hover{color:var(--text);background:rgba(255,255,255,0.06)}
-.nav-tag{font-size:11px;background:var(--sql-bg);color:var(--sql-color);border:1px solid rgba(79,158,255,0.2);padding:3px 10px;border-radius:20px;white-space:nowrap}
+/* NAV */
+nav{position:sticky;top:0;z-index:100;background:rgba(13,13,13,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
+.nav-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;gap:1rem;height:56px;padding:0 1.5rem}
+.nav-logo{font-weight:700;font-size:14px;color:var(--text);white-space:nowrap;flex-shrink:0}
+.nav-logo span{color:var(--accent)}
+.nav-links{display:flex;gap:2px;flex:1;flex-wrap:nowrap}
+.nav-links a{font-size:12.5px;color:var(--t2);text-decoration:none;padding:5px 9px;border-radius:var(--radius);transition:color .15s,background .15s;white-space:nowrap}
+.nav-links a:hover{color:var(--text);background:rgba(255,255,255,.05)}
+.nav-links a.active{color:var(--accent);background:var(--adim)}
+.nav-badge{font-size:11px;font-weight:600;background:var(--adim);color:var(--accent);border:1px solid var(--ab);padding:3px 10px;border-radius:20px;white-space:nowrap;flex-shrink:0}
 
-/* Hero */
-.hero{max-width:1100px;margin:0 auto;padding:5rem 2rem 3rem}
-.hero-eyebrow{font-size:12px;font-weight:500;letter-spacing:.08em;color:var(--sql-color);text-transform:uppercase;margin-bottom:1rem}
-.hero h1{font-size:clamp(2rem,5vw,3.2rem);font-weight:600;line-height:1.15;letter-spacing:-.02em;margin-bottom:1rem;max-width:700px}
-.hero-sub{font-size:16px;color:var(--text-secondary);max-width:560px;line-height:1.7;margin-bottom:2.5rem}
-.hero-stats{display:flex;gap:2.5rem;flex-wrap:wrap}
-.stat-item{display:flex;flex-direction:column;gap:2px}
-.stat-num{font-size:2rem;font-weight:600;line-height:1}
-.stat-label{font-size:12px;color:var(--text-muted);text-transform:uppercase;letter-spacing:.06em}
-.stat-sql .stat-num{color:var(--sql-color)}
-.stat-py .stat-num{color:var(--py-color)}
-.stat-days .stat-num{color:var(--concept-color)}
+/* SECTIONS */
+.section{max-width:1100px;margin:0 auto;padding:4rem 1.5rem;scroll-margin-top:56px}
+.slabel{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--t3);margin-bottom:1.5rem;padding-bottom:.6rem;border-bottom:1px solid var(--border)}
 
-/* Section container */
-.section{max-width:1100px;margin:0 auto;padding:4rem 2rem}
-.section-title{font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:1.5rem;padding-bottom:.75rem;border-bottom:1px solid var(--border)}
+/* HERO */
+#hero{max-width:1100px;margin:0 auto;padding:5rem 1.5rem 3.5rem;scroll-margin-top:56px}
+.hero-eye{font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem}
+#hero h1{font-size:clamp(2rem,5vw,3rem);font-weight:700;line-height:1.15;letter-spacing:-.02em;margin-bottom:.9rem}
+.hero-sub{font-size:16px;color:var(--t2);max-width:560px;line-height:1.7;margin-bottom:2.8rem}
+.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;max-width:640px}
+.kpi{background:var(--c1);border:1px solid var(--border);border-radius:var(--rlg);padding:1.25rem 1rem;text-align:center}
+.kpi-n{font-size:2.25rem;font-weight:700;line-height:1}
+.kpi-l{font-size:11px;color:var(--t3);text-transform:uppercase;letter-spacing:.06em;margin-top:4px}
+.kpi:nth-child(1) .kpi-n{color:var(--amber)}
+.kpi:nth-child(2) .kpi-n{color:var(--accent)}
+.kpi:nth-child(3) .kpi-n{color:var(--green)}
+.kpi:nth-child(4) .kpi-n{color:var(--purple)}
 
-/* Study Plan Timeline */
-.plan-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px}
-.day-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1rem;cursor:pointer;transition:border-color .15s,background .15s;position:relative;overflow:hidden}
+/* STUDY PLAN */
+.plan-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:10px}
+.day-card{background:var(--c1);border:1px solid var(--border);border-radius:var(--radius);padding:1rem;cursor:pointer;position:relative;overflow:hidden;transition:border-color .15s,background .15s}
 .day-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
-.day-card.sql-day::before{background:var(--sql-color)}
-.day-card.both-day::before{background:linear-gradient(90deg,var(--sql-color),var(--py-color))}
-.day-card.sme-day::before{background:var(--concept-color)}
-.day-card.mock-day::before{background:#c084fc}
-.day-card:hover{border-color:var(--border-strong);background:var(--surface2)}
-.day-card.active{border-color:var(--sql-color);background:rgba(79,158,255,0.06)}
-.day-num{font-size:11px;color:var(--text-muted);margin-bottom:.35rem}
-.day-topic{font-size:13px;font-weight:500;color:var(--text);line-height:1.35;margin-bottom:.5rem}
+.day-card.sql::before{background:var(--accent)}
+.day-card.py::before{background:var(--green)}
+.day-card.both::before{background:linear-gradient(90deg,var(--accent),var(--green))}
+.day-card.sme::before{background:var(--purple)}
+.day-card.mock::before{background:var(--amber)}
+.day-card:hover{border-color:var(--border2);background:var(--c2)}
+.day-card.active{border-color:var(--accent);background:rgba(79,142,247,.05)}
+.day-num{font-size:11px;color:var(--t3);margin-bottom:4px}
+.day-title{font-size:13px;font-weight:600;line-height:1.35;margin-bottom:6px}
 .day-badges{display:flex;gap:4px;flex-wrap:wrap}
-.badge{font-size:10px;padding:2px 6px;border-radius:4px;font-weight:500}
-.badge-sql{background:var(--sql-bg);color:var(--sql-color);border:1px solid rgba(79,158,255,0.2)}
-.badge-py{background:var(--py-bg);color:var(--py-color);border:1px solid rgba(62,207,142,0.2)}
-.badge-concept{background:var(--concept-bg);color:var(--concept-color);border:1px solid rgba(240,162,58,0.2)}
-.badge-mock{background:rgba(192,132,252,0.1);color:#c084fc;border:1px solid rgba(192,132,252,0.2)}
-
-/* Day detail panel */
-.day-detail{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.5rem;margin-top:1rem;display:none}
+.badge{font-size:10px;padding:2px 7px;border-radius:4px;font-weight:600}
+.b-sql{background:var(--adim);color:var(--accent);border:1px solid var(--ab)}
+.b-py{background:var(--gdim);color:var(--green);border:1px solid var(--gb)}
+.b-sme{background:var(--pdim);color:var(--purple);border:1px solid var(--pb)}
+.b-mock{background:var(--amber-dim);color:var(--amber);border:1px solid var(--amber-b)}
+.day-detail{display:none;background:var(--c2);border:1px solid var(--border2);border-radius:var(--rlg);padding:1.5rem;margin-top:12px}
 .day-detail.open{display:block}
-.detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
-.detail-col h4{font-size:11px;font-weight:500;letter-spacing:.07em;text-transform:uppercase;color:var(--text-muted);margin-bottom:.75rem}
-.detail-item{font-size:13px;color:var(--text-secondary);padding:.35rem 0;border-bottom:1px solid var(--border);line-height:1.5}
-.detail-item:last-child{border-bottom:none}
-.detail-title{font-size:15px;font-weight:600;color:var(--text);margin-bottom:1rem;display:flex;align-items:center;gap:.5rem}
+.dd-head{font-size:16px;font-weight:700;margin-bottom:1rem;color:var(--text)}
+.dd-cols{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+.dd-col h4{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--t3);margin-bottom:.5rem}
+.dd-col h4+h4{margin-top:1rem}
+.dd-item{font-size:13px;color:var(--t2);padding:.3rem 0;border-bottom:1px solid var(--border);line-height:1.5}
+.dd-item:last-child{border-bottom:none}
+.dd-goal{margin-top:1rem;padding:.75rem 1rem;background:var(--adim);border:1px solid var(--ab);border-radius:var(--radius);font-size:13px;color:var(--accent)}
 
-/* Q&A Section */
-.filter-bar{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:1.5rem}
-.filter-btn{font-size:12px;padding:5px 14px;border-radius:20px;border:1px solid var(--border-strong);background:transparent;color:var(--text-secondary);cursor:pointer;font-family:var(--sans);transition:all .15s}
-.filter-btn:hover{border-color:var(--accent);color:var(--text)}
-.filter-btn.active{background:var(--sql-bg);color:var(--sql-color);border-color:rgba(79,158,255,0.4)}
-.filter-btn.active.py{background:var(--py-bg);color:var(--py-color);border-color:rgba(62,207,142,0.4)}
-.filter-btn.active.concept{background:var(--concept-bg);color:var(--concept-color);border-color:rgba(240,162,58,0.4)}
+/* FILTER / SEARCH BAR */
+.filter-bar{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:1.25rem;align-items:center}
+.fbtn{font-size:12px;padding:5px 14px;border-radius:20px;border:1px solid var(--border2);background:transparent;color:var(--t2);cursor:pointer;font-family:var(--sans);transition:all .15s}
+.fbtn:hover{border-color:var(--accent);color:var(--text)}
+.fbtn.active{background:var(--adim);color:var(--accent);border-color:var(--ab)}
+.search-in{flex:1;max-width:280px;padding:5px 14px;border-radius:20px;border:1px solid var(--border2);background:var(--c1);color:var(--text);font-family:var(--sans);font-size:12px;outline:none}
+.search-in::placeholder{color:var(--t3)}
+.search-in:focus{border-color:var(--ab)}
 
-.qa-list{display:flex;flex-direction:column;gap:8px}
-.qa-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;transition:border-color .15s}
-.qa-card:hover{border-color:var(--border-strong)}
-.qa-header{display:flex;align-items:flex-start;gap:12px;padding:14px 16px;cursor:pointer;user-select:none}
-.qa-tag{font-size:10px;font-weight:500;padding:3px 8px;border-radius:4px;flex-shrink:0;margin-top:2px;font-family:var(--mono)}
-.qa-tag.sql{background:var(--sql-bg);color:var(--sql-color)}
-.qa-tag.py{background:var(--py-bg);color:var(--py-color)}
-.qa-tag.concept{background:var(--concept-bg);color:var(--concept-color)}
-.qa-question{font-size:14px;font-weight:500;color:var(--text);line-height:1.45;flex:1}
-.qa-chevron{color:var(--text-muted);font-size:18px;flex-shrink:0;margin-top:1px;transition:transform .2s}
-.qa-chevron.open{transform:rotate(180deg)}
-.qa-body{display:none;padding:0 16px 16px}
-.qa-body.open{display:block}
-.qa-divider{height:1px;background:var(--border);margin-bottom:16px}
-.qa-concepts{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:12px}
-.concept-chip{font-size:11px;padding:2px 8px;border-radius:4px;background:rgba(255,255,255,0.05);color:var(--text-secondary);border:1px solid var(--border)}
-.qa-explain{font-size:13px;color:var(--text-secondary);line-height:1.7;margin-bottom:12px}
-.code-block{background:#0a0c12;border:1px solid rgba(255,255,255,0.06);border-radius:var(--radius);padding:14px 16px;font-family:var(--mono);font-size:12px;color:#b8c4d8;line-height:1.7;white-space:pre;overflow-x:auto;margin-bottom:10px}
-.qa-tip{display:flex;gap:8px;align-items:flex-start;background:rgba(79,158,255,0.06);border:1px solid rgba(79,158,255,0.15);border-radius:var(--radius);padding:10px 12px;font-size:12px;color:#8ab8e8;line-height:1.55}
-.tip-icon{flex-shrink:0;margin-top:1px;font-size:13px}
-.qa-source{font-size:10px;color:var(--text-muted);margin-top:8px;font-family:var(--mono)}
+/* Q LIST */
+.q-list{display:flex;flex-direction:column;gap:8px}
+.q-item{background:var(--c1);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:border-color .15s}
+.q-item:hover{border-color:var(--border2)}
+.q-header{display:flex;align-items:center;gap:.85rem;padding:.85rem 1rem;cursor:pointer;user-select:none}
+.q-num{font-size:11px;color:var(--t3);font-weight:600;white-space:nowrap;min-width:28px}
+.q-text{flex:1;font-size:14px;font-weight:500;line-height:1.4}
+.q-tag{font-size:10px;padding:2px 8px;border-radius:4px;font-weight:600;white-space:nowrap;flex-shrink:0}
+.tag-query{background:var(--adim);color:var(--accent)}
+.tag-concept{background:var(--amber-dim);color:var(--amber)}
+.tag-log{background:var(--gdim);color:var(--green)}
+.tag-string{background:var(--cdim);color:var(--cyan)}
+.tag-list{background:var(--odim);color:var(--orange)}
+.tag-function{background:rgba(251,191,36,.12);color:#fbbf24}
+.tag-oop{background:var(--pdim);color:var(--purple)}
+.q-chev{color:var(--t3);font-size:16px;transition:transform .2s;flex-shrink:0}
+.q-item.open .q-chev{transform:rotate(180deg)}
+.q-body{display:none;border-top:1px solid var(--border)}
+.q-item.open .q-body{display:block}
 
-/* Python topics grid */
-.topic-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:8px}
-.topic-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1rem}
-.topic-card h4{font-size:13px;font-weight:500;color:var(--py-color);margin-bottom:.35rem}
-.topic-card p{font-size:12px;color:var(--text-secondary);line-height:1.5}
+/* TABS */
+.tabs{display:flex;border-bottom:1px solid var(--border);padding:0 1rem}
+.tbtn{font-size:12px;font-weight:600;padding:.55rem .85rem;border:none;background:none;color:var(--t3);cursor:pointer;border-bottom:2px solid transparent;font-family:var(--sans);transition:color .15s;margin-bottom:-1px}
+.tbtn:hover{color:var(--text)}
+.tbtn.active{color:var(--accent);border-bottom-color:var(--accent)}
+.tpanel{display:none;padding:1rem}
+.tpanel.active{display:block}
+.tpanel p{font-size:13px;color:var(--t2);line-height:1.7;margin-bottom:.5rem}
+.tip-box{margin-top:.75rem;padding:.75rem 1rem;background:rgba(79,142,247,.07);border:1px solid rgba(79,142,247,.2);border-radius:var(--radius);font-size:12px;color:#8ab4ef;line-height:1.6}
+pre{background:#0a0a0a;border:1px solid var(--border);border-radius:var(--radius);padding:1rem;font-size:12px;font-family:var(--mono);color:#d4d4d4;overflow-x:auto;line-height:1.65;margin:.5rem 0 0;white-space:pre}
+.concept-chips{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:.75rem}
+.chip{font-size:11px;padding:2px 8px;border-radius:4px;background:rgba(255,255,255,.05);color:var(--t2);border:1px solid var(--border)}
 
-/* SME Grid */
-.sme-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px}
-.sme-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.25rem;display:flex;align-items:flex-start;gap:12px}
-.sme-avatar{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:14px;flex-shrink:0}
-.sme-info h4{font-size:14px;font-weight:500;color:var(--text);margin-bottom:3px}
-.sme-info p{font-size:12px;color:var(--text-secondary);line-height:1.4}
+/* SME */
+.sme-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.sme-card{background:var(--c1);border:1px solid var(--border);border-radius:var(--rlg);padding:1.25rem;display:flex;gap:1rem;align-items:flex-start;transition:border-color .15s}
+.sme-card:hover{border-color:var(--border2)}
+.sme-av{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;flex-shrink:0}
+.sme-name{font-size:14px;font-weight:600;margin-bottom:2px}
+.sme-role{font-size:12px;margin-bottom:5px}
+.sme-exp{font-size:12px;color:var(--t2);line-height:1.5}
 
-/* Resources */
-.resource-list{display:flex;flex-direction:column;gap:6px}
-.resource-item{display:flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:.75rem 1rem;text-decoration:none;color:var(--text);font-size:13px;transition:border-color .15s}
-.resource-item:hover{border-color:var(--border-strong);background:var(--surface2)}
-.resource-icon{font-size:16px}
-.resource-url{font-size:11px;color:var(--text-muted);font-family:var(--mono);margin-left:auto}
+/* RESOURCES */
+.res-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px}
+.res-card{background:var(--c1);border:1px solid var(--border);border-radius:var(--rlg);padding:1.25rem;text-decoration:none;display:block;transition:border-color .15s,background .15s}
+.res-card:hover{border-color:var(--ab);background:var(--c2)}
+.res-icon{font-size:22px;margin-bottom:.5rem}
+.res-title{font-size:14px;font-weight:600;color:var(--text);margin-bottom:4px}
+.res-desc{font-size:12px;color:var(--t2);line-height:1.5}
+.res-url{font-size:11px;color:var(--accent);margin-top:8px;display:block}
 
-/* Footer */
-footer{border-top:1px solid var(--border);padding:2rem;text-align:center;font-size:12px;color:var(--text-muted)}
-
-/* Responsive */
+footer{border-top:1px solid var(--border);padding:2rem;text-align:center;font-size:12px;color:var(--t3)}
+.hidden{display:none!important}
 @media(max-width:700px){
-  .detail-grid{grid-template-columns:1fr}
-  nav{padding:0 1rem}
-  .section,.hero{padding:2rem 1rem}
-  .hero-stats{gap:1.5rem}
+  .kpi-grid{grid-template-columns:repeat(2,1fr)}
+  .dd-cols{grid-template-columns:1fr}
+  .nav-links a{font-size:11px;padding:4px 6px}
 }
 </style>
 </head>
@@ -158,187 +156,151 @@ footer{border-top:1px solid var(--border);padding:2rem;text-align:center;font-si
   <div class="nav-inner">
     <div class="nav-logo">Karat <span>Prep</span></div>
     <div class="nav-links">
-      <a href="#plan" onclick="scrollTo('plan',event)">Study plan</a>
-      <a href="#sql" onclick="scrollTo('sql',event)">SQL questions</a>
-      <a href="#python" onclick="scrollTo('python',event)">Python</a>
-      <a href="#sme" onclick="scrollTo('sme',event)">SME contacts</a>
-      <a href="#resources" onclick="scrollTo('resources',event)">Resources</a>
+      <a href="#hero" data-sec="hero">Overview</a>
+      <a href="#plan" data-sec="plan">Study plan</a>
+      <a href="#sql" data-sec="sql">SQL</a>
+      <a href="#python" data-sec="python">Python</a>
+      <a href="#sme" data-sec="sme">SME contacts</a>
+      <a href="#resources" data-sec="resources">Resources</a>
     </div>
-    <div class="nav-tag">13-day plan</div>
+    <div class="nav-badge">13-day plan</div>
   </div>
 </nav>
 
-<div class="hero">
-  <div class="hero-eyebrow">Karat Assessment Prep</div>
+<div id="hero">
+  <div class="hero-eye">Karat Assessment Prep</div>
   <h1>SQL &amp; Python interview study guide</h1>
-  <p class="hero-sub">A structured 13-day prep plan covering SQL joins, aggregations, window functions, CTEs, and Python — built from your assessment workbook.</p>
-  <div class="hero-stats">
-    <div class="stat-item stat-days">
-      <span class="stat-num">13</span>
-      <span class="stat-label">Study days</span>
-    </div>
-    <div class="stat-item stat-sql">
-      <span class="stat-num">19</span>
-      <span class="stat-label">SQL questions</span>
-    </div>
-    <div class="stat-item stat-py">
-      <span class="stat-num">16</span>
-      <span class="stat-label">Python problems</span>
-    </div>
-    <div class="stat-item">
-      <span class="stat-num" style="color:#c084fc">6</span>
-      <span class="stat-label">SME contacts</span>
-    </div>
+  <p class="hero-sub">A structured 13-day prep plan covering SQL joins, aggregations, window functions, CTEs, and Python — built from your Karat assessment workbook.</p>
+  <div class="kpi-grid">
+    <div class="kpi"><div class="kpi-n">13</div><div class="kpi-l">Study days</div></div>
+    <div class="kpi"><div class="kpi-n">19</div><div class="kpi-l">SQL questions</div></div>
+    <div class="kpi"><div class="kpi-n">20</div><div class="kpi-l">Python problems</div></div>
+    <div class="kpi"><div class="kpi-n">6</div><div class="kpi-l">SME contacts</div></div>
   </div>
 </div>
 
 <!-- STUDY PLAN -->
-<div class="section" id="plan">
-  <div class="section-title">Day-by-day study plan — click a day to expand</div>
+<div id="plan" class="section">
+  <div class="slabel">Day-by-day study plan — click a day to expand</div>
   <div class="plan-grid" id="planGrid"></div>
   <div class="day-detail" id="dayDetail"></div>
 </div>
 
-<!-- SQL Q&A -->
-<div class="section" id="sql">
-  <div class="section-title">SQL questions with answers &amp; explanations</div>
-  <div class="filter-bar">
-    <button class="filter-btn active" data-f="all">All</button>
-    <button class="filter-btn" data-f="sql">SQL queries</button>
-    <button class="filter-btn py" data-f="py">Python</button>
-    <button class="filter-btn concept" data-f="concept">Concepts</button>
+<!-- SQL -->
+<div id="sql" class="section">
+  <div class="slabel">SQL questions — answers &amp; explanations</div>
+  <div class="filter-bar" id="sqlFilter">
+    <button class="fbtn active" data-f="all">All</button>
+    <button class="fbtn" data-f="query">SQL queries</button>
+    <button class="fbtn" data-f="concept">Concepts</button>
   </div>
-  <div class="qa-list" id="qaList"></div>
+  <div class="q-list" id="sqlList"></div>
 </div>
 
-<!-- PYTHON TOPICS -->
-<div class="section" id="python">
-  <div class="section-title">Python topics covered</div>
-  <div class="topic-grid" id="topicGrid"></div>
+<!-- PYTHON -->
+<div id="python" class="section">
+  <div class="slabel">Python Q&amp;A — Karat format with 3 tabs per question</div>
+  <div class="filter-bar" id="pyFilter">
+    <input class="search-in" id="pySearch" type="text" placeholder="Search questions…">
+    <button class="fbtn active" data-f="all">All</button>
+    <button class="fbtn" data-f="log">Log parsing</button>
+    <button class="fbtn" data-f="string">Strings</button>
+    <button class="fbtn" data-f="list">Lists</button>
+    <button class="fbtn" data-f="function">Functions</button>
+    <button class="fbtn" data-f="oop">OOP</button>
+  </div>
+  <div class="q-list" id="pyList"></div>
 </div>
 
 <!-- SME -->
-<div class="section" id="sme">
-  <div class="section-title">SME contacts</div>
+<div id="sme" class="section">
+  <div class="slabel">SME contacts</div>
   <div class="sme-grid" id="smeGrid"></div>
 </div>
 
 <!-- RESOURCES -->
-<div class="section" id="resources">
-  <div class="section-title">Practice platforms</div>
-  <div class="resource-list">
-    <a class="resource-item" href="https://sqlzoo.net/wiki/SELECT_basics" target="_blank">
-      <span class="resource-icon">🔗</span>
-      <span>SQLZoo — SELECT basics</span>
-      <span class="resource-url">sqlzoo.net</span>
-    </a>
-    <a class="resource-item" href="https://sqlfiddle.com" target="_blank">
-      <span class="resource-icon">🔗</span>
-      <span>SQL Fiddle — live query sandbox</span>
-      <span class="resource-url">sqlfiddle.com</span>
-    </a>
-    <a class="resource-item" href="https://public.karat.io/content/urls2.txt" target="_blank">
-      <span class="resource-icon">📄</span>
-      <span>Karat Python sample log file</span>
-      <span class="resource-url">public.karat.io</span>
-    </a>
-  </div>
+<div id="resources" class="section">
+  <div class="slabel">Practice platforms &amp; resources</div>
+  <div class="res-grid" id="resGrid"></div>
 </div>
 
 <footer>Built from Karat_Assessment_Plan.xlsx · SQL, Python &amp; concept questions across 7 sheets</footer>
 
 <script>
-// Navigation: smooth scroll with sticky-nav offset compensation
-function scrollTo(id, e) {
-  if (e) e.preventDefault();
-  const el = document.getElementById(id);
-  if (!el) return;
-  const navH = document.querySelector('nav').offsetHeight;
-  const top = el.getBoundingClientRect().top + window.pageYOffset - navH - 12;
-  window.scrollTo({ top, behavior: 'smooth' });
-}
-
-// Highlight active nav link on scroll
-const navLinks = document.querySelectorAll('.nav-links a');
-const sections = ['plan','sql','python','sme','resources'];
-window.addEventListener('scroll', () => {
-  const navH = document.querySelector('nav').offsetHeight;
-  let current = '';
-  sections.forEach(id => {
-    const el = document.getElementById(id);
-    if (el && el.getBoundingClientRect().top <= navH + 40) current = id;
-  });
-  navLinks.forEach(a => {
-    a.style.color = a.getAttribute('href') === '#' + current
-      ? 'var(--text)'
-      : '';
-    a.style.background = a.getAttribute('href') === '#' + current
-      ? 'rgba(255,255,255,0.06)'
-      : '';
-  });
-}, { passive: true });
-
-const days = [
-  {day:1,label:'Joins',cls:'both-day',sql:'INNER JOIN, LEFT JOIN, RIGHT JOIN, FULL OUTER JOIN basics',sqlPractice:['Find customers with no orders','List employees with their manager names','Products never sold'],py:'Lists, slicing, reversing, dictionaries',pyPractice:['Reverse a string','Find max in a list'],badges:['SQL','Python']},
-  {day:2,label:'Aggregations',cls:'both-day',sql:'COUNT, SUM, GROUP BY, HAVING, QUALIFY',sqlPractice:['Top 5 products by sales','Customers who ordered more than 3 times'],py:'String methods, file handling, palindrome, Counter',pyPractice:['Word frequency counter','Count vowels','Read a text file','Split a log line','Count IP appearances'],badges:['SQL','Python']},
-  {day:3,label:'Window functions',cls:'both-day',sql:'ROW_NUMBER, RANK, DENSE_RANK',sqlPractice:['2nd highest salary','Top 3 sales per region'],py:'Sets, duplicates, filtering',pyPractice:['Remove duplicates from a list','Find intersection of two lists'],badges:['SQL','Python']},
-  {day:4,label:'Subqueries & DML',cls:'sql-day',sql:'Subqueries, Correlated queries, Recursive queries, DML statements',sqlPractice:['Orders greater than average order amount'],py:'Aggregation concepts',pyPractice:[],badges:['SQL']},
-  {day:5,label:'Date functions',cls:'both-day',sql:'DATE_TRUNC, EXTRACT, date differences',sqlPractice:['Daily active users','Month-over-month revenue'],py:'Recursion basics',pyPractice:['Fibonacci sequence','Sum of digits'],badges:['SQL','Python']},
-  {day:6,label:'String functions',cls:'both-day',sql:'SUBSTRING, POSITION, CONCAT',sqlPractice:['Names starting with "A"','Extract domain from email'],py:'Sorting algorithms',pyPractice:['Merge two sorted lists'],badges:['SQL','Python']},
-  {day:7,label:'CTEs + Windows',cls:'both-day',sql:'Advanced SQL — CTEs combined with window functions',sqlPractice:[],py:'For/while loops',pyPractice:[],badges:['SQL','Python']},
-  {day:8,label:'ACID & Data Warehouse',cls:'sql-day',sql:'ACID properties, Fact tables, Dimension tables',sqlPractice:[],py:'—',pyPractice:[],badges:['SQL']},
-  {day:9,label:'Filtering & Indexing',cls:'sql-day',sql:'Filtering best practices, index strategies',sqlPractice:['What is the best practice for filtering data?','Explain how indexing works — benefits and drawbacks'],py:'—',pyPractice:[],badges:['SQL']},
-  {day:10,label:'Delete & Rollback',cls:'sql-day',sql:'Conditional delete with transaction control',sqlPractice:['Delete where status="Delete"; rollback if count > 1'],py:'—',pyPractice:[],badges:['SQL']},
-  {day:11,label:'SQL Override',cls:'sql-day',sql:'SQL Override concept and ETL implementation',sqlPractice:['How to implement SQL Override in ETL?'],py:'—',pyPractice:[],badges:['SQL']},
-  {day:'SME',label:'SME connect',cls:'sme-day',sql:'Subject matter expert sessions — SQL: Suman/Reema/Sachin · Python: Shalini',sqlPractice:[],py:'',pyPractice:[],badges:['SME']},
-  {day:13,label:'Mock interview',cls:'mock-day',sql:'Full mock interview — SQL + Python with panel (Suman/Reema/Chandni/Anand/Shalini)',sqlPractice:[],py:'',pyPractice:[],badges:['Mock']},
+// ── STUDY PLAN DATA ─────────────────────────────────────────────────────────
+const studyDays = [
+  {day:1,title:'SQL Joins',cls:'sql',badges:['SQL'],
+   topics:['INNER JOIN — matching rows only','LEFT JOIN — keep all left rows','RIGHT JOIN / FULL OUTER JOIN','Self JOIN — join a table to itself','ON vs USING clause'],
+   practice:['Find customers with no orders (LEFT JOIN + NULL)','List employees with their manager names','Products never sold — LEFT JOIN + IS NULL'],
+   resources:['SQLZoo Tutorial 7: JOIN','SQLZoo Tutorial 8: More JOIN','SQL Fiddle — try each JOIN type'],
+   goal:'Write any JOIN query confidently in under 3 minutes'},
+  {day:2,title:'Aggregations',cls:'sql',badges:['SQL'],
+   topics:['COUNT(*) vs COUNT(col)','SUM, AVG, MIN, MAX','GROUP BY — group rows into buckets','HAVING — filter after aggregation','WHERE vs HAVING distinction'],
+   practice:['Charities with avg donation < $100','Top 5 products by total sales','Departments with > 3 employees using HAVING'],
+   resources:['SQLZoo Tutorial 5: SUM and COUNT','LeetCode SQL Easy problems','SQL Fiddle practice'],
+   goal:'Explain GROUP BY vs HAVING from memory with an example'},
+  {day:3,title:'Window Functions',cls:'sql',badges:['SQL'],
+   topics:['ROW_NUMBER() OVER (PARTITION BY … ORDER BY …)','RANK() vs DENSE_RANK() — ties behaviour','PARTITION BY resets the window per group','Difference from GROUP BY: rows are preserved'],
+   practice:['2nd highest salary per department','Top 3 sales per region','Salesperson with highest single-month total'],
+   resources:['LeetCode SQL Medium','SQL Fiddle — window function drills','Mode Analytics SQL tutorial'],
+   goal:'Write ROW_NUMBER() + PARTITION BY without looking it up'},
+  {day:4,title:'Subqueries & DML',cls:'sql',badges:['SQL'],
+   topics:['Non-correlated vs correlated subqueries','Recursive CTEs — hierarchy / org chart','INSERT, UPDATE, DELETE with conditions','ROLLBACK when row count exceeds threshold'],
+   practice:['Orders greater than average order amount','Delete where status=Delete; rollback if count > 1','Employee org chart with recursive CTE'],
+   resources:['LeetCode SQL Hard','SQL Fiddle — DML practice'],
+   goal:'Write and explain a correlated subquery vs CTE trade-off'},
+  {day:5,title:'Date & String Functions',cls:'sql',badges:['SQL'],
+   topics:['DATE_TRUNC, EXTRACT, YEAR(), MONTH()','TIMESTAMPDIFF, DATEDIFF, DATEADD','SUBSTRING, CONCAT, POSITION, UPPER/LOWER','SARGable vs non-SARGable date filters'],
+   practice:['Daily active users (DATE_TRUNC)','Extract domain from email column','Month-over-month revenue with LAG()'],
+   resources:['SQLZoo String functions tutorial','SQL Fiddle — date functions'],
+   goal:'Write a date range filter and extract year/month in any DB dialect'},
+  {day:6,title:'CTEs + Advanced Windows',cls:'sql',badges:['SQL'],
+   topics:['WITH clause — named temporary result sets','LAG() / LEAD() — look back / forward','Cumulative SUM with ROWS BETWEEN','CROSS JOIN to broadcast scalar aggregates'],
+   practice:['Month-over-month balance change with LAG','Cumulative daily merchant balance per month','Running department sales total'],
+   resources:['LeetCode SQL Medium','SQL Fiddle — CTE practice'],
+   goal:'Rewrite a nested subquery as a CTE without prompting'},
+  {day:7,title:'ACID & Data Warehouse',cls:'sql',badges:['SQL'],
+   topics:['Atomicity — all or nothing','Consistency — valid state transitions','Isolation — transactions do not interfere','Durability — committed = permanent','Fact vs Dimension tables, star schema'],
+   practice:['Explain ACID with a bank transfer example','Design a star schema for sales data','Explain 2 index types and their trade-offs'],
+   resources:['PostgreSQL docs — transactions','Data warehouse concepts guide'],
+   goal:'Explain all 4 ACID properties and 2 index types clearly'},
+  {day:8,title:'Python Strings & Lists',cls:'py',badges:['Python'],
+   topics:['String methods: split, join, strip, replace','List slicing: s[start:stop:step]','List comprehensions and generators','sorted(), enumerate(), zip(), map(), filter()'],
+   practice:['Run-length encoding: "aaabbc" → "3a2bc"','Check anagrams using sorted() or Counter','Reverse words in a sentence'],
+   resources:['Python docs: Built-in types','LeetCode Easy — string problems'],
+   goal:'Solve any string/list problem without importing libraries'},
+  {day:9,title:'Python Log Parsing',cls:'py',badges:['Python'],
+   topics:['datetime.strptime() — parse timestamps','set() operations: add, discard (safe remove)','Line-by-line parsing pattern','Early exit when log is sorted chronologically'],
+   practice:['IPs still blocked at a given time (real Karat Q)','Session durations from login/logout events','Most common URL from HTTP access log'],
+   resources:['Karat sample log file (public.karat.io)','Python datetime module docs'],
+   goal:'Write the IP-blocking solution from memory — the real Karat question'},
+  {day:10,title:'Python Functions & OOP',cls:'py',badges:['Python'],
+   topics:['Decorators with functools.wraps','Closures and the LEGB scope rule','Classes: __init__, @property, dunder methods','Inheritance: super(), method overriding'],
+   practice:['Timing decorator with functools.wraps','MinStack — O(1) min() with auxiliary stack','LRU Cache using OrderedDict.move_to_end()'],
+   resources:['Real Python: Decorators guide','Python docs: collections.OrderedDict'],
+   goal:'Implement a class with inheritance and explain each design choice'},
+  {day:11,title:'Python Mock Interview',cls:'mock',badges:['Mock'],
+   topics:['Full 45-minute Python mock (simulate Karat conditions)','Think aloud — narrate your logic as you code','Start with brute force then optimise','Test edge cases: empty input, single element, duplicates'],
+   practice:['All 20 Python questions timed — 10 min each','Record yourself; review for filler words and clarity','Identify 3 weak spots for Day 13 review'],
+   resources:["This guide's Python section","Python IDE / Replit for live coding"],
+   goal:'Complete 10+ Python questions with clean, runnable code'},
+  {day:'SME',title:'SME Connect',cls:'sme',badges:['SME'],
+   topics:['Meet Suman, Reema, Sachin (SQL SMEs)','Meet Shalini (Python SME)','Meet Chandni, Anand (Mock interviewers)','STAR-method behavioral answers'],
+   practice:['Prepare 3 domain-specific questions per SME','Draft 3 STAR answers: Challenge, Achievement, Collaboration','Review Karat Assessment Plan with each SME'],
+   resources:["SME contacts section of this guide","Karat Assessment Plan workbook"],
+   goal:'Have 3 STAR answers ready and 2 questions per SME before mock day'},
+  {day:13,title:'Final Review & Rest',cls:'mock',badges:['SQL','Python'],
+   topics:['Review only weak spots from mocks','Re-read explanations — no coding today','Set up dev environment for interview day','Early night — sleep is the best preparation'],
+   practice:['Re-read 5 weakest SQL questions','Re-read 5 weakest Python questions','Open SQL Fiddle + Python IDE and confirm they work'],
+   resources:['This study guide (review mode only)',"Karat: 45 min for SQL + 45 min for Python"],
+   goal:'Feel confident and rested — trust your preparation'},
 ];
 
-const pg = document.getElementById('planGrid');
-const dd = document.getElementById('dayDetail');
-let activeDay = null;
-
-days.forEach(d => {
-  const card = document.createElement('div');
-  card.className = 'day-card ' + d.cls;
-  const badgeMap = {SQL:'badge-sql',Python:'badge-py',SME:'badge-concept',Mock:'badge-mock'};
-  const badges = d.badges.map(b => `<span class="badge ${badgeMap[b]||'badge-sql'}">${b}</span>`).join('');
-  card.innerHTML = `<div class="day-num">Day ${d.day}</div><div class="day-topic">${d.label}</div><div class="day-badges">${badges}</div>`;
-  card.addEventListener('click', () => {
-    if (activeDay === card) {
-      card.classList.remove('active');
-      dd.classList.remove('open');
-      activeDay = null;
-      return;
-    }
-    document.querySelectorAll('.day-card').forEach(c => c.classList.remove('active'));
-    card.classList.add('active');
-    activeDay = card;
-    const sp = d.sqlPractice.length ? d.sqlPractice.map(p=>`<div class="detail-item">${p}</div>`).join('') : '<div class="detail-item" style="color:var(--text-muted)">No practice listed</div>';
-    const pp = d.pyPractice.length ? d.pyPractice.map(p=>`<div class="detail-item">${p}</div>`).join('') : (d.py && d.py !== '—' ? `<div class="detail-item" style="color:var(--text-muted)">${d.py}</div>` : '<div class="detail-item" style="color:var(--text-muted)">No Python today</div>');
-    dd.innerHTML = `
-      <div class="detail-title"><span>Day ${d.day} — ${d.label}</span></div>
-      <div class="detail-grid">
-        <div>
-          <h4>SQL topic</h4>
-          <div class="detail-item">${d.sql}</div>
-          <h4 style="margin-top:1rem">SQL practice</h4>${sp}
-        </div>
-        <div>
-          <h4>Python topic</h4>
-          <div class="detail-item">${d.py || '—'}</div>
-          <h4 style="margin-top:1rem">Python practice</h4>${pp}
-        </div>
-      </div>`;
-    dd.classList.add('open');
-    dd.scrollIntoView({behavior:'smooth', block:'nearest'});
-  });
-  pg.appendChild(card);
-});
-
-// Q&A Data
-const questions = [
-  {id:1,type:'sql',q:'Find charities that haven\'t received a donation in 30 days, or never. Return charity name and last donation date ("Never" if none).',concepts:['LEFT JOIN','COALESCE','GROUP BY','HAVING','Date arithmetic'],explain:'LEFT JOIN keeps all charities including those with zero donations. COALESCE converts NULL to "Never". HAVING filters to charities whose max donation date is NULL or older than 30 days.',code:`SELECT
+// ── SQL QUESTIONS DATA ───────────────────────────────────────────────────────
+const sqlQs = [
+  {id:1,type:'query',text:"Find charities that haven't received a donation in 30 days, or never. Return charity name and last donation date ('Never' if none).",
+   concepts:['LEFT JOIN','COALESCE','GROUP BY','HAVING','Date arithmetic'],
+   answer:`SELECT
     c.charity_name,
     COALESCE(MAX(d.donation_date)::text, 'Never')
         AS last_donation_date
@@ -346,8 +308,12 @@ FROM Charities c
 LEFT JOIN Donations d ON c.charity_id = d.charity_id
 GROUP BY c.charity_name
 HAVING MAX(d.donation_date) IS NULL
-    OR MAX(d.donation_date) < CURRENT_DATE - INTERVAL '30 days';`,tip:'Without LEFT JOIN, charities with zero donations disappear entirely from results — use it any time you need to keep rows even when the joined table has no match.',src:'SQLS tab'},
-  {id:2,type:'sql',q:'Identify charities with average donation under $100. Return name, average_donation, total_donations, donation_count with correct aliases.',concepts:['GROUP BY','HAVING','AVG','SUM','COUNT','Aliases'],explain:'HAVING filters groups after aggregation — you cannot use WHERE on aggregate functions. AVG, SUM, COUNT compute per-charity values and are aliased as required.',code:`SELECT
+    OR MAX(d.donation_date) < CURRENT_DATE - INTERVAL '30 days';`,
+   explanation:`LEFT JOIN keeps all charities including those with zero donations. COALESCE converts NULL to 'Never'. HAVING filters to charities whose max donation date is NULL or older than 30 days. Without LEFT JOIN, charities with no donations disappear from results entirely.`,
+   tip:`Without LEFT JOIN, charities with zero donations disappear from results — use it any time you need to keep rows even when the joined table has no match.`},
+  {id:2,type:'query',text:'Identify charities with average donation under $100. Return name, average_donation, total_donations, donation_count.',
+   concepts:['GROUP BY','HAVING','AVG','SUM','COUNT','Aliases'],
+   answer:`SELECT
     c.charity_name AS Name,
     ROUND(AVG(d.donation_amount), 3) AS average_donation,
     SUM(d.donation_amount)           AS total_donations,
@@ -355,8 +321,12 @@ HAVING MAX(d.donation_date) IS NULL
 FROM Charities c
 JOIN Donations d ON c.charity_id = d.charity_id
 GROUP BY c.charity_name
-HAVING AVG(d.donation_amount) < 100;`,tip:'WHERE filters rows, HAVING filters groups. HAVING runs after GROUP BY; WHERE runs before it.',src:'SQLS tab'},
-  {id:3,type:'sql',q:'Find the salesperson with the highest total sales in any single month. Return name, year, month, and total sales.',concepts:['CTE','RANK()','EXTRACT','Window functions','GROUP BY'],explain:'Two CTEs: monthly_sales aggregates per salesperson per month, ranked_sales applies RANK() descending. The outer query picks rank = 1. RANK() handles ties.',code:`WITH monthly_sales AS (
+HAVING AVG(d.donation_amount) < 100;`,
+   explanation:`HAVING filters groups after aggregation — you cannot use WHERE on aggregate functions. AVG, SUM, COUNT compute per-charity values and are aliased as required. INNER JOIN here (not LEFT) because charities with zero donations would have no AVG to compare.`,
+   tip:`WHERE filters rows, HAVING filters groups. HAVING runs after GROUP BY; WHERE runs before it.`},
+  {id:3,type:'query',text:'Find the salesperson with the highest total sales in any single month. Return name, year, month, and total sales.',
+   concepts:['CTE','RANK()','EXTRACT','Window functions','GROUP BY'],
+   answer:`WITH monthly_sales AS (
     SELECT salesperson,
         EXTRACT(YEAR  FROM sale_date) AS sales_year,
         EXTRACT(MONTH FROM sale_date) AS sales_month,
@@ -370,15 +340,12 @@ ranked_sales AS (
 )
 SELECT salesperson, sales_year, sales_month, total_sales
 FROM ranked_sales
-WHERE rnk = 1;`,tip:'RANK() skips numbers after ties (1,1,3); DENSE_RANK() doesn\'t (1,1,2). For "the best" use either; for top-N with exact counts, choose deliberately.',src:'SQLS tab'},
-  {id:4,type:'sql',q:'Students, Teachers, Assignments, Grades: find all students with their primary teacher. Show top 5 whose average grade > half the overall average.',concepts:['LEFT JOIN','CTE','CROSS JOIN','AVG','LIMIT'],explain:'LEFT JOIN keeps students without a primary teacher. CTEs compute each student\'s average, the overall average, and filter to qualified students. CROSS JOIN broadcasts the single-row overall average to every row.',code:`-- All students + teacher (include students with no teacher)
-SELECT s.student_id, s.student_name,
-       t.teacher_name AS primary_teacher
-FROM students s
-LEFT JOIN teachers t ON s.primary_teacher_id = t.teacher_id;
-
--- Top 5 above half the overall average
-WITH student_avg AS (
+WHERE rnk = 1;`,
+   explanation:`Two CTEs: monthly_sales aggregates per salesperson per month, ranked_sales applies RANK() descending. The outer query picks rank = 1. RANK() handles ties — multiple people sharing the top month all appear.`,
+   tip:`RANK() skips numbers after ties (1,1,3); DENSE_RANK() doesn't (1,1,2). For 'the best' use either; for top-N with exact counts, choose deliberately.`},
+  {id:4,type:'query',text:'Students, Teachers, Assignments, Grades: find all students with their primary teacher. Show top 5 whose average grade > half the overall average.',
+   concepts:['LEFT JOIN','CTE','CROSS JOIN','AVG','LIMIT'],
+   answer:`WITH student_avg AS (
     SELECT g.student_id, AVG(g.grade) AS avg_grade
     FROM Grades g GROUP BY g.student_id
 ),
@@ -396,13 +363,21 @@ SELECT s.student_id, s.student_name,
 FROM qualified q
 JOIN students s ON q.student_id = s.student_id
 LEFT JOIN teachers t ON s.primary_teacher_id = t.teacher_id
-ORDER BY q.avg_grade DESC LIMIT 5;`,tip:'CROSS JOIN with a single-row CTE is the cleanest way to make a global aggregate available in every row without repeating a subquery.',src:'SQLS tab'},
-  {id:5,type:'sql',q:'List all products with order details. Include products that have never been ordered (show NULL for order_id/customer).',concepts:['LEFT JOIN','Multiple joins','NULL handling'],explain:'LEFT JOIN from Products preserves all products. A second LEFT JOIN to Customers handles orders with missing customer records. Any unordered product shows NULL in the order columns.',code:`SELECT p.ProductName, o.OrderID, c.CustomerName
+ORDER BY q.avg_grade DESC LIMIT 5;`,
+   explanation:`CROSS JOIN with a single-row CTE broadcasts the overall average to every row without repeating the subquery. LEFT JOIN to teachers ensures students without a primary teacher still appear.`,
+   tip:`CROSS JOIN with a single-row aggregate CTE is the cleanest way to make a global aggregate available in every row.`},
+  {id:5,type:'query',text:'List all products with order details. Include products that have never been ordered (show NULL for order fields).',
+   concepts:['LEFT JOIN','Multiple joins','NULL handling'],
+   answer:`SELECT p.ProductName, o.OrderID, c.CustomerName
 FROM Products p
-LEFT JOIN Orders o   ON p.ProductID = o.ProductID
+LEFT JOIN Orders o    ON p.ProductID = o.ProductID
 LEFT JOIN Customers c ON o.CustomerID = c.CustomerID
-ORDER BY p.ProductName, o.OrderID;`,tip:'Chain LEFT JOINs from the driving table (Products) outward. Switching any of these to INNER JOIN would drop products or orders that have no match.',src:'SQL Questions tab'},
-  {id:6,type:'sql',q:'Per product, show the month (full name) with the highest shipped quantity in 2023. Exclude products with no 2023 shipments. Order by product name.',concepts:['CTE','ROW_NUMBER()','PARTITION BY','DATE_FORMAT','SUM','Window functions'],explain:'CTE aggregates quantity per product per month, assigns ROW_NUMBER() within each product ordered by quantity DESC. rn=1 always means "peak month for that product".',code:`WITH monthly_qty AS (
+ORDER BY p.ProductName, o.OrderID;`,
+   explanation:`LEFT JOIN from Products preserves all products. A second LEFT JOIN to Customers handles orders with missing customer records. Any unordered product shows NULL in the order columns. Switching any LEFT JOIN to INNER JOIN would silently drop unmatched rows.`,
+   tip:`Chain LEFT JOINs from the driving table (Products) outward. Switching any to INNER JOIN drops products or orders without a match.`},
+  {id:6,type:'query',text:'Per product, show the month (full name) with the highest shipped quantity in 2023. Exclude products with no 2023 shipments.',
+   concepts:['CTE','ROW_NUMBER()','PARTITION BY','DATE_FORMAT','SUM'],
+   answer:`WITH monthly_qty AS (
     SELECT p.ProductName, s.ProductID,
         DATE_FORMAT(s.ShipmentDate, '%M') AS MonthName,
         SUM(s.Quantity) AS TotalQty,
@@ -416,10 +391,13 @@ ORDER BY p.ProductName, o.OrderID;`,tip:'Chain LEFT JOINs from the driving table
     GROUP BY p.ProductName, s.ProductID, MonthName
 )
 SELECT ProductName, MonthName, TotalQty
-FROM monthly_qty
-WHERE rn = 1
-ORDER BY ProductName;`,tip:'PARTITION BY resets ROW_NUMBER() per product, so rn=1 is always "peak for this product", not globally.',src:'SQL Questions tab'},
-  {id:7,type:'sql',q:'Find repeated payments: same merchant, same card, same amount, within 10 minutes. Report the count.',concepts:['Self JOIN','TIMESTAMPDIFF','HAVING','Duplicate detection'],explain:'Self-join Payments to itself. The condition p1.payment_id < p2.payment_id avoids counting (A,B) and (B,A) as separate pairs and prevents a row matching itself.',code:`SELECT p1.merchant_id, p1.credit_card, p1.amount,
+FROM monthly_qty WHERE rn = 1
+ORDER BY ProductName;`,
+   explanation:`PARTITION BY resets ROW_NUMBER() per product, so rn=1 is always 'peak for this product'. INNER JOIN automatically excludes products with no 2023 shipments. DATE_FORMAT('%M') returns full month name.`,
+   tip:`PARTITION BY resets ROW_NUMBER() per product — rn=1 is always 'peak for this product', not globally.`},
+  {id:7,type:'query',text:'Find repeated payments: same merchant, same card, same amount, within 10 minutes. Report the count.',
+   concepts:['Self JOIN','TIMESTAMPDIFF','HAVING','Duplicate detection'],
+   answer:`SELECT p1.merchant_id, p1.credit_card, p1.amount,
     COUNT(*) AS repeated_payment_count
 FROM Payments p1
 JOIN Payments p2
@@ -431,8 +409,12 @@ JOIN Payments p2
             p1.payment_time, p2.payment_time)) <= 10
 GROUP BY p1.merchant_id, p1.credit_card, p1.amount
 HAVING COUNT(*) > 0
-ORDER BY repeated_payment_count DESC;`,tip:'p1.payment_id < p2.payment_id is the classic self-join trick: one condition eliminates self-matches AND duplicate pair reversals simultaneously.',src:'SQL Questions tab'},
-  {id:8,type:'sql',q:'Print cumulative daily balance of a merchant account, resetting to zero at the start of each month.',concepts:['SUM OVER','PARTITION BY','DATE_TRUNC','Running total','Window frame'],explain:'PARTITION BY the month resets the running sum at month boundaries. The ROWS BETWEEN frame sums from the first row of the partition up to the current row — the standard running-total definition.',code:`SELECT merchant_id, transaction_date,
+ORDER BY repeated_payment_count DESC;`,
+   explanation:`Self-join Payments to itself. p1.payment_id < p2.payment_id avoids counting (A,B) and (B,A) as separate pairs and prevents a row matching itself — one condition eliminates both problems.`,
+   tip:`p1.payment_id < p2.payment_id: one condition eliminates self-matches AND duplicate pair reversals simultaneously.`},
+  {id:8,type:'query',text:'Print cumulative daily balance of a merchant account, resetting to zero at the start of each month.',
+   concepts:['SUM OVER','PARTITION BY','DATE_TRUNC','Running total','Window frame'],
+   answer:`SELECT merchant_id, transaction_date,
     SUM(amount) OVER (
         PARTITION BY merchant_id,
                      DATE_TRUNC('month', transaction_date)
@@ -440,8 +422,12 @@ ORDER BY repeated_payment_count DESC;`,tip:'p1.payment_id < p2.payment_id is the
         ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW
     ) AS cumulative_balance
 FROM Transactions
-ORDER BY merchant_id, transaction_date;`,tip:'DATE_TRUNC(\'month\', date) yields the 1st of the month — perfect for grouping all days of a month together in PARTITION BY.',src:'SQL Questions tab'},
-  {id:9,type:'sql',q:'Book borrowing: show borrow count, last borrow date, status (Never/Borrowed/Frequently), and Trend (Above/Below/Average) vs average.',concepts:['LEFT JOIN','CROSS JOIN','CASE WHEN','AVG','CTE'],explain:'book_stats LEFT JOINs books to borrowings — keeping unbordered books. avg_stats computes the average. CROSS JOIN makes the average available on every row for comparison.',code:`WITH book_stats AS (
+ORDER BY merchant_id, transaction_date;`,
+   explanation:`PARTITION BY the month resets the running sum at month boundaries. The ROWS BETWEEN frame sums from the first row of the partition up to the current row — the standard running-total definition.`,
+   tip:`DATE_TRUNC('month', date) yields the 1st of the month — perfect for grouping all days of a month in PARTITION BY.`},
+  {id:9,type:'query',text:"Book borrowing: show borrow count, last borrow date, status (Never/Borrowed/Frequently), and Trend (Above/Below/Average) vs average.",
+   concepts:['LEFT JOIN','CROSS JOIN','CASE WHEN','AVG','CTE'],
+   answer:`WITH book_stats AS (
     SELECT b.book_id, b.title,
            COUNT(br.borrow_id) AS borrow_count,
            MAX(br.borrow_date) AS last_borrow_date
@@ -457,14 +443,18 @@ SELECT bs.title, bs.borrow_count, bs.last_borrow_date,
     CASE WHEN bs.borrow_count = 0 THEN 'Never Borrowed'
          WHEN bs.borrow_count = 1 THEN 'Borrowed'
          ELSE 'Frequently Borrowed' END AS status,
-    CASE WHEN bs.borrow_count = 0 THEN 'Below Average'
+    CASE WHEN bs.borrow_count = 0            THEN 'Below Average'
          WHEN bs.borrow_count > a.avg_borrow_count THEN 'Above Average'
          WHEN bs.borrow_count = a.avg_borrow_count THEN 'Average'
          ELSE 'Below Average' END AS Trend
 FROM book_stats bs
 CROSS JOIN avg_stats a
-ORDER BY bs.borrow_count DESC, bs.last_borrow_date DESC;`,tip:'CROSS JOIN with a single-row aggregate CTE avoids repeating a subquery in every CASE branch.',src:'SQL Questions tab'},
-  {id:10,type:'sql',q:'Vehicle rental utilisation: total rentals per vehicle, categorise as Low (1-2), Medium (3-4), High (5+). Exclude zero-rental vehicles.',concepts:['JOIN','COUNT','CASE WHEN','GROUP BY','ORDER by computed value'],explain:'INNER JOIN automatically excludes vehicles never rented. CASE assigns category, and a numeric CASE in ORDER BY sorts the string labels by severity without a lookup table.',code:`SELECT v.name AS vehicle_name,
+ORDER BY bs.borrow_count DESC;`,
+   explanation:`book_stats LEFT JOINs books to borrowings — keeping unbordered books. avg_stats computes the overall average. CROSS JOIN makes that single value available on every row for the CASE comparison.`,
+   tip:`CROSS JOIN with a single-row aggregate CTE avoids repeating a subquery in every CASE branch.`},
+  {id:10,type:'query',text:"Vehicle rental utilisation: total rentals per vehicle, categorise as Low (1-2), Medium (3-4), High (5+). Exclude zero-rental vehicles.",
+   concepts:['JOIN','COUNT','CASE WHEN','GROUP BY','ORDER by computed value'],
+   answer:`SELECT v.name AS vehicle_name,
     COUNT(r.rental_id) AS total_rentals,
     CASE
         WHEN COUNT(r.rental_id) BETWEEN 1 AND 2 THEN 'Low'
@@ -476,8 +466,12 @@ JOIN Rentals r ON v.vehicle_id = r.vehicle_id
 GROUP BY v.vehicle_id, v.name
 HAVING COUNT(r.rental_id) >= 1
 ORDER BY CASE utilization_category
-    WHEN 'High' THEN 3 WHEN 'Medium' THEN 2 ELSE 1 END DESC;`,tip:'You can\'t ORDER BY an alias that contains a CASE in all databases — wrapping the same CASE logic in ORDER BY is the portable solution.',src:'SQL Questions tab'},
-  {id:11,type:'sql',q:'Show all users with each activity. Include activities with no user ("Guest"). Include users with no activities (activity_type = "None").',concepts:['UNION ALL','LEFT JOIN','COALESCE','Full outer simulation'],explain:'Two halves: users LEFT JOIN activities gives all users including inactive ones; activities LEFT JOIN users gives orphan activities. UNION ALL combines them without deduplication.',code:`-- Users → activities (or 'None' if none recorded)
+    WHEN 'High' THEN 3 WHEN 'Medium' THEN 2 ELSE 1 END DESC;`,
+   explanation:`INNER JOIN automatically excludes vehicles never rented. CASE assigns category; a numeric CASE in ORDER BY sorts the string labels by severity without a lookup table.`,
+   tip:`You can't ORDER BY an alias that contains a CASE in all databases — wrap the same CASE logic in ORDER BY as the portable solution.`},
+  {id:11,type:'query',text:"Show all users with each activity. Include activities with no user ('Guest'). Include users with no activities (activity_type = 'None').",
+   concepts:['UNION ALL','LEFT JOIN','COALESCE','Full outer simulation'],
+   answer:`-- Users → activities (or 'None' if none recorded)
 SELECT u.user_name,
        COALESCE(a.activity_type, 'None') AS activity_type
 FROM Users u
@@ -490,14 +484,22 @@ SELECT COALESCE(u.user_name, 'Guest') AS user_name,
        a.activity_type
 FROM Activities a
 LEFT JOIN Users u ON a.user_id = u.user_id
-WHERE u.user_id IS NULL;`,tip:'This UNION ALL of two LEFT JOINs simulates a FULL OUTER JOIN — useful in MySQL which does not support FULL OUTER JOIN natively.',src:'SQL Questions tab'},
-  {id:12,type:'sql',q:'AWS server fleet: calculate total running time in full days across all servers and sessions.',concepts:['SUM','TIMESTAMPDIFF','FLOOR','Aggregate'],explain:'TIMESTAMPDIFF(SECOND, start, stop) gives seconds per session. SUM totals all sessions. Dividing by 86400 converts to days, FLOOR drops the fractional day.',code:`SELECT
+WHERE u.user_id IS NULL;`,
+   explanation:`Two halves: users LEFT JOIN activities gives all users including inactive ones; activities LEFT JOIN users gives orphan activities. UNION ALL combines them. This simulates FULL OUTER JOIN — useful in MySQL which lacks it natively.`,
+   tip:`UNION ALL of two LEFT JOINs simulates FULL OUTER JOIN — the standard pattern in MySQL.`},
+  {id:12,type:'query',text:'AWS server fleet: calculate total running time in full days across all servers and sessions.',
+   concepts:['SUM','TIMESTAMPDIFF','FLOOR','Aggregate'],
+   answer:`SELECT
     FLOOR(
         SUM(TIMESTAMPDIFF(SECOND, start_time, stop_time))
         / 86400
     ) AS total_running_days
-FROM ServerLogs;`,tip:'86400 = 60 × 60 × 24. FLOOR ensures only complete days are returned — round() would overcount.',src:'SQL Questions tab'},
-  {id:13,type:'sql',q:'Department name, region, year, sales amount, and running total of sales by department ordered by year.',concepts:['SUM OVER','PARTITION BY','ORDER BY in window','JOIN'],explain:'The window function resets per department with PARTITION BY and accumulates within each department ordered by year. No GROUP BY needed — all rows are preserved.',code:`SELECT d.name AS department_name, d.region,
+FROM ServerLogs;`,
+   explanation:`TIMESTAMPDIFF(SECOND, start, stop) gives seconds per session. SUM totals all sessions. Dividing by 86400 (60×60×24) converts to days. FLOOR drops the fractional day — only complete days are counted.`,
+   tip:`86400 = 60 × 60 × 24. FLOOR ensures only complete days are returned — ROUND() would overcount.`},
+  {id:13,type:'query',text:'Department name, region, year, sales amount, and running total of sales by department ordered by year.',
+   concepts:['SUM OVER','PARTITION BY','ORDER BY in window','JOIN'],
+   answer:`SELECT d.name AS department_name, d.region,
     s.year, s.sales_amount,
     SUM(s.sales_amount) OVER (
         PARTITION BY s.department_id
@@ -505,8 +507,12 @@ FROM ServerLogs;`,tip:'86400 = 60 × 60 × 24. FLOOR ensures only complete days 
     ) AS running_total
 FROM Departments d
 JOIN Sales s ON d.department_id = s.department_id
-ORDER BY d.department_id, s.year;`,tip:'Without ORDER BY in OVER(), SUM() gives the partition total on every row. Adding ORDER BY turns it into a running total.',src:'SQL Questions tab'},
-  {id:14,type:'sql',q:'Label each department\'s average sales as "Above Average" or "Below Average" compared to the overall average.',concepts:['CTE','CROSS JOIN','AVG','CASE WHEN'],explain:'dept_avg CTE computes per-department averages. overall CTE computes the single grand average. CROSS JOIN makes that one value available in every row for the comparison.',code:`WITH dept_avg AS (
+ORDER BY d.department_id, s.year;`,
+   explanation:`The window function resets per department with PARTITION BY and accumulates within each department ordered by year. No GROUP BY needed — all rows are preserved with a running total column added alongside.`,
+   tip:`Without ORDER BY in OVER(), SUM() gives the partition total on every row. Adding ORDER BY turns it into a running total.`},
+  {id:14,type:'query',text:"Label each department's average sales as 'Above Average' or 'Below Average' compared to the overall average.",
+   concepts:['CTE','CROSS JOIN','AVG','CASE WHEN'],
+   answer:`WITH dept_avg AS (
     SELECT department_id,
            AVG(sales_amount) AS dept_avg_sales
     FROM Sales GROUP BY department_id
@@ -522,8 +528,12 @@ SELECT d.name AS department_name,
     END AS performance_label
 FROM dept_avg da
 CROSS JOIN overall o
-JOIN Departments d ON d.department_id = da.department_id;`,tip:'CROSS JOIN with a single-row CTE avoids repeating the subquery in every CASE branch — cleaner and evaluated once.',src:'SQL Questions tab'},
-  {id:15,type:'sql',q:'Delete records where status="Delete", but rollback if count to delete > 1.',concepts:['Transaction','DELETE','ROW_COUNT()','ROLLBACK','COMMIT','Stored procedure'],explain:'The stored procedure wraps DELETE in a transaction. ROW_COUNT() is checked immediately after DELETE — if > 1 rows were affected, the transaction is rolled back and an error is raised.',code:`DELIMITER //
+JOIN Departments d ON d.department_id = da.department_id;`,
+   explanation:`dept_avg CTE computes per-department averages. overall CTE computes the grand average. CROSS JOIN makes that one value available on every row. Evaluated once — no repeated subquery.`,
+   tip:`CROSS JOIN with a single-row CTE avoids repeating the subquery in every CASE branch — cleaner and evaluated once.`},
+  {id:15,type:'query',text:"Delete records where status='Delete', but rollback if count to delete > 1.",
+   concepts:['Transaction','DELETE','ROW_COUNT()','ROLLBACK','COMMIT','Stored procedure'],
+   answer:`DELIMITER //
 CREATE PROCEDURE SafeDelete()
 BEGIN
     START TRANSACTION;
@@ -539,43 +549,76 @@ BEGIN
     END IF;
 END //
 DELIMITER ;
-CALL SafeDelete();`,tip:'ROW_COUNT() must be called immediately after the DML statement. Any subsequent statement resets it.',src:'SQL Questions tab'},
-  {id:16,type:'sql',q:'Display all employee details for the year 2020 based on join_date.',concepts:['EXTRACT','WHERE','Date filtering'],explain:'EXTRACT(YEAR FROM join_date) returns just the year as an integer, allowing comparison without string conversion or date range syntax.',code:`SELECT *
-FROM EmpDetails
-WHERE EXTRACT(YEAR FROM join_date) = 2020;`,tip:'For large tables, a range filter is faster: WHERE join_date >= \'2020-01-01\' AND join_date < \'2021-01-01\' — it\'s SARGable and can use an index.',src:'SQL Questions tab'},
-  {id:17,type:'sql',q:'Products purchased by at least one customer — show distinct product details.',concepts:['JOIN','DISTINCT','EXISTS alternative'],explain:'INNER JOIN returns only products with matching orders. DISTINCT ensures each product appears once even if purchased multiple times by different customers.',code:`SELECT DISTINCT p.*
+CALL SafeDelete();`,
+   explanation:`The stored procedure wraps DELETE in a transaction. ROW_COUNT() is checked immediately after DELETE — if > 1 rows were affected the transaction is rolled back and an error is raised. ROLLBACK undoes the DELETE atomically.`,
+   tip:`ROW_COUNT() must be called immediately after the DML statement. Any subsequent statement resets it.`},
+  {id:16,type:'query',text:'Display all employee details for the year 2020 based on join_date.',
+   concepts:['EXTRACT','WHERE','Date filtering','SARGable'],
+   answer:`-- Non-SARGable (avoids index on join_date):
+SELECT * FROM EmpDetails
+WHERE EXTRACT(YEAR FROM join_date) = 2020;
+
+-- SARGable (uses index — preferred on large tables):
+SELECT * FROM EmpDetails
+WHERE join_date >= '2020-01-01'
+  AND join_date < '2021-01-01';`,
+   explanation:`EXTRACT(YEAR FROM join_date) is not SARGable — it wraps the column in a function, preventing index use. The range filter on the raw column is SARGable and allows the optimizer to use an index on join_date.`,
+   tip:`For large tables, a range filter is faster: WHERE join_date >= '2020-01-01' AND join_date < '2021-01-01' — it's SARGable and can use an index.`},
+  {id:17,type:'query',text:'Products purchased by at least one customer — show distinct product details.',
+   concepts:['JOIN','DISTINCT','EXISTS','Performance'],
+   answer:`-- Option 1: JOIN + DISTINCT
+SELECT DISTINCT p.*
 FROM Product p
 JOIN Orders o   ON p.product_id = o.product_id
 JOIN Customer c ON o.customer_id = c.customer_id;
 
--- Alternatively using EXISTS (often more efficient):
+-- Option 2: EXISTS (short-circuits — often faster)
 SELECT * FROM Product p
 WHERE EXISTS (
     SELECT 1 FROM Orders o
     WHERE o.product_id = p.product_id
-);`,tip:'EXISTS short-circuits — it stops searching once it finds one matching row. On large tables with many orders per product, EXISTS often outperforms JOIN + DISTINCT.',src:'SQL Questions tab'},
-  {id:18,type:'sql',q:'Update a table where a numeric value > 1, then rename the column to a more descriptive name.',concepts:['UPDATE','CAST','ALTER TABLE','RENAME COLUMN','DML + DDL'],explain:'CAST converts the VARCHAR column to INT for comparison. ALTER TABLE RENAME COLUMN is a DDL change — it modifies the schema permanently and can break dependent views or application code.',code:`-- Update rows where numeric value > 1
+);`,
+   explanation:`INNER JOIN returns only products with matching orders; DISTINCT collapses duplicates. EXISTS short-circuits — it stops as soon as one matching order is found. On products with many orders, EXISTS is often significantly faster.`,
+   tip:`EXISTS short-circuits — stops after finding one match. On large tables with many orders per product, EXISTS often outperforms JOIN + DISTINCT.`},
+  {id:18,type:'query',text:'Update a table where a numeric value > 1, then rename the column to a more descriptive name.',
+   concepts:['UPDATE','CAST','ALTER TABLE','RENAME COLUMN','DML + DDL'],
+   answer:`-- Update rows where numeric value > 1
 UPDATE Sample
 SET value = 'Updated'
 WHERE CAST(value AS INT) > 1;
 
--- Rename the column (DDL)
+-- Rename the column (DDL — permanent schema change)
 ALTER TABLE Sample
-RENAME COLUMN value TO value_status;`,tip:'CAST will error if non-numeric strings exist in the column. Use TRY_CAST() (SQL Server) or filter WHERE value REGEXP \'^[0-9]+$\' first.',src:'SQL Questions tab'},
-  {id:19,type:'sql',q:'Display products > $100 from the Products table.',concepts:['SELECT','WHERE','Basic filter'],explain:'A direct filter query. In production always name columns explicitly instead of SELECT * — it protects against schema changes and makes execution plans more predictable.',code:`SELECT *
+RENAME COLUMN value TO value_status;`,
+   explanation:`CAST converts the VARCHAR column to INT for comparison. ALTER TABLE RENAME COLUMN is a DDL change — it permanently modifies the schema and can break dependent views or application code that references the old column name.`,
+   tip:`CAST will error if non-numeric strings exist in the column. Use TRY_CAST() (SQL Server) or pre-filter with WHERE value REGEXP '^[0-9]+$'.`},
+  {id:19,type:'query',text:'Display products with price > $100 from the Products table.',
+   concepts:['SELECT','WHERE','Basic filter','Indexing'],
+   answer:`SELECT *
 FROM Product
-WHERE product_price > 100;`,tip:'Consider adding an index on product_price if this query runs frequently on a large table: CREATE INDEX idx_price ON Product (product_price);',src:'SQL Questions tab'},
-  {id:20,type:'concept',q:'What is indexing in a relational database? What are the benefits and drawbacks?',concepts:['B-tree index','Hash index','Query optimisation','SARGable','Trade-offs'],explain:'An index is a separate data structure (typically a B-tree) that stores sorted column values with pointers to full rows. Like a book\'s index it lets the database locate rows without scanning every one.',code:`-- Create an index
+WHERE product_price > 100;
+
+-- Add an index if this query runs frequently:
+CREATE INDEX idx_price ON Product (product_price);`,
+   explanation:`A direct filter query. In production always name columns explicitly instead of SELECT * — it protects against schema changes and makes execution plans more predictable. An index on product_price turns this into an index range scan.`,
+   tip:`Consider adding an index on product_price if this query runs frequently on a large table.`},
+  {id:20,type:'concept',text:'What is indexing in a relational database? What are the benefits and drawbacks?',
+   concepts:['B-tree index','Hash index','Query optimisation','SARGable','Trade-offs'],
+   answer:`-- Create an index
 CREATE INDEX idx_customer_name
 ON customers (last_name);
 
--- The optimizer can now seek directly to 'Smith'
--- instead of scanning every row (full table scan → index seek)
+-- Optimizer seeks directly to 'Smith'
+-- instead of scanning every row
 
 -- Composite index for multi-column queries
 CREATE INDEX idx_dept_salary
-ON employees (department_id, salary DESC);`,tip:'Index columns used in WHERE, JOIN ON, and ORDER BY. Over-indexing write-heavy tables hurts performance — every INSERT/UPDATE/DELETE must also update each index.',src:'SQL Questions tab'},
-  {id:21,type:'concept',q:'What are ACID properties in SQL?',concepts:['Atomicity','Consistency','Isolation','Durability','Transactions'],explain:'ACID describes four guarantees that make database transactions reliable. Atomicity: all or nothing. Consistency: valid state to valid state. Isolation: transactions don\'t interfere. Durability: committed = permanent.',code:`BEGIN TRANSACTION;
+ON employees (department_id, salary DESC);`,
+   explanation:`An index is a separate data structure (typically a B-tree) that stores sorted column values with pointers to full rows. Benefits: dramatically faster reads on indexed columns (index seek vs full scan). Drawbacks: every INSERT/UPDATE/DELETE must also update each index — write performance degrades with too many indexes. Over-indexing write-heavy tables hurts throughput.`,
+   tip:`Index columns used in WHERE, JOIN ON, and ORDER BY. Over-indexing write-heavy tables hurts performance — every write must update each index.`},
+  {id:21,type:'concept',text:'What are ACID properties in SQL?',
+   concepts:['Atomicity','Consistency','Isolation','Durability','Transactions'],
+   answer:`BEGIN TRANSACTION;
 
 UPDATE accounts SET balance = balance - 500
 WHERE account_id = 1;  -- Debit
@@ -585,23 +628,28 @@ WHERE account_id = 2;  -- Credit
 
 -- If anything fails: ROLLBACK undoes BOTH (Atomicity)
 -- After COMMIT: persists even if server crashes (Durability)
-COMMIT;`,tip:'Mnemonic: A = All or nothing, C = Correct state always, I = Isolated from others, D = Durable after commit.',src:'Karat Assessment Plan tab'},
-  {id:22,type:'concept',q:'What are window functions and how are they implemented?',concepts:['OVER clause','PARTITION BY','ORDER BY','ROW_NUMBER','RANK','DENSE_RANK','SUM OVER'],explain:'Window functions compute a value across a "window" of related rows without collapsing them (unlike GROUP BY). The OVER() clause defines the window.',code:`-- Running salary total (window = all rows ordered by id)
-SELECT name, salary,
-    SUM(salary) OVER (ORDER BY id) AS running_total
-FROM employees;
+COMMIT;`,
+   explanation:`ACID describes four guarantees that make database transactions reliable. Atomicity: all or nothing — either both updates succeed or neither does. Consistency: the database moves from one valid state to another. Isolation: concurrent transactions don't see each other's uncommitted changes. Durability: once committed, data survives crashes.`,
+   tip:`Mnemonic: A = All or nothing, C = Correct state always, I = Isolated from others, D = Durable after commit.`},
+  {id:22,type:'concept',text:'What are window functions and how do they differ from GROUP BY?',
+   concepts:['OVER clause','PARTITION BY','ORDER BY','ROW_NUMBER','RANK','SUM OVER'],
+   answer:`-- GROUP BY collapses N rows into K groups:
+SELECT department, AVG(salary) FROM employees
+GROUP BY department;  -- one row per dept
 
--- Rank within each department
+-- Window function keeps all N rows:
 SELECT name, department, salary,
-    RANK() OVER (
-        PARTITION BY department
-        ORDER BY salary DESC
-    ) AS dept_rank
-FROM employees;`,tip:'Key difference: GROUP BY reduces N rows to K groups; window functions keep all N rows and add a computed column alongside them.',src:'SQL Questions tab'},
-  {id:23,type:'concept',q:'What is SQL Override and how is it used in ETL?',concepts:['SQL Override','ETL','Informatica','Source qualifier','Custom SQL'],explain:'SQL Override is an Informatica PowerCenter feature that replaces the auto-generated SELECT on a Source Qualifier with custom SQL. This pushes complex logic to the database engine rather than the ETL tool, reducing data volume in transit.',code:`-- Auto-generated (default):
+    AVG(salary) OVER (PARTITION BY department) AS dept_avg,
+    RANK() OVER (PARTITION BY department ORDER BY salary DESC) AS rnk
+FROM employees;  -- all rows preserved`,
+   explanation:`Window functions compute a value across a 'window' of related rows without collapsing them. GROUP BY reduces N rows to K groups and loses row-level detail. Window functions keep all N rows and add computed columns alongside them — essential for rankings, running totals, and lead/lag comparisons.`,
+   tip:`Key difference: GROUP BY reduces N rows to K groups; window functions keep all N rows and add a computed column alongside them.`},
+  {id:23,type:'concept',text:'What is SQL Override and how is it used in ETL (Informatica)?',
+   concepts:['SQL Override','ETL','Informatica','Source qualifier','Custom SQL'],
+   answer:`-- Auto-generated (default):
 SELECT customer_id, name, email FROM customers
 
--- SQL Override (custom):
+-- SQL Override (custom — pushes join to database):
 SELECT c.customer_id, c.name, c.email,
        o.order_count
 FROM customers c
@@ -609,21 +657,29 @@ JOIN (
     SELECT customer_id, COUNT(*) AS order_count
     FROM orders GROUP BY customer_id
 ) o ON c.customer_id = o.customer_id
-WHERE c.active = 1`,tip:'Use SQL Override when Informatica\'s native join capability is slower than a database-side join, or when you need database-specific functions unavailable in Informatica transformations.',src:'Karat Assessment Plan tab'},
-  {id:24,type:'concept',q:'What are best practices for filtering data in SQL?',concepts:['SARGable queries','Avoid functions on indexed columns','LIKE patterns','NULL handling','Index usage'],explain:'SARGable (Search ARGument Able) queries let the engine use indexes. Wrapping a column in a function usually prevents index use, forcing a full table scan.',code:`-- BAD (non-SARGable — full table scan):
+WHERE c.active = 1`,
+   explanation:`SQL Override is an Informatica PowerCenter feature that replaces the auto-generated SELECT on a Source Qualifier with custom SQL. This pushes complex logic to the database engine rather than the ETL tool, reducing data volume in transit and leveraging database-side optimisations.`,
+   tip:`Use SQL Override when Informatica's native join capability is slower than a database-side join, or when you need database-specific functions unavailable in Informatica transformations.`},
+  {id:24,type:'concept',text:'What are best practices for filtering data in SQL? What makes a query SARGable?',
+   concepts:['SARGable queries','Functions on indexed columns','LIKE patterns','NULL handling','Index usage'],
+   answer:`-- NON-SARGable (full table scan):
 WHERE YEAR(created_date) = 2024
 WHERE UPPER(name) = 'SMITH'
 WHERE name LIKE '%Smith'
 
--- GOOD (SARGable — can use index):
+-- SARGable (can use index):
 WHERE created_date >= '2024-01-01'
   AND created_date <  '2025-01-01'
 WHERE name = 'Smith'
-WHERE name LIKE 'Smith%'
+WHERE name LIKE 'Smith%'  -- prefix match only
 
 -- Filter NULLs explicitly:
-WHERE status IS NOT NULL AND status = 'Active'`,tip:'If you wrap a column in a function, its index is usually bypassed. Always filter on the raw column value. Use EXPLAIN/EXPLAIN PLAN to verify index usage.',src:'Karat Assessment Plan tab'},
-  {id:25,type:'concept',q:'What are Fact tables and Dimension tables in a data warehouse?',concepts:['Star schema','Fact table','Dimension table','Foreign key','Data warehouse'],explain:'Fact tables store measurable events (sales, clicks, transactions) with numeric values and foreign keys. Dimension tables store descriptive context (product name, customer region, date labels). They join in a star or snowflake schema.',code:`-- Dimension: descriptive attributes
+WHERE status IS NOT NULL AND status = 'Active'`,
+   explanation:`SARGable (Search ARGument Able) queries let the optimizer use indexes. Wrapping a column in a function (YEAR(), UPPER(), etc.) usually prevents index use, forcing a full table scan. Leading wildcards in LIKE ('%Smith') also prevent index use. Always filter on the raw column value. Use EXPLAIN/EXPLAIN PLAN to verify.`,
+   tip:`If you wrap a column in a function, its index is usually bypassed. Always filter on the raw column value.`},
+  {id:25,type:'concept',text:'What are Fact tables and Dimension tables in a data warehouse?',
+   concepts:['Star schema','Fact table','Dimension table','Foreign key','Data warehouse'],
+   answer:`-- Dimension: descriptive attributes
 CREATE TABLE dim_product (
     product_key  INT PRIMARY KEY,
     product_name VARCHAR(100),
@@ -637,13 +693,88 @@ CREATE TABLE fact_sales (
     date_key    INT,
     amount      DECIMAL(12,2),
     quantity    INT
-);`,tip:'Memory aid: Facts are NUMBERS you measure (revenue, quantity), Dimensions are WORDS that describe context (product name, region, time period).',src:'Karat Assessment Plan tab'},
-  {id:26,type:'py',q:'Parse URLs from a log file fetched by HTTP. Find the most common URL. Use requests and Counter.',concepts:['requests','Counter','collections','splitlines()','most_common()'],explain:'requests.get() fetches the file. splitlines() converts the response body to a list. Counter counts each URL\'s occurrences. most_common(1) returns the top URL and its count as a tuple.',code:`import requests
+);`,
+   explanation:`Fact tables store measurable events (sales, clicks, transactions) with numeric values and foreign keys pointing to dimensions. Dimension tables store descriptive context (product name, customer region, date labels). They join in a star schema — the fact table at the centre, dimensions radiating outward.`,
+   tip:`Memory aid: Facts are NUMBERS you measure (revenue, quantity), Dimensions are WORDS that describe context (product name, region, time period).`},
+];
+
+// ── PYTHON QUESTIONS DATA ────────────────────────────────────────────────────
+const pyQs = [
+  {id:1,cat:'log',catLabel:'Log Parsing',
+   text:'IPs still blocked at a given time',
+   question:`Given a chronological log file where each line is:
+"YYYY-MM-DD HH:MM:SS BLOCK <ip>"  or
+"YYYY-MM-DD HH:MM:SS UNBLOCK <ip>"
+
+Write a function ips_blocked_at(log_lines, query_time) that returns
+all IPs still blocked at query_time.
+
+Example:
+logs = [
+  "2023-01-01 09:00:00 BLOCK 10.0.0.1",
+  "2023-01-01 09:30:00 BLOCK 10.0.0.2",
+  "2023-01-01 10:00:00 UNBLOCK 10.0.0.1",
+  "2023-01-01 10:30:00 BLOCK 10.0.0.3",
+]
+ips_blocked_at(logs, "2023-01-01 10:15:00")  →  ['10.0.0.2']`,
+   solution:`from datetime import datetime
+
+def ips_blocked_at(log_lines, query_time):
+    blocked = set()
+    query_dt = datetime.strptime(query_time, "%Y-%m-%d %H:%M:%S")
+
+    for line in log_lines:
+        parts = line.strip().split()
+        if len(parts) < 4:
+            continue
+        dt = datetime.strptime(f"{parts[0]} {parts[1]}", "%Y-%m-%d %H:%M:%S")
+        if dt > query_dt:
+            break                     # log is sorted — stop early
+        action, ip = parts[2], parts[3]
+        if action == "BLOCK":
+            blocked.add(ip)
+        elif action == "UNBLOCK":
+            blocked.discard(ip)       # safe even if ip not in set
+
+    return sorted(blocked)
+
+# Test
+logs = [
+    "2023-01-01 09:00:00 BLOCK 10.0.0.1",
+    "2023-01-01 09:30:00 BLOCK 10.0.0.2",
+    "2023-01-01 10:00:00 UNBLOCK 10.0.0.1",
+    "2023-01-01 10:30:00 BLOCK 10.0.0.3",
+]
+print(ips_blocked_at(logs, "2023-01-01 10:15:00"))
+# Output: ['10.0.0.2']`,
+   explanation:`Key insight — use set() because:
+• add(ip) — O(1) to block an IP
+• discard(ip) — O(1) and safe (no KeyError if ip not present)
+• Membership check is O(1) vs O(n) for a list
+
+Why discard() not remove()? A corrupted log may UNBLOCK an ip that was never BLOCKed — discard() silently ignores it; remove() raises KeyError.
+
+Datetime parsing: the log has two separate fields for date and time, so concatenate before parsing: f"{parts[0]} {parts[1]}".
+
+Early exit: since the log is sorted chronologically, break as soon as we see an event after query_time — O(k) time where k is events before the cutoff.
+
+Time complexity: O(k) with pre-sorted log, O(k log k) if sorting needed.
+Space complexity: O(u) where u = number of unique blocked IPs.`},
+  {id:2,cat:'log',catLabel:'Log Parsing',
+   text:'Most common URL from an HTTP log file',
+   question:`Fetch a log file over HTTP where each line is a URL.
+Find and return the most frequently appearing URL.
+
+The log is fetched from:  https://public.karat.io/content/urls2.txt
+
+Function signature:
+  most_common_url(logfile_url) -> str`,
+   solution:`import requests
 from collections import Counter
 
 def most_common_url(logfile_url):
     response = requests.get(logfile_url)
-    response.raise_for_status()
+    response.raise_for_status()       # raises on 4xx/5xx
 
     urls = response.text.strip().splitlines()
     counter = Counter(urls)
@@ -651,65 +782,26 @@ def most_common_url(logfile_url):
     print(f"Most common URL: {most_common} ({count} times)")
     return most_common
 
-most_common_url("https://public.karat.io/content/urls2.txt")`,tip:'raise_for_status() converts HTTP 4xx/5xx into exceptions immediately — always call it after requests.get() before reading the response body.',src:'Python tab'},
-  {id:27,type:'py',q:'Extract full domain and second-level domain from a URL without using URL-parsing libraries.',concepts:['String splitting','split("://")','split("/")','Negative indexing','join()'],explain:'Strip the protocol by splitting on "://". Strip the path by splitting on "/" and taking index [0]. Split the domain on "." and join the last two elements for the second-level domain.',code:`def extract_domain_parts(url):
-    if "://" in url:
-        url = url.split("://")[1]
+most_common_url("https://public.karat.io/content/urls2.txt")`,
+   explanation:`requests.get() fetches the remote file. raise_for_status() converts HTTP error codes into exceptions immediately — always call it before reading the response body.
 
-    full_domain = url.split("/")[0]  # strip path
+splitlines() converts the response body to a list of URL strings, handling \\n and \\r\\n line endings.
 
-    parts = full_domain.split(".")
-    last_two = ".".join(parts[-2:]) if len(parts) >= 2 else full_domain
+Counter(urls) counts occurrences of each URL in O(n). most_common(1) returns a list of [(url, count)] — index [0] unpacks to the top URL.
 
-    return full_domain, last_two
+Time complexity: O(n) for Counter construction, O(n log n) for most_common internally.
+Space complexity: O(u) where u = unique URLs.`},
+  {id:3,cat:'log',catLabel:'Log Parsing',
+   text:'Website traffic log analysis',
+   question:`Parse a web server access log where each line is:
+"timestamp method endpoint status_code bytes"
 
-# Examples:
-# "http://world.news.yahoo.com/news/"
-#   → ("world.news.yahoo.com", "yahoo.com")
-# "https://google.com/"
-#   → ("google.com", "google.com")`,tip:'parts[-2:] is Pythonic negative indexing — it grabs the last two list elements regardless of how many subdomain parts exist.',src:'Python tab'},
-  {id:28,type:'py',q:'Customer order analytics: total orders per customer, total spent, highest spender, average order value. Save as JSON.',concepts:['pandas','groupby','idxmax()','to_datetime','json'],explain:'pandas groupby aggregates per-customer metrics. idxmax() returns the customer name (index label) with the highest sum. The summary dictionary is serialised with json.dump().',code:`import pandas as pd, json
+Example line: "2023-01-01 GET /api/users 200 1024"
 
-df = pd.read_csv("orders.csv")
-df["order_date"] = pd.to_datetime(df["order_date"])
-
-summary = {
-    "total_orders": len(df),
-    "orders_per_customer": df.groupby("customer")["order_id"]
-                             .count().to_dict(),
-    "total_spent_per_customer": df.groupby("customer")["amount"]
-                                  .sum().to_dict(),
-    "highest_spending_customer": df.groupby("customer")["amount"]
-                                   .sum().idxmax(),
-    "average_order_value": round(df["amount"].mean(), 2)
-}
-
-with open("summary.json", "w") as f:
-    json.dump(summary, f, indent=2)`,tip:'idxmax() returns the label (customer name) of the maximum, not the maximum value itself — much cleaner than sorting and slicing.',src:'Python practise questions tab'},
-  {id:29,type:'py',q:'Validate email addresses with regex, count per domain, find most common domain. Save to JSON.',concepts:['re','regex','Counter','split("@")','json'],explain:'The regex pattern checks for basic email structure. re.match() returns None for invalids. Valid emails are split on "@" to extract the domain, then Counter tallies domain occurrences.',code:`import re, json
-from collections import Counter
-
-def analyse_emails(filepath):
-    pattern = r'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$'
-
-    valid, invalid = [], []
-    with open(filepath) as f:
-        for email in f.read().splitlines():
-            (valid if re.match(pattern, email) else invalid).append(email)
-
-    domains = [e.split("@")[1] for e in valid]
-    domain_count = Counter(domains)
-
-    summary = {
-        "valid_emails":      valid,
-        "invalid_emails":    invalid,
-        "domain_count":      dict(domain_count),
-        "most_common_domain": domain_count.most_common(1)[0][0]
-    }
-    with open("email_report.json", "w") as f:
-        json.dump(summary, f, indent=2)
-    return summary`,tip:'The ternary append pattern (valid if condition else invalid).append(x) routes items into two lists in one readable line.',src:'Python practise questions tab'},
-  {id:30,type:'py',q:'Website traffic log analysis: count requests, successes, failures, most visited endpoint. Save to JSON.',concepts:['File reading','split()','Counter','len()','json'],explain:'Read the log file line by line, split each line into parts, check the status code (index 3), and track endpoints with Counter. Compute percentages after counting.',code:`import json
+Write analyse_logs(filepath) that returns a dict with:
+  total_requests, successful_requests (200), failed_requests,
+  most_visited_endpoint, failure_percentage`,
+   solution:`import json
 from collections import Counter
 
 def analyse_logs(filepath):
@@ -720,8 +812,9 @@ def analyse_logs(filepath):
         for line in f:
             parts = line.strip().split()
             if len(parts) < 4:
-                continue
-            endpoint, status = parts[2], int(parts[3])
+                continue              # skip malformed lines
+            endpoint = parts[2]
+            status = int(parts[3])
             total += 1
             endpoints.append(endpoint)
             if status == 200:
@@ -732,100 +825,1061 @@ def analyse_logs(filepath):
     top_endpoint = Counter(endpoints).most_common(1)[0][0]
 
     summary = {
-        "total_requests":      total,
-        "successful_requests": successes,
-        "failed_requests":     failures,
+        "total_requests":        total,
+        "successful_requests":   successes,
+        "failed_requests":       failures,
         "most_visited_endpoint": top_endpoint,
-        "failure_percentage":  round(failures / total * 100, 2)
+        "failure_percentage":    round(failures / total * 100, 2)
     }
     with open("log_report.json", "w") as f:
         json.dump(summary, f, indent=2)
-    return summary`,tip:'Always guard against malformed lines with len(parts) < 4 — real log files frequently contain partial or corrupted entries.',src:'Python practise questions tab'},
+    return summary`,
+   explanation:`Always guard against malformed lines with len(parts) < 4 — real log files frequently contain partial or corrupted entries. This is a common Karat interview gotcha.
+
+Streaming with a for loop reads one line at a time — memory efficient for large log files vs. reading the whole file with read().
+
+Counter(endpoints).most_common(1)[0][0] chains: Counter builds frequency map, most_common(1) returns top entry as [(endpoint, count)], [0][0] extracts the endpoint string.
+
+Dividing before checking total == 0 is safe here because an empty file wouldn't reach the division. In production, add: if total == 0: return None.`},
+  {id:4,cat:'log',catLabel:'Log Parsing',
+   text:'Email validation and domain frequency analysis',
+   question:`Given a file with one email per line, write analyse_emails(filepath) that:
+1. Separates valid from invalid emails using regex
+2. Counts emails per domain
+3. Finds the most common domain
+4. Saves results to email_report.json`,
+   solution:`import re, json
+from collections import Counter
+
+def analyse_emails(filepath):
+    pattern = r'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$'
+
+    valid, invalid = [], []
+    with open(filepath) as f:
+        for email in f.read().splitlines():
+            if re.match(pattern, email):
+                valid.append(email)
+            else:
+                invalid.append(email)
+
+    domains = [e.split("@")[1] for e in valid]
+    domain_count = Counter(domains)
+
+    summary = {
+        "valid_count":        len(valid),
+        "invalid_count":      len(invalid),
+        "domain_count":       dict(domain_count),
+        "most_common_domain": domain_count.most_common(1)[0][0]
+    }
+    with open("email_report.json", "w") as f:
+        json.dump(summary, f, indent=2)
+    return summary`,
+   explanation:`re.match(pattern, email) returns a match object (truthy) for valid emails, None (falsy) for invalid ones.
+
+The regex pattern breaks down:
+• ^[a-zA-Z0-9_.+-]+  — local part (before @)
+• @[a-zA-Z0-9-]+    — domain name
+• \\.[a-zA-Z0-9-.]+$  — TLD (after last dot)
+
+split("@")[1] extracts the domain part. This works for single @ emails — real-world code would use email.rsplit("@", 1)[1] to handle edge cases.
+
+json.dump() with indent=2 creates human-readable JSON output.`},
+  {id:5,cat:'log',catLabel:'Log Parsing',
+   text:'Session durations from login/logout events',
+   question:`Given log lines in format:
+"YYYY-MM-DD HH:MM:SS LOGIN user123"
+"YYYY-MM-DD HH:MM:SS LOGOUT user123"
+
+Write session_durations(log_lines) that returns a dict mapping
+each user to their total session time in seconds.
+Handle users who logged in but never logged out.`,
+   solution:`from datetime import datetime
+
+def session_durations(log_lines):
+    login_times = {}   # user -> login datetime
+    durations = {}     # user -> total seconds
+
+    for line in log_lines:
+        parts = line.strip().split()
+        if len(parts) < 4:
+            continue
+        dt = datetime.strptime(f"{parts[0]} {parts[1]}", "%Y-%m-%d %H:%M:%S")
+        event, user = parts[2], parts[3]
+
+        if event == "LOGIN":
+            login_times[user] = dt
+        elif event == "LOGOUT" and user in login_times:
+            elapsed = (dt - login_times[user]).total_seconds()
+            durations[user] = durations.get(user, 0) + elapsed
+            del login_times[user]   # clear after computing session
+
+    # login_times still has users who never logged out
+    return {u: round(s, 1) for u, s in sorted(durations.items())}
+
+# Test
+logs = [
+    "2023-01-01 09:00:00 LOGIN alice",
+    "2023-01-01 09:30:00 LOGIN bob",
+    "2023-01-01 10:00:00 LOGOUT alice",
+    "2023-01-01 10:45:00 LOGOUT bob",
+]
+print(session_durations(logs))
+# {'alice': 3600.0, 'bob': 4500.0}`,
+   explanation:`Two dicts: login_times tracks open sessions, durations accumulates total time per user.
+
+datetime subtraction yields a timedelta object. .total_seconds() converts it to a float — always use this over .seconds which ignores days.
+
+durations.get(user, 0) handles users with multiple sessions — their times accumulate.
+
+del login_times[user] after LOGOUT prevents a second LOGOUT from causing a double-count.
+
+Users still in login_times after the loop never logged out — the function gracefully ignores their incomplete session.`},
+  {id:6,cat:'string',catLabel:'Strings',
+   text:'Extract full domain and second-level domain from a URL',
+   question:`Without using urllib or any URL-parsing library, write
+extract_domain_parts(url) that returns a tuple:
+  (full_domain, second_level_domain)
+
+Examples:
+  "http://world.news.yahoo.com/news/"
+    → ("world.news.yahoo.com", "yahoo.com")
+  "https://google.com/"
+    → ("google.com", "google.com")`,
+   solution:`def extract_domain_parts(url):
+    # Strip protocol
+    if "://" in url:
+        url = url.split("://")[1]
+
+    # Strip path, query string, fragment
+    full_domain = url.split("/")[0]
+    full_domain = full_domain.split("?")[0].split("#")[0]
+
+    # Second-level domain = last two dot-separated parts
+    parts = full_domain.split(".")
+    sld = ".".join(parts[-2:]) if len(parts) >= 2 else full_domain
+
+    return full_domain, sld
+
+# Tests
+print(extract_domain_parts("http://world.news.yahoo.com/news/"))
+# ('world.news.yahoo.com', 'yahoo.com')
+print(extract_domain_parts("https://google.com/"))
+# ('google.com', 'google.com')`,
+   explanation:`split("://")[1] strips the protocol — works for http, https, ftp, etc. Split on "/" then take index [0] to remove the path.
+
+parts[-2:] is Pythonic negative indexing — grabs the last two elements regardless of how many subdomain parts exist. ".".join() reassembles them.
+
+Edge cases handled: no protocol, no path, no subdomain (google.com returns google.com for both), query strings and fragments stripped.
+
+In production use urllib.parse.urlparse() — this manual approach is for interview settings where library restrictions apply.`},
+  {id:7,cat:'string',catLabel:'Strings',
+   text:'Run-length encoding — compress consecutive characters',
+   question:`Write encode(s) that compresses consecutive duplicate characters:
+  "aaabbc"   → "3a2bc"   (c appears once — no prefix needed... or "3a2b1c")
+  "aabbcc"   → "2a2b2c"
+  "abcd"     → "abcd"    (no compression for singles)
+  ""         → ""
+
+Choose whether single-occurrence chars get a "1" prefix and be consistent.`,
+   solution:`def encode(s):
+    if not s:
+        return ""
+
+    result = []
+    count = 1
+
+    for i in range(1, len(s)):
+        if s[i] == s[i - 1]:
+            count += 1
+        else:
+            result.append(("" if count == 1 else str(count)) + s[i - 1])
+            count = 1
+
+    # Flush the last group
+    result.append(("" if count == 1 else str(count)) + s[-1])
+    return "".join(result)
+
+# Tests
+print(encode("aaabbc"))   # "3a2bc"
+print(encode("aabbcc"))   # "2a2b2c"
+print(encode("abcd"))     # "abcd"
+print(encode(""))         # ""
+print(encode("a"))        # "a"`,
+   explanation:`Iterate from index 1 comparing each character to the previous. When the character changes, flush the current run.
+
+("" if count == 1 else str(count)) omits the "1" prefix for single characters — a common variant. State upfront which convention you're using in an interview.
+
+Edge cases: empty string (guard at top), single character, all-identical string, already-compressed input.
+
+The list + "".join() pattern is O(n) vs string concatenation with += which is O(n²) due to string immutability in Python.
+
+Time: O(n). Space: O(n) for the result list.`},
+  {id:8,cat:'string',catLabel:'Strings',
+   text:'Check if two strings are anagrams of each other',
+   question:`Write is_anagram(s1, s2) that returns True if the two strings
+contain exactly the same characters with the same frequencies
+(case-insensitive, ignoring spaces).
+
+Examples:
+  is_anagram("listen", "silent")    → True
+  is_anagram("Astronomer", "Moon starer")  → True
+  is_anagram("hello", "world")      → False`,
+   solution:`from collections import Counter
+
+def is_anagram(s1, s2):
+    # Normalise: lowercase, remove spaces
+    clean = lambda s: s.lower().replace(" ", "")
+    return Counter(clean(s1)) == Counter(clean(s2))
+
+# Alternative without Counter:
+def is_anagram_sort(s1, s2):
+    clean = lambda s: s.lower().replace(" ", "")
+    return sorted(clean(s1)) == sorted(clean(s2))
+
+# Tests
+print(is_anagram("listen", "silent"))           # True
+print(is_anagram("Astronomer", "Moon starer"))  # True
+print(is_anagram("hello", "world"))             # False`,
+   explanation:`Counter(s) builds a frequency map: {'l':1, 'i':1, 's':1, 't':1, 'e':1, 'n':1}. Two Counters compare equal when all keys and values match.
+
+Normalisation: .lower() for case-insensitivity, .replace(" ", "") to ignore spaces.
+
+Alternative — sorted(): sort both strings and compare. O(n log n) time but no import needed.
+
+Counter approach: O(n) time, O(k) space where k = unique characters.
+
+In interviews, mention both approaches and their trade-offs.`},
+  {id:9,cat:'string',catLabel:'Strings',
+   text:'Find the first non-repeating character in a string',
+   question:`Write first_non_repeating(s) that returns the first character
+that appears exactly once, or None if all characters repeat.
+
+Examples:
+  first_non_repeating("aabbcde")  → 'c'
+  first_non_repeating("aabb")     → None
+  first_non_repeating("z")        → 'z'`,
+   solution:`from collections import Counter
+
+def first_non_repeating(s):
+    freq = Counter(s)
+    for ch in s:           # preserves original order
+        if freq[ch] == 1:
+            return ch
+    return None
+
+# Alternative using OrderedDict (Python < 3.7):
+from collections import OrderedDict
+
+def first_non_repeating_v2(s):
+    counts = OrderedDict()
+    for ch in s:
+        counts[ch] = counts.get(ch, 0) + 1
+    for ch, cnt in counts.items():
+        if cnt == 1:
+            return ch
+    return None
+
+# Tests
+print(first_non_repeating("aabbcde"))  # 'c'
+print(first_non_repeating("aabb"))     # None
+print(first_non_repeating("z"))        # 'z'`,
+   explanation:`Two-pass approach: first build frequency counts, then scan the original string in order to find the first char with count == 1.
+
+Why scan s again (not Counter.items())? Counter.items() has no guaranteed order. We need the first non-repeating in the original string's order — iterating s directly gives that.
+
+Python 3.7+ dicts are ordered by insertion, but Counter doesn't guarantee the enumeration order matches the input — always iterate the original string for order-sensitive problems.
+
+Time: O(n) for both Counter and the second scan.
+Space: O(k) where k = unique characters (max 26 for lowercase alpha).`},
+  {id:10,cat:'list',catLabel:'Lists',
+   text:'Two Sum — find indices of two numbers that add to target',
+   question:`Write two_sum(nums, target) that returns the indices [i, j]
+of the two numbers in nums that add up to target.
+Assume exactly one solution exists and you cannot use the same element twice.
+
+Examples:
+  two_sum([2, 7, 11, 15], 9)  → [0, 1]   (2+7=9)
+  two_sum([3, 2, 4], 6)       → [1, 2]   (2+4=6)
+  two_sum([3, 3], 6)          → [0, 1]`,
+   solution:`def two_sum(nums, target):
+    seen = {}              # value -> index
+
+    for i, num in enumerate(nums):
+        complement = target - num
+        if complement in seen:
+            return [seen[complement], i]
+        seen[num] = i
+
+    return []              # no solution (shouldn't happen per constraints)
+
+# Tests
+print(two_sum([2, 7, 11, 15], 9))   # [0, 1]
+print(two_sum([3, 2, 4], 6))        # [1, 2]
+print(two_sum([3, 3], 6))           # [0, 1]`,
+   explanation:`One-pass hash map approach: for each number, check if its complement (target - num) was already seen.
+
+seen stores {value: index} so we can look up both whether the complement exists AND get its index in O(1).
+
+Why store num after the check? If we stored first then checked, a single element [3] with target=6 would wrongly return [0, 0]. Checking first, then storing, ensures we don't reuse the same element.
+
+Brute force is O(n²) with nested loops. Hash map is O(n) time, O(n) space.
+
+Always mention the trade-off in an interview: brute force is O(1) space but O(n²) time.`},
+  {id:11,cat:'list',catLabel:'Lists',
+   text:'Move all zeros to end while preserving relative order of non-zeros',
+   question:`Write move_zeros(nums) that modifies nums in-place to move
+all 0s to the end, maintaining the relative order of non-zero elements.
+Do NOT return a new list — modify in place.
+
+Examples:
+  nums = [0, 1, 0, 3, 12]  →  [1, 3, 12, 0, 0]
+  nums = [0]                →  [0]
+  nums = [1, 2, 3]          →  [1, 2, 3]`,
+   solution:`def move_zeros(nums):
+    write = 0  # position to write next non-zero
+
+    # Pass 1: compact non-zeros to the front
+    for read in range(len(nums)):
+        if nums[read] != 0:
+            nums[write] = nums[read]
+            write += 1
+
+    # Pass 2: fill the rest with zeros
+    while write < len(nums):
+        nums[write] = 0
+        write += 1
+
+# Tests
+a = [0, 1, 0, 3, 12]
+move_zeros(a)
+print(a)   # [1, 3, 12, 0, 0]
+
+b = [0]
+move_zeros(b)
+print(b)   # [0]`,
+   explanation:`Two-pointer approach with a write pointer. Pass 1 copies every non-zero to the write position in order — preserving relative order. Pass 2 fills everything from write onward with zeros.
+
+Why two passes? Single-pass swap approaches work but may move zeros in unexpected orders depending on direction. Two passes are clearer for interviews.
+
+In-place: no extra list allocated (O(1) space beyond the input).
+
+Time: O(n) — two linear passes.
+Space: O(1) — only the write pointer.
+
+Alternative (less optimal): nums.sort(key=lambda x: x == 0) uses Python's stable sort to move zeros to end but is O(n log n).`},
+  {id:12,cat:'list',catLabel:'Lists',
+   text:'Merge overlapping intervals',
+   question:`Given a list of intervals [start, end], merge all overlapping ones
+and return the result sorted by start time.
+
+Examples:
+  [[1,3],[2,6],[8,10],[15,18]]  →  [[1,6],[8,10],[15,18]]
+  [[1,4],[4,5]]                 →  [[1,5]]   (touching = overlapping)
+  [[1,4],[2,3]]                 →  [[1,4]]   (one contains the other)`,
+   solution:`def merge_intervals(intervals):
+    if not intervals:
+        return []
+
+    intervals.sort(key=lambda x: x[0])  # sort by start
+    merged = [intervals[0]]
+
+    for start, end in intervals[1:]:
+        last_end = merged[-1][1]
+        if start <= last_end:           # overlapping or touching
+            merged[-1][1] = max(last_end, end)  # extend
+        else:
+            merged.append([start, end])  # new non-overlapping interval
+
+    return merged
+
+# Tests
+print(merge_intervals([[1,3],[2,6],[8,10],[15,18]]))
+# [[1,6],[8,10],[15,18]]
+print(merge_intervals([[1,4],[4,5]]))
+# [[1,5]]
+print(merge_intervals([[1,4],[2,3]]))
+# [[1,4]]`,
+   explanation:`Sort by start time first — this ensures any overlapping interval comes right after the current one in the list. O(n log n) for the sort.
+
+Scan through: if the next interval's start <= current end, they overlap. Merge by extending the end to max(current_end, next_end) — max handles containment (one interval completely inside another).
+
+merged[-1][1] = max(...) mutates the last merged interval in place.
+
+Why max()? If intervals[i] = [1,10] and intervals[i+1] = [2,5], the end is 10, not 5.
+
+Time: O(n log n) dominated by sort. Space: O(n) for the output.`},
+  {id:13,cat:'list',catLabel:'Lists',
+   text:'Find the second largest unique number in a list',
+   question:`Write second_largest(nums) that returns the second largest
+unique number in nums, or None if it doesn't exist.
+
+Examples:
+  second_largest([1, 2, 3, 4, 5])  → 4
+  second_largest([5, 5, 4, 4, 3])  → 4   (unique: 5,4,3 → second = 4)
+  second_largest([1])               → None
+  second_largest([2, 2])            → None`,
+   solution:`def second_largest(nums):
+    unique = set(nums)           # deduplicate
+    if len(unique) < 2:
+        return None
+
+    unique.remove(max(unique))   # remove the largest
+    return max(unique)           # what remains is second-largest
+
+# One-liner alternative:
+def second_largest_v2(nums):
+    unique = sorted(set(nums), reverse=True)
+    return unique[1] if len(unique) >= 2 else None
+
+# Tests
+print(second_largest([1,2,3,4,5]))   # 4
+print(second_largest([5,5,4,4,3]))   # 4
+print(second_largest([1]))           # None
+print(second_largest([2,2]))         # None`,
+   explanation:`Convert to set() first to handle duplicates — the problem asks for second largest unique value.
+
+remove(max(unique)) removes the largest. A second call to max() then returns the second-largest in O(n).
+
+Total time: O(n) for set construction, O(n) for each max call = O(n).
+
+Alternative with sorted(): O(n log n) but very readable — sort unique values descending and take index [1].
+
+Edge cases: fewer than 2 unique values → return None. Empty list → set is empty, len < 2 → None.`},
+  {id:14,cat:'function',catLabel:'Functions',
+   text:'Customer order analytics with pandas',
+   question:`Given a CSV file with columns: customer, order_id, order_date, amount
+Write analyse_orders(filepath) that returns a dict with:
+  total_orders, orders_per_customer (dict),
+  total_spent_per_customer (dict), highest_spending_customer,
+  average_order_value
+Save results to summary.json.`,
+   solution:`import pandas as pd, json
+
+def analyse_orders(filepath):
+    df = pd.read_csv(filepath)
+    df["order_date"] = pd.to_datetime(df["order_date"])
+
+    summary = {
+        "total_orders": len(df),
+        "orders_per_customer": (
+            df.groupby("customer")["order_id"]
+              .count().to_dict()
+        ),
+        "total_spent_per_customer": (
+            df.groupby("customer")["amount"]
+              .sum().to_dict()
+        ),
+        "highest_spending_customer": (
+            df.groupby("customer")["amount"]
+              .sum().idxmax()
+        ),
+        "average_order_value": round(df["amount"].mean(), 2)
+    }
+
+    with open("summary.json", "w") as f:
+        json.dump(summary, f, indent=2)
+    return summary`,
+   explanation:`pd.to_datetime() parses dates — important if you later do date-based filtering.
+
+groupby("customer") creates a GroupBy object; chaining ["order_id"].count() computes per-customer order counts. to_dict() converts the resulting Series to a plain Python dict for JSON serialization.
+
+idxmax() returns the INDEX LABEL (customer name) of the maximum value — not the maximum value itself. Much cleaner than sorting and slicing.
+
+json.dump() requires plain Python types — to_dict() handles the Series-to-dict conversion before serialization.`},
+  {id:15,cat:'function',catLabel:'Functions',
+   text:'Fibonacci sequence with memoization',
+   question:`Write fib(n) that returns the nth Fibonacci number efficiently.
+  fib(0) = 0, fib(1) = 1, fib(n) = fib(n-1) + fib(n-2)
+
+Show both: manual memoization with a dict, and the
+functools.lru_cache decorator approach.`,
+   solution:`# Approach 1: manual memoization
+def fib_memo(n, memo={}):
+    if n in memo:
+        return memo[n]
+    if n <= 1:
+        return n
+    memo[n] = fib_memo(n-1, memo) + fib_memo(n-2, memo)
+    return memo[n]
+
+# Approach 2: functools.lru_cache
+from functools import lru_cache
+
+@lru_cache(maxsize=None)
+def fib(n):
+    if n <= 1:
+        return n
+    return fib(n-1) + fib(n-2)
+
+# Approach 3: iterative (best for production — no stack overflow)
+def fib_iter(n):
+    if n <= 1:
+        return n
+    a, b = 0, 1
+    for _ in range(2, n + 1):
+        a, b = b, a + b
+    return b
+
+print(fib(10))       # 55
+print(fib_iter(50))  # 12586269025`,
+   explanation:`Naive recursive fib is O(2^n) — exponential. Memoization caches subresults, reducing to O(n) time and O(n) space.
+
+Manual memo={}: default mutable arguments in Python are shared across calls — works as a cache but is a Python gotcha. Safer to use a closure or class for the cache.
+
+@lru_cache(maxsize=None): decorator automatically caches return values by argument. maxsize=None means unlimited cache. Cleaner and idiomatic.
+
+Iterative approach: O(n) time, O(1) space — best for production. No recursion = no stack overflow for large n.
+
+In interviews: mention all three, explain trade-offs, default to iterative for production.`},
+  {id:16,cat:'function',catLabel:'Functions',
+   text:'Flatten an arbitrarily nested list recursively',
+   question:`Write flatten(lst) that returns a flat list containing all
+the elements of a nested list structure.
+
+Examples:
+  flatten([1, [2, 3], [4, [5, 6]]])  → [1, 2, 3, 4, 5, 6]
+  flatten([[1, [2]], [3, [4, [5]]]]) → [1, 2, 3, 4, 5]
+  flatten([])                        → []`,
+   solution:`def flatten(lst):
+    result = []
+    for item in lst:
+        if isinstance(item, list):
+            result.extend(flatten(item))   # recurse into sub-list
+        else:
+            result.append(item)            # base case: scalar
+    return result
+
+# Generator version (memory-efficient for very large inputs):
+def flatten_gen(lst):
+    for item in lst:
+        if isinstance(item, list):
+            yield from flatten_gen(item)
+        else:
+            yield item
+
+# Tests
+print(flatten([1, [2, 3], [4, [5, 6]]]))
+# [1, 2, 3, 4, 5, 6]
+print(list(flatten_gen([[1, [2]], [3, [4, [5]]]])))
+# [1, 2, 3, 4, 5]`,
+   explanation:`isinstance(item, list) checks if the current element is a list — if so, recurse; otherwise append.
+
+extend() adds all elements of the recursive result to result, avoiding nested lists in the output.
+
+Generator version with yield from: doesn't build intermediate lists — each value is yielded on demand. Memory-efficient for deeply nested or large structures.
+
+Base case: a scalar (non-list) element. Recursive case: a list → flatten recursively.
+
+Depth limit: Python's default recursion limit is ~1000. For structures deeper than that, use an explicit stack (iterative DFS) to avoid RecursionError.`},
+  {id:17,cat:'function',catLabel:'Functions',
+   text:'Timing decorator using functools.wraps',
+   question:`Write a @timing decorator that:
+1. Measures how long the decorated function takes to run
+2. Prints: "function_name took X.XXXXs"
+3. Preserves the original function's name and docstring (functools.wraps)
+4. Returns the function's original return value`,
+   solution:`import time
+import functools
+
+def timing(func):
+    @functools.wraps(func)         # preserves __name__, __doc__, etc.
+    def wrapper(*args, **kwargs):
+        start = time.perf_counter()
+        result = func(*args, **kwargs)
+        elapsed = time.perf_counter() - start
+        print(f"{func.__name__} took {elapsed:.4f}s")
+        return result              # always return original result
+    return wrapper
+
+@timing
+def slow_sum(n):
+    """Sum of range 0..n-1"""
+    return sum(range(n))
+
+@timing
+def greet(name, greeting="Hello"):
+    return f"{greeting}, {name}!"
+
+print(slow_sum(1_000_000))   # slow_sum took 0.0341s  →  499999500000
+print(greet("Alice"))        # greet took 0.0000s  →  Hello, Alice!
+print(greet.__name__)        # 'greet'  (not 'wrapper' — wraps preserves it)`,
+   explanation:`@functools.wraps(func) copies the original function's metadata (__name__, __doc__, __module__) onto wrapper. Without it, greet.__name__ would return 'wrapper' — confusing in debugging and logging.
+
+time.perf_counter() is the highest-resolution timer available — prefer it over time.time() for measuring short durations.
+
+*args, **kwargs allows the wrapper to accept any function signature — the decorator works on any callable.
+
+result = func(...); return result is the key pattern — capture the return value before printing so the decorator doesn't suppress it.
+
+Why return result? If you omit it, decorated functions implicitly return None — a silent bug that breaks callers.`},
+  {id:18,cat:'oop',catLabel:'OOP',
+   text:'Stack with O(1) min() operation',
+   question:`Design a MinStack class that supports:
+  push(val)  — push value onto stack
+  pop()      — remove and return top element
+  top()      — return top element without removing
+  min()      — return minimum element in O(1) time
+
+All operations must be O(1).`,
+   solution:`class MinStack:
+    def __init__(self):
+        self.stack = []
+        self.min_stack = []    # mirrors stack; each position = min so far
+
+    def push(self, val):
+        self.stack.append(val)
+        # min at this level = min(new val, previous min)
+        current_min = val if not self.min_stack else min(val, self.min_stack[-1])
+        self.min_stack.append(current_min)
+
+    def pop(self):
+        self.min_stack.pop()   # keep both stacks in sync
+        return self.stack.pop()
+
+    def top(self):
+        return self.stack[-1]
+
+    def min(self):
+        return self.min_stack[-1]
+
+# Test
+s = MinStack()
+s.push(3); s.push(1); s.push(5)
+print(s.min())   # 1
+s.pop()          # removes 5
+print(s.min())   # 1  (1 still on stack)
+s.pop()          # removes 1
+print(s.min())   # 3`,
+   explanation:`Key insight: maintain a parallel min_stack where each position stores the minimum of all elements from the bottom up to that position.
+
+When pushing val, the new minimum is min(val, previous_min). This is O(1) — no scanning.
+When popping, pop from both stacks simultaneously — they must always have the same size.
+min() is just min_stack[-1] — O(1) always.
+
+Why not sort or scan on each min() call? That would be O(n log n) or O(n) — not O(1).
+
+Space: O(n) for both stacks combined — this is the trade-off for O(1) min().
+
+This is a classic interview problem — Karat has asked variants of it.`},
+  {id:19,cat:'oop',catLabel:'OOP',
+   text:'LRU Cache with get/put operations',
+   question:`Design an LRU (Least Recently Used) cache with capacity N.
+Implement get(key) → returns value or -1 if not found.
+Implement put(key, value) → inserts or updates; if at capacity,
+  evicts the least recently used entry first.
+
+All operations must be O(1).`,
+   solution:`from collections import OrderedDict
+
+class LRUCache:
+    def __init__(self, capacity):
+        self.cap = capacity
+        self.cache = OrderedDict()   # insertion-order dict
+
+    def get(self, key):
+        if key not in self.cache:
+            return -1
+        self.cache.move_to_end(key)  # mark as recently used
+        return self.cache[key]
+
+    def put(self, key, value):
+        if key in self.cache:
+            self.cache.move_to_end(key)  # update recency
+        self.cache[key] = value
+        if len(self.cache) > self.cap:
+            self.cache.popitem(last=False)  # evict LRU (first item)
+
+# Test
+cache = LRUCache(2)
+cache.put(1, 10); cache.put(2, 20)
+print(cache.get(1))   # 10  — moves key 1 to end (recently used)
+cache.put(3, 30)      # capacity exceeded — evicts key 2 (LRU)
+print(cache.get(2))   # -1  (evicted)
+print(cache.get(3))   # 30`,
+   explanation:`OrderedDict maintains insertion order AND supports move_to_end() and popitem(last=False) — the perfect data structure for LRU cache.
+
+move_to_end(key): moves existing key to the end (most recently used side). O(1).
+popitem(last=False): removes the first item (least recently used side). O(1).
+
+get() must also move to end — reading an item counts as 'using' it.
+
+put() checks for existing key first: if updating, move to end before setting value. Then evict if over capacity.
+
+Why OrderedDict over dict? Regular dicts in Python 3.7+ are insertion-ordered, but lack move_to_end() and ordered popitem(). OrderedDict provides both in O(1).
+
+Alternative: doubly-linked list + hash map for maximum control.`},
+  {id:20,cat:'oop',catLabel:'OOP',
+   text:'Bank account with Checking and Savings subclasses',
+   question:`Design a BankAccount base class with:
+  deposit(amount), withdraw(amount), balance property, __str__
+
+Create two subclasses:
+  CheckingAccount — allows overdraft up to a limit
+  SavingsAccount  — has apply_interest() method
+
+Demonstrate inheritance, super(), @property, and method overriding.`,
+   solution:`class BankAccount:
+    def __init__(self, owner, balance=0):
+        self.owner = owner
+        self._balance = balance
+
+    def deposit(self, amount):
+        if amount <= 0:
+            raise ValueError("Deposit must be positive")
+        self._balance += amount
+
+    def withdraw(self, amount):
+        if amount > self._balance:
+            raise ValueError("Insufficient funds")
+        self._balance -= amount
+
+    @property
+    def balance(self):
+        return self._balance          # read-only via property
+
+    def __str__(self):
+        return f"{self.__class__.__name__}[{self.owner}]: \${self._balance:.2f}"
+
+
+class CheckingAccount(BankAccount):
+    def __init__(self, owner, balance=0, overdraft_limit=500):
+        super().__init__(owner, balance)
+        self.overdraft_limit = overdraft_limit
+
+    def withdraw(self, amount):       # overrides base method
+        if amount > self._balance + self.overdraft_limit:
+            raise ValueError("Exceeds overdraft limit")
+        self._balance -= amount       # allows negative balance
+
+
+class SavingsAccount(BankAccount):
+    def __init__(self, owner, balance=0, interest_rate=0.02):
+        super().__init__(owner, balance)
+        self.interest_rate = interest_rate
+
+    def apply_interest(self):
+        self._balance *= (1 + self.interest_rate)
+        return self._balance
+
+# Demo
+sav = SavingsAccount("Alice", 1000)
+sav.apply_interest()
+print(sav)               # SavingsAccount[Alice]: $1020.00
+
+chk = CheckingAccount("Bob", 100, overdraft_limit=200)
+chk.withdraw(250)        # allowed: goes to -150
+print(chk)               # CheckingAccount[Bob]: $-150.00
+print(chk.balance)       # -150 (via @property)`,
+   explanation:`super().__init__() calls the parent's __init__ — avoids duplicating owner and _balance setup in every subclass.
+
+_balance with a single underscore is a convention for 'protected' (internal use). @property exposes it as read-only from outside — callers use account.balance, not account._balance.
+
+__class__.__name__ in __str__ dynamically returns the subclass name ('CheckingAccount', 'SavingsAccount') — polymorphic string representation without overriding __str__ in each subclass.
+
+CheckingAccount.withdraw() overrides the base: allows the balance to go negative (up to overdraft_limit). super().withdraw() is NOT called — the check is intentionally different.
+
+Design principle: Liskov Substitution — CheckingAccount can be used wherever BankAccount is expected (both have deposit/withdraw/balance), but the overdraft behaviour is specialised.`},
 ];
 
-const qaList = document.getElementById('qaList');
-let openQ = null;
-let currentFilter = 'all';
-
-function renderQA() {
-  const filtered = currentFilter === 'all' ? questions : questions.filter(q => q.type === currentFilter);
-  qaList.innerHTML = filtered.map(q => {
-    const tagCls = q.type;
-    const tagLabel = q.type === 'sql' ? 'SQL' : q.type === 'py' ? 'Python' : 'Concept';
-    const isOpen = openQ === q.id;
-    return `<div class="qa-card" id="qcard-${q.id}">
-      <div class="qa-header" onclick="toggleQ(${q.id})">
-        <span class="qa-tag ${tagCls}">${tagLabel}</span>
-        <span class="qa-question">${q.q}</span>
-        <span class="qa-chevron${isOpen?' open':''}">&#8964;</span>
-      </div>
-      <div class="qa-body${isOpen?' open':''}">
-        <div class="qa-divider"></div>
-        <div class="qa-concepts">${q.concepts.map(c=>`<span class="concept-chip">${c}</span>`).join('')}</div>
-        <div class="qa-explain">${q.explain}</div>
-        <div class="code-block">${q.code.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}</div>
-        <div class="qa-tip"><span class="tip-icon">&#9998;</span><span>${q.tip}</span></div>
-        <div class="qa-source">Source: ${q.src}</div>
-      </div>
-    </div>`;
-  }).join('');
-}
-
-function toggleQ(id) {
-  openQ = openQ === id ? null : id;
-  renderQA();
-  if (openQ) {
-    const el = document.getElementById(`qcard-${id}`);
-    if (el) setTimeout(() => el.scrollIntoView({behavior:'smooth',block:'nearest'}), 50);
-  }
-}
-
-document.querySelector('.filter-bar').addEventListener('click', e => {
-  const btn = e.target.closest('.filter-btn');
-  if (!btn) return;
-  currentFilter = btn.dataset.f;
-  openQ = null;
-  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  renderQA();
-});
-
-renderQA();
-
-// Python topics
-const pyTopics = [
-  {name:'Variables and data types', desc:'int, float, str, bool, None — type conversions and comparisons'},
-  {name:'Data structures', desc:'list, dict, set, tuple — operations, slicing, comprehensions'},
-  {name:'List and dict comprehensions', desc:'[x for x in lst if cond], {k:v for k,v in items}'},
-  {name:'File handling', desc:'open(), read(), readline(), with context manager, CSV and Excel ops'},
-  {name:'Built-in functions', desc:'len(), sum(), sorted(), enumerate(), zip(), map(), filter()'},
-  {name:'pandas and requests', desc:'read_csv, groupby, merge, DataFrame ops; HTTP fetching'},
-  {name:'json, datetime, re', desc:'json.load/dump, datetime parsing, regex matching and search'},
-  {name:'Loops and conditionals', desc:'for, while, if/elif/else, break, continue, list iteration'},
-  {name:'String manipulation', desc:'split, join, strip, replace, format strings, f-strings'},
-  {name:'collections module', desc:'Counter, defaultdict, OrderedDict — frequency counting patterns'},
-  {name:'Recursion', desc:'base case + recursive case — Fibonacci, sum of digits, tree traversal'},
-  {name:'Sorting', desc:'sorted(), sort(), key=, reverse=, merging sorted lists'},
-  {name:'Code quality', desc:'Readable, modular functions; edge case handling; time/space complexity basics'},
-];
-
-const tg = document.getElementById('topicGrid');
-tg.innerHTML = pyTopics.map(t => `<div class="topic-card"><h4>${t.name}</h4><p>${t.desc}</p></div>`).join('');
-
-// SME contacts
+// ── SME DATA ─────────────────────────────────────────────────────────────────
 const smes = [
-  {name:'Suman',role:'SQL SME · Mock interviewer',initials:'SU',color:'var(--sql-color)',bg:'var(--sql-bg)'},
-  {name:'Reema',role:'SQL SME · Mock interviewer',initials:'RE',color:'var(--sql-color)',bg:'var(--sql-bg)'},
-  {name:'Sachin',role:'SQL SME',initials:'SA',color:'var(--sql-color)',bg:'var(--sql-bg)'},
-  {name:'Shalini',role:'Python SME · Mock interviewer',initials:'SH',color:'var(--py-color)',bg:'var(--py-bg)'},
-  {name:'Chandni',role:'Mock interviewer',initials:'CH',color:'#c084fc',bg:'rgba(192,132,252,0.1)'},
-  {name:'Anand',role:'Mock interviewer',initials:'AN',color:'#c084fc',bg:'rgba(192,132,252,0.1)'},
+  {name:'Suman',role:'SQL SME · Mock interviewer',initials:'SU',
+   expertise:'SQL query optimisation, window functions, CTEs, performance tuning',
+   color:'var(--accent)',bg:'var(--adim)',border:'var(--ab)'},
+  {name:'Reema',role:'SQL SME · Mock interviewer',initials:'RE',
+   expertise:'Joins, aggregations, ETL pipelines, data modelling, Informatica',
+   color:'var(--accent)',bg:'var(--adim)',border:'var(--ab)'},
+  {name:'Sachin',role:'SQL SME',initials:'SA',
+   expertise:'Database design, stored procedures, indexing strategy, ACID properties',
+   color:'var(--accent)',bg:'var(--adim)',border:'var(--ab)'},
+  {name:'Shalini',role:'Python SME · Mock interviewer',initials:'SH',
+   expertise:'Python scripting, log parsing, pandas, data analysis, file I/O',
+   color:'var(--green)',bg:'var(--gdim)',border:'var(--gb)'},
+  {name:'Chandni',role:'Mock interviewer',initials:'CH',
+   expertise:'Behavioral interviews, STAR method, communication & presentation skills',
+   color:'var(--purple)',bg:'var(--pdim)',border:'var(--pb)'},
+  {name:'Anand',role:'Mock interviewer',initials:'AN',
+   expertise:'Technical rounds, system design, problem-solving approach & walk-through',
+   color:'var(--purple)',bg:'var(--pdim)',border:'var(--pb)'},
 ];
-const sg = document.getElementById('smeGrid');
-sg.innerHTML = smes.map(s => `<div class="sme-card">
-  <div class="sme-avatar" style="background:${s.bg};color:${s.color}">${s.initials}</div>
-  <div class="sme-info"><h4>${s.name}</h4><p>${s.role}</p></div>
-</div>`).join('');
+
+// ── RESOURCES DATA ───────────────────────────────────────────────────────────
+const resources = [
+  {icon:'📚',title:'SQLZoo',desc:'Interactive SQL tutorials — SELECT basics through window functions and self-joins.',url:'sqlzoo.net',href:'https://sqlzoo.net/wiki/SELECT_basics'},
+  {icon:'🔧',title:'SQL Fiddle',desc:'Browser-based SQL sandbox — test queries against real database engines instantly.',url:'sqlfiddle.com',href:'http://sqlfiddle.com'},
+  {icon:'📄',title:'Karat Log File',desc:'Sample log file used in Karat Python assessments — URL parsing and frequency analysis.',url:'public.karat.io',href:'https://public.karat.io/content/urls2.txt'},
+  {icon:'🧩',title:'LeetCode SQL',desc:'SQL practice problems from Easy to Hard — filters, joins, window functions.',url:'leetcode.com/problemset/database',href:'https://leetcode.com/problemset/database/'},
+  {icon:'🐍',title:'LeetCode Python',desc:'Python algorithm problems — strings, arrays, OOP, and design patterns.',url:'leetcode.com/problemset',href:'https://leetcode.com/problemset/'},
+  {icon:'📖',title:'Real Python',desc:'In-depth guides on decorators, OOP, comprehensions, and the standard library.',url:'realpython.com',href:'https://realpython.com'},
+];
+
+// ── RENDER STUDY PLAN ────────────────────────────────────────────────────────
+(function renderPlan() {
+  const grid = document.getElementById('planGrid');
+  const detail = document.getElementById('dayDetail');
+  const badgeMap = {SQL:'b-sql',Python:'b-py',SME:'b-sme',Mock:'b-mock'};
+  let activeCard = null;
+
+  studyDays.forEach(d => {
+    const card = document.createElement('div');
+    card.className = 'day-card ' + d.cls;
+    const badges = d.badges.map(b => `<span class="badge ${badgeMap[b]||'b-sql'}">${b}</span>`).join('');
+    card.innerHTML = `<div class="day-num">Day ${d.day}</div><div class="day-title">${d.title}</div><div class="day-badges">${badges}</div>`;
+    card.addEventListener('click', () => {
+      if (activeCard === card) {
+        card.classList.remove('active');
+        detail.classList.remove('open');
+        activeCard = null;
+        return;
+      }
+      document.querySelectorAll('.day-card').forEach(c => c.classList.remove('active'));
+      card.classList.add('active');
+      activeCard = card;
+
+      const topicsHtml = d.topics.map(t => `<div class="dd-item">${t}</div>`).join('');
+      const practiceHtml = d.practice.map(p => `<div class="dd-item">• ${p}</div>`).join('');
+      const resHtml = d.resources.map(r => `<div class="dd-item">→ ${r}</div>`).join('');
+
+      detail.innerHTML = `
+        <div class="dd-head">Day ${d.day} — ${d.title}</div>
+        <div class="dd-cols">
+          <div>
+            <h4>Topics</h4>${topicsHtml}
+            <h4>Practice problems</h4>${practiceHtml}
+          </div>
+          <div>
+            <h4>Resources</h4>${resHtml}
+            <div class="dd-goal">🎯 Goal: ${d.goal}</div>
+          </div>
+        </div>`;
+      detail.classList.add('open');
+      setTimeout(() => detail.scrollIntoView({behavior:'smooth',block:'nearest'}), 50);
+    });
+    grid.appendChild(card);
+  });
+})();
+
+// ── RENDER SQL QUESTIONS ─────────────────────────────────────────────────────
+(function renderSQL() {
+  const list = document.getElementById('sqlList');
+  const bar = document.getElementById('sqlFilter');
+  let openId = null;
+  let filter = 'all';
+
+  function esc(s) {
+    return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  }
+
+  function render() {
+    const items = filter === 'all' ? sqlQs : sqlQs.filter(q => q.type === filter);
+    list.innerHTML = items.map(q => {
+      const tagCls = q.type === 'query' ? 'tag-query' : 'tag-concept';
+      const tagLabel = q.type === 'query' ? 'SQL Query' : 'Concept';
+      const isOpen = openId === q.id;
+      return `<div class="q-item${isOpen?' open':''}" id="sq${q.id}">
+        <div class="q-header" onclick="toggleSQL(${q.id})">
+          <span class="q-num">Q${q.id}</span>
+          <span class="q-text">${q.text}</span>
+          <span class="q-tag ${tagCls}">${tagLabel}</span>
+          <span class="q-chev">&#8964;</span>
+        </div>
+        <div class="q-body">
+          <div class="tabs">
+            <button class="tbtn active" onclick="switchTab(this,'sa${q.id}','sb${q.id}')">Answer</button>
+            <button class="tbtn" onclick="switchTab(this,'sb${q.id}','sa${q.id}')">Explanation</button>
+          </div>
+          <div class="tpanel active" id="sa${q.id}">
+            <div class="concept-chips">${q.concepts.map(c=>`<span class="chip">${c}</span>`).join('')}</div>
+            <pre>${esc(q.answer)}</pre>
+          </div>
+          <div class="tpanel" id="sb${q.id}">
+            <p>${q.explanation}</p>
+            <div class="tip-box">💡 ${q.tip}</div>
+          </div>
+        </div>
+      </div>`;
+    }).join('');
+  }
+
+  window.toggleSQL = function(id) {
+    openId = openId === id ? null : id;
+    render();
+    if (openId) {
+      setTimeout(() => {
+        const el = document.getElementById('sq'+id);
+        if (el) el.scrollIntoView({behavior:'smooth',block:'nearest'});
+      }, 50);
+    }
+  };
+
+  bar.addEventListener('click', e => {
+    const btn = e.target.closest('.fbtn');
+    if (!btn) return;
+    filter = btn.dataset.f;
+    openId = null;
+    bar.querySelectorAll('.fbtn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    render();
+  });
+
+  render();
+})();
+
+// ── RENDER PYTHON QUESTIONS ──────────────────────────────────────────────────
+(function renderPython() {
+  const list = document.getElementById('pyList');
+  const bar = document.getElementById('pyFilter');
+  const searchIn = document.getElementById('pySearch');
+  let openId = null;
+  let filter = 'all';
+  let search = '';
+
+  const catTagMap = {
+    log:'tag-log', string:'tag-string', list:'tag-list',
+    function:'tag-function', oop:'tag-oop'
+  };
+
+  function esc(s) {
+    return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  }
+
+  function render() {
+    let items = pyQs;
+    if (filter !== 'all') items = items.filter(q => q.cat === filter);
+    if (search) {
+      const q = search.toLowerCase();
+      items = items.filter(i => i.text.toLowerCase().includes(q) || i.question.toLowerCase().includes(q));
+    }
+
+    if (items.length === 0) {
+      list.innerHTML = '<div style="color:var(--t3);padding:2rem;text-align:center">No questions match your filter.</div>';
+      return;
+    }
+
+    list.innerHTML = items.map(q => {
+      const tagCls = catTagMap[q.cat] || 'tag-log';
+      const isOpen = openId === q.id;
+      return `<div class="q-item${isOpen?' open':''}" id="pq${q.id}">
+        <div class="q-header" onclick="togglePY(${q.id})">
+          <span class="q-num">Q${q.id}</span>
+          <span class="q-text">${q.text}</span>
+          <span class="q-tag ${tagCls}">${q.catLabel}</span>
+          <span class="q-chev">&#8964;</span>
+        </div>
+        <div class="q-body">
+          <div class="tabs">
+            <button class="tbtn active" onclick="switchTab(this,'pqa${q.id}','pqb${q.id}','pqc${q.id}')">Question</button>
+            <button class="tbtn" onclick="switchTab(this,'pqb${q.id}','pqa${q.id}','pqc${q.id}')">Solution</button>
+            <button class="tbtn" onclick="switchTab(this,'pqc${q.id}','pqa${q.id}','pqb${q.id}')">Explanation</button>
+          </div>
+          <div class="tpanel active" id="pqa${q.id}"><pre>${esc(q.question)}</pre></div>
+          <div class="tpanel" id="pqb${q.id}"><pre>${esc(q.solution)}</pre></div>
+          <div class="tpanel" id="pqc${q.id}"><p>${esc(q.explanation).replace(/\n/g,'<br>')}</p></div>
+        </div>
+      </div>`;
+    }).join('');
+  }
+
+  window.togglePY = function(id) {
+    openId = openId === id ? null : id;
+    render();
+    if (openId) {
+      setTimeout(() => {
+        const el = document.getElementById('pq'+id);
+        if (el) el.scrollIntoView({behavior:'smooth',block:'nearest'});
+      }, 50);
+    }
+  };
+
+  bar.addEventListener('click', e => {
+    const btn = e.target.closest('.fbtn');
+    if (!btn) return;
+    filter = btn.dataset.f;
+    openId = null;
+    bar.querySelectorAll('.fbtn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    render();
+  });
+
+  searchIn.addEventListener('input', () => {
+    search = searchIn.value.trim();
+    openId = null;
+    render();
+  });
+
+  render();
+})();
+
+// ── TAB SWITCHER (shared) ────────────────────────────────────────────────────
+window.switchTab = function(btn, showId, ...hideIds) {
+  // deactivate sibling buttons
+  btn.closest('.tabs').querySelectorAll('.tbtn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  // hide all panels in this question body
+  btn.closest('.q-body').querySelectorAll('.tpanel').forEach(p => p.classList.remove('active'));
+  // show the target panel
+  const target = document.getElementById(showId);
+  if (target) target.classList.add('active');
+};
+
+// ── RENDER SME ───────────────────────────────────────────────────────────────
+(function renderSME() {
+  const grid = document.getElementById('smeGrid');
+  grid.innerHTML = smes.map(s => `
+    <div class="sme-card">
+      <div class="sme-av" style="background:${s.bg};color:${s.color};border:1px solid ${s.border}">${s.initials}</div>
+      <div>
+        <div class="sme-name">${s.name}</div>
+        <div class="sme-role" style="color:${s.color}">${s.role}</div>
+        <div class="sme-exp">${s.expertise}</div>
+      </div>
+    </div>`).join('');
+})();
+
+// ── RENDER RESOURCES ─────────────────────────────────────────────────────────
+(function renderResources() {
+  const grid = document.getElementById('resGrid');
+  grid.innerHTML = resources.map(r => `
+    <a class="res-card" href="${r.href}" target="_blank" rel="noopener">
+      <div class="res-icon">${r.icon}</div>
+      <div class="res-title">${r.title}</div>
+      <div class="res-desc">${r.desc}</div>
+      <span class="res-url">${r.url}</span>
+    </a>`).join('');
+})();
+
+// ── NAV ACTIVE ON SCROLL ─────────────────────────────────────────────────────
+(function setupNav() {
+  const links = document.querySelectorAll('.nav-links a');
+  const sections = ['hero','plan','sql','python','sme','resources'];
+  const navH = 56;
+
+  function update() {
+    let current = 'hero';
+    sections.forEach(id => {
+      const el = document.getElementById(id);
+      if (el && el.getBoundingClientRect().top <= navH + 60) current = id;
+    });
+    links.forEach(a => {
+      const active = a.dataset.sec === current;
+      a.classList.toggle('active', active);
+    });
+  }
+
+  window.addEventListener('scroll', update, {passive:true});
+  links.forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      const id = a.dataset.sec;
+      const el = document.getElementById(id);
+      if (!el) return;
+      const top = el.getBoundingClientRect().top + window.pageYOffset - navH - 8;
+      window.scrollTo({top, behavior:'smooth'});
+    });
+  });
+
+  update();
+})();
 </script>
 </body>
 </html>
