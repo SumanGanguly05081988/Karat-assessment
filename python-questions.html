@@ -1,0 +1,1105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Python Questions — Karat Assessment Prep</title>
+<style>
+  :root {
+    --bg: #f7f8fa;
+    --surface: #ffffff;
+    --surface2: #f0f2f6;
+    --border: #e2e5eb;
+    --border2: #c8cdd8;
+    --text: #1a1d23;
+    --text2: #4b5263;
+    --text3: #8891a4;
+    --accent: #2563eb;
+    --accent-bg: #eff4ff;
+    --accent-text: #1d4ed8;
+    --green: #16a34a;
+    --green-bg: #f0fdf4;
+    --green-text: #15803d;
+    --amber: #b45309;
+    --amber-bg: #fffbeb;
+    --amber-text: #92400e;
+    --red: #dc2626;
+    --red-bg: #fef2f2;
+    --red-text: #991b1b;
+    --purple: #7c3aed;
+    --purple-bg: #f5f3ff;
+    --purple-text: #5b21b6;
+    --radius: 8px;
+    --radius-lg: 12px;
+    --mono: 'Courier New', Courier, monospace;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  /* NAV */
+  nav {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    height: 52px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .nav-brand {
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--text);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .nav-brand span { color: var(--accent); }
+  .nav-links { display: flex; gap: 0; }
+  .nav-links a {
+    text-decoration: none;
+    color: var(--text2);
+    font-size: 14px;
+    padding: 0 14px;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    border-bottom: 2px solid transparent;
+    transition: color .15s, border-color .15s;
+  }
+  .nav-links a:hover { color: var(--text); }
+  .nav-links a.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+  /* HERO */
+  .hero {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 2rem 2rem 1.5rem;
+  }
+  .hero-inner { max-width: 900px; margin: 0 auto; }
+  .hero-eyebrow {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    margin-bottom: .5rem;
+  }
+  .hero h1 {
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: .4rem;
+    line-height: 1.25;
+  }
+  .hero p {
+    font-size: 14px;
+    color: var(--text2);
+    margin-bottom: 1.25rem;
+  }
+  .kpi-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+  }
+  .kpi {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: .75rem 1rem;
+  }
+  .kpi-num { font-size: 22px; font-weight: 700; color: var(--text); }
+  .kpi-label { font-size: 12px; color: var(--text3); margin-top: 1px; }
+
+  /* MAIN LAYOUT */
+  .main { max-width: 900px; margin: 0 auto; padding: 1.5rem 2rem 4rem; }
+
+  /* CONTROLS */
+  .controls { margin-bottom: 1.25rem; display: flex; flex-direction: column; gap: 10px; }
+  .search-wrap { position: relative; }
+  .search-wrap svg {
+    position: absolute; left: 11px; top: 50%; transform: translateY(-50%);
+    width: 16px; height: 16px; color: var(--text3); pointer-events: none;
+  }
+  #search {
+    width: 100%;
+    padding: 9px 12px 9px 36px;
+    border: 1px solid var(--border2);
+    border-radius: var(--radius);
+    font-size: 14px;
+    background: var(--surface);
+    color: var(--text);
+    outline: none;
+    transition: border-color .15s;
+  }
+  #search:focus { border-color: var(--accent); }
+  .filter-row { display: flex; gap: 6px; flex-wrap: wrap; }
+  .fbtn {
+    background: var(--surface);
+    border: 1px solid var(--border2);
+    border-radius: 20px;
+    padding: 4px 13px;
+    font-size: 13px;
+    cursor: pointer;
+    color: var(--text2);
+    transition: background .12s, border-color .12s, color .12s;
+    font-family: inherit;
+  }
+  .fbtn:hover { background: var(--bg); border-color: var(--accent); color: var(--accent); }
+  .fbtn.active { background: var(--accent-bg); border-color: var(--accent); color: var(--accent-text); font-weight: 500; }
+
+  /* RESULTS BAR */
+  .results-bar { font-size: 13px; color: var(--text3); margin-bottom: .875rem; }
+
+  /* QUESTION CARDS */
+  .q-list { display: flex; flex-direction: column; gap: 8px; }
+
+  .q-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: border-color .15s;
+  }
+  .q-card:hover { border-color: var(--border2); }
+  .q-card.open { border-color: var(--accent); }
+
+  .q-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 1rem 1.1rem;
+    cursor: pointer;
+    user-select: none;
+  }
+  .q-num {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text3);
+    padding-top: 3px;
+    min-width: 24px;
+    flex-shrink: 0;
+  }
+  .q-title-wrap { flex: 1; min-width: 0; }
+  .q-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.4;
+    margin-bottom: 5px;
+  }
+  .badge-row { display: flex; gap: 5px; flex-wrap: wrap; }
+  .badge {
+    font-size: 11px;
+    font-weight: 500;
+    padding: 2px 8px;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+  .b-log    { background: var(--purple-bg); color: var(--purple-text); }
+  .b-str    { background: var(--accent-bg); color: var(--accent-text); }
+  .b-lst    { background: var(--green-bg);  color: var(--green-text);  }
+  .b-fn     { background: var(--amber-bg);  color: var(--amber-text);  }
+  .b-oop    { background: #fff0f6;          color: #9d174d;            }
+  .b-easy   { background: var(--green-bg);  color: var(--green-text);  }
+  .b-medium { background: var(--amber-bg);  color: var(--amber-text);  }
+  .b-hard   { background: var(--red-bg);    color: var(--red-text);    }
+  .b-real   { background: #fff7ed;          color: #c2410c;            }
+
+  .q-chevron {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    color: var(--text3);
+    transition: transform .2s;
+    margin-top: 2px;
+  }
+  .q-card.open .q-chevron { transform: rotate(180deg); }
+
+  /* BODY */
+  .q-body {
+    display: none;
+    border-top: 1px solid var(--border);
+  }
+  .q-card.open .q-body { display: block; }
+
+  /* TABS */
+  .tab-bar {
+    display: flex;
+    border-bottom: 1px solid var(--border);
+    padding: 0 1.1rem;
+    background: var(--bg);
+    gap: 0;
+  }
+  .tab {
+    padding: 10px 14px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    color: var(--text3);
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+    font-family: inherit;
+    transition: color .12s;
+  }
+  .tab:hover { color: var(--text2); }
+  .tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+  /* TAB PANELS */
+  .tab-panel { display: none; padding: 1.1rem; }
+  .tab-panel.active { display: block; }
+
+  .section-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text3);
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    margin-bottom: .5rem;
+  }
+  .q-desc { font-size: 13px; color: var(--text2); line-height: 1.65; }
+  .log-block {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: .65rem .875rem;
+    font-size: 12px;
+    font-family: var(--mono);
+    color: var(--text);
+    line-height: 1.75;
+    overflow-x: auto;
+    margin: .6rem 0;
+    white-space: pre;
+  }
+  .section-gap { margin-top: .875rem; }
+  pre.code-block {
+    background: #1e2130;
+    color: #e2e8f0;
+    border-radius: var(--radius);
+    padding: 1rem 1.1rem;
+    font-size: 12px;
+    font-family: var(--mono);
+    line-height: 1.75;
+    overflow-x: auto;
+    margin: .5rem 0 .875rem;
+    white-space: pre;
+  }
+
+  /* EXPLANATION */
+  .steps { display: flex; flex-direction: column; gap: 10px; margin-bottom: 1rem; }
+  .step { display: flex; gap: 10px; align-items: flex-start; }
+  .step-num {
+    background: var(--accent);
+    color: #fff;
+    border-radius: 50%;
+    width: 22px; height: 22px;
+    font-size: 11px;
+    font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .step-text { font-size: 13px; color: var(--text2); line-height: 1.6; }
+  .complexity {
+    display: flex; gap: 10px; margin-bottom: 1rem; flex-wrap: wrap;
+  }
+  .cx {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: .35rem .75rem;
+    font-size: 12px;
+    color: var(--text2);
+  }
+  .cx strong { color: var(--text); }
+  .hint {
+    background: var(--accent-bg);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    padding: .6rem .875rem;
+    font-size: 13px;
+    color: var(--accent-text);
+    line-height: 1.6;
+  }
+
+  /* NO RESULTS */
+  .no-results {
+    text-align: center;
+    padding: 3rem 2rem;
+    color: var(--text3);
+    font-size: 14px;
+  }
+
+  /* FOOTER */
+  footer {
+    text-align: center;
+    padding: 1.5rem;
+    font-size: 12px;
+    color: var(--text3);
+    border-top: 1px solid var(--border);
+    background: var(--surface);
+  }
+  footer a { color: var(--accent); text-decoration: none; }
+
+  @media (max-width: 600px) {
+    nav { padding: 0 1rem; gap: 1rem; }
+    .hero { padding: 1.25rem 1rem 1rem; }
+    .main { padding: 1rem 1rem 3rem; }
+    .kpi-row { grid-template-columns: repeat(2, 1fr); }
+    .nav-links { display: none; }
+    .q-title { font-size: 13px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-brand" href="index.html">&#128187; <span>Karat</span> Prep</a>
+  <div class="nav-links">
+    <a href="index.html">Study plan</a>
+    <a href="index.html#sql">SQL questions</a>
+    <a href="python-questions.html" class="active">Python Q&amp;A</a>
+    <a href="index.html#sme">SME contacts</a>
+    <a href="index.html#resources">Resources</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Python question bank</div>
+    <h1>Python interview prep — Karat format</h1>
+    <p>20 practice problems modelled on the real Karat assessment style &mdash; log file parsing, strings, lists, functions &amp; OOP. Click any question to see the solution and explanation.</p>
+    <div class="kpi-row">
+      <div class="kpi"><div class="kpi-num">20</div><div class="kpi-label">Total questions</div></div>
+      <div class="kpi"><div class="kpi-num">8</div><div class="kpi-label">Log parsing Qs</div></div>
+      <div class="kpi"><div class="kpi-num">5</div><div class="kpi-label">Topic areas</div></div>
+      <div class="kpi"><div class="kpi-num">3</div><div class="kpi-label">Difficulty levels</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="main">
+  <div class="controls">
+    <div class="search-wrap">
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input id="search" type="text" placeholder="Search questions…" autocomplete="off">
+    </div>
+    <div class="filter-row" id="filters">
+      <button class="fbtn active" data-f="all">All</button>
+      <button class="fbtn" data-f="log">Log parsing</button>
+      <button class="fbtn" data-f="str">Strings</button>
+      <button class="fbtn" data-f="lst">Lists &amp; dicts</button>
+      <button class="fbtn" data-f="fn">Functions</button>
+      <button class="fbtn" data-f="oop">OOP</button>
+    </div>
+  </div>
+  <div class="results-bar" id="results-bar">Showing 20 questions</div>
+  <div class="q-list" id="q-list"></div>
+  <div class="no-results" id="no-results" style="display:none">No questions match your filter.</div>
+</div>
+
+<footer>
+  Part of the <a href="index.html">Karat Assessment Prep</a> study guide &middot; Built from Karat_Assessment_Plan.xlsx
+</footer>
+
+<script>
+const Qs = [
+  {
+    id:1, topic:"log", diff:"hard", real:true,
+    title:"IPs still blocked at a given time (real Karat question)",
+    desc:"A log file records Block and Release events for IP addresses. Each line has the format:\n&lt;date&gt; &lt;time&gt; Block|Release &lt;ip&gt;\n\nWrite a program that reads the log and returns all IP addresses that are still blocked at 2:00:00 AM (02:00:00.000).",
+    example:"2021-05-07 00:45:30.034 Block   74.152.237.66\n2021-05-07 00:55:05.984 Block   79.118.67.43\n2021-05-07 01:05:52.435 Block   183.35.232.214\n2021-05-07 01:13:08.376 Release 74.152.237.66\n2021-05-07 01:15:23.802 Release 183.35.232.214\n2021-05-07 02:05:52.435 Block   129.31.23.11\n2021-05-07 02:55:05.984 Release 79.118.67.43",
+    output:"79.118.67.43\n\n(74.152.237.66 released at 01:13 ✓\n 183.35.232.214 released at 01:15 ✓\n 129.31.23.11 blocked AFTER 02:00 — not counted)",
+    solution:`from datetime import datetime
+
+def blocked_at_time(log_lines, check_time_str):
+    # Parse the cutoff time
+    check_time = datetime.strptime(check_time_str, "%H:%M:%S.%f").time()
+    blocked = set()
+
+    for line in log_lines:
+        if not line.strip():
+            continue
+        parts = line.split()
+        event_time = datetime.strptime(parts[1], "%H:%M:%S.%f").time()
+        action = parts[2]   # "Block" or "Release"
+        ip     = parts[3]
+
+        # Only consider events AT OR BEFORE the check time
+        if event_time <= check_time:
+            if action == "Block":
+                blocked.add(ip)
+            elif action == "Release":
+                blocked.discard(ip)  # safe even if ip not in set
+
+    return blocked
+
+# Test
+log = [
+    "2021-05-07 00:45:30.034 Block 74.152.237.66",
+    "2021-05-07 00:55:05.984 Block 79.118.67.43",
+    "2021-05-07 01:05:52.435 Block 183.35.232.214",
+    "2021-05-07 01:13:08.376 Release 74.152.237.66",
+    "2021-05-07 01:15:23.802 Release 183.35.232.214",
+    "2021-05-07 02:05:52.435 Block 129.31.23.11",
+    "2021-05-07 02:55:05.984 Release 79.118.67.43",
+]
+print(blocked_at_time(log, "02:00:00.000"))
+# Output: {'79.118.67.43'}`,
+    steps:[
+      "Split each log line on whitespace: parts[0]=date, parts[1]=time, parts[2]=action, parts[3]=ip.",
+      "Parse the event time with datetime.strptime(parts[1], '%H:%M:%S.%f').time().",
+      "Guard: only process events where event_time &lt;= check_time. Events after the cutoff are ignored.",
+      "Maintain a set 'blocked'. Block → add ip. Release → discard ip.",
+      "Return the set — it contains exactly the IPs still blocked at the given time."
+    ],
+    tc:"O(n) — single pass through the log",
+    sc:"O(k) — k = number of currently blocked IPs",
+    hint:"Use discard() not remove() — discard is silent if the IP isn't in the set. The time comparison guard is the critical piece: events after 02:00 must be completely ignored."
+  },
+  {
+    id:2, topic:"log", diff:"hard",
+    title:"IP blocked for the longest total duration",
+    desc:"Using the same Block/Release log, find the IP that was blocked for the longest cumulative duration (in seconds). An IP can be blocked and released multiple times.",
+    example:"00:00:00.000 Block   10.0.0.1\n00:30:00.000 Release 10.0.0.1\n01:00:00.000 Block   10.0.0.1\n01:45:00.000 Release 10.0.0.1\n00:10:00.000 Block   10.0.0.2\n01:00:00.000 Release 10.0.0.2",
+    output:"10.0.0.1  (30 min + 45 min = 75 min vs 10.0.0.2's 50 min)",
+    solution:`from datetime import datetime
+
+def longest_blocked_ip(log_lines):
+    fmt = "%Y-%m-%d %H:%M:%S.%f"
+    block_start = {}   # ip -> datetime of last Block
+    total_secs  = {}   # ip -> cumulative seconds blocked
+
+    for line in sorted(log_lines):  # sort ensures chronological order
+        parts  = line.split()
+        dt     = datetime.strptime(f"{parts[0]} {parts[1]}", fmt)
+        action = parts[2]
+        ip     = parts[3]
+
+        if action == "Block":
+            block_start[ip] = dt
+        elif action == "Release" and ip in block_start:
+            duration = (dt - block_start.pop(ip)).total_seconds()
+            total_secs[ip] = total_secs.get(ip, 0) + duration
+
+    return max(total_secs, key=total_secs.get) if total_secs else None`,
+    steps:[
+      "Sort lines first — ensures chronological order even if the log file is unordered.",
+      "Use block_start dict to store when each IP was last blocked.",
+      "On Release: compute (release_dt - block_dt).total_seconds() and add to running total.",
+      "Use pop() to clear block_start after computing — prevents double-counting.",
+      "max(total_secs, key=total_secs.get) returns the IP with the highest total."
+    ],
+    tc:"O(n log n) — due to sort", sc:"O(k) — k unique IPs",
+    hint:"datetime subtraction returns a timedelta object — always call .total_seconds() on it. Sorting the raw strings works here because the date+time format is ISO-8601 (lexicographic = chronological)."
+  },
+  {
+    id:3, topic:"log", diff:"medium",
+    title:"Count Block events per hour",
+    desc:"Given the same log format, return a dict mapping each hour (0–23) to the number of Block events that occurred in that hour.",
+    example:"00:45:30.034 Block 74.152.237.66  → hour 0\n01:05:52.435 Block 183.35.232.214 → hour 1\n01:13:08.376 Block 10.0.0.1        → hour 1",
+    output:"{0: 1, 1: 2}",
+    solution:`def blocks_per_hour(log_lines):
+    counts = {}
+    for line in log_lines:
+        parts = line.split()
+        if parts[2] != "Block":
+            continue
+        hour = int(parts[1].split(":")[0])  # "01:05:52" -> 1
+        counts[hour] = counts.get(hour, 0) + 1
+    return counts`,
+    steps:[
+      "Split each line and skip if parts[2] != 'Block'.",
+      "Extract the hour: parts[1] is the time string, split on ':' and take index [0], cast to int.",
+      "Increment the count for that hour in the dict.",
+      "Return the dict — missing hours simply won't appear as keys."
+    ],
+    tc:"O(n)", sc:"O(1) — at most 24 keys",
+    hint:"No datetime import needed — just grab the hour by splitting the time token on ':'. int('01') = 1, int('23') = 23."
+  },
+  {
+    id:4, topic:"log", diff:"medium",
+    title:"Find IPs blocked more than once",
+    desc:"Return a list of IP addresses that were blocked two or more times in the log (i.e., they were released and then blocked again at some later point).",
+    example:"Block   A\nRelease A\nBlock   A   ← second block\nBlock   B",
+    output:"['A']  (B was only blocked once)",
+    solution:`from collections import Counter
+
+def repeatedly_blocked(log_lines):
+    block_counts = Counter()
+    for line in log_lines:
+        parts = line.split()
+        if parts[2] == "Block":
+            block_counts[parts[3]] += 1
+    return [ip for ip, cnt in block_counts.items() if cnt >= 2]`,
+    steps:[
+      "Iterate through lines and count only Block events per IP using Counter.",
+      "Ignore Release events — we only care how many times each IP was blocked.",
+      "Filter IPs whose count is >= 2.",
+      "Return as a list."
+    ],
+    tc:"O(n)", sc:"O(k)",
+    hint:"Counter is cleaner than a manual dict here. An IP with 2 Block entries was definitely blocked, released, then blocked again — multiple Release events don't change the Block count."
+  },
+  {
+    id:5, topic:"log", diff:"easy",
+    title:"List all unique IPs in the log",
+    desc:"Return a sorted list of all unique IP addresses that appear anywhere in a Block/Release log, regardless of action type.",
+    example:"Block   74.152.237.66\nRelease 74.152.237.66\nBlock   10.0.0.1",
+    output:"['10.0.0.1', '74.152.237.66']",
+    solution:`def unique_ips(log_lines):
+    ips = set()
+    for line in log_lines:
+        parts = line.split()
+        if len(parts) >= 4:
+            ips.add(parts[3])
+    return sorted(ips)`,
+    steps:[
+      "For each line, split on whitespace and take parts[3] as the IP.",
+      "Add to a set — automatic deduplication.",
+      "Return sorted list for deterministic output."
+    ],
+    tc:"O(n log n) — for sort", sc:"O(k)",
+    hint:"For true numeric IP sorting: sorted(ips, key=lambda ip: list(map(int, ip.split('.')))) — otherwise '10.x' sorts before '9.x' lexicographically."
+  },
+  {
+    id:6, topic:"log", diff:"hard",
+    title:"Maximum number of IPs simultaneously blocked",
+    desc:"Process the log chronologically and find the peak number of IP addresses that were simultaneously in a blocked state at any single moment.",
+    example:"00:00 Block A → 1 blocked\n00:10 Block B → 2 blocked  ← peak\n00:20 Release A → 1 blocked\n00:30 Block C → 2 blocked",
+    output:"2",
+    solution:`from datetime import datetime
+
+def max_simultaneous_blocked(log_lines):
+    fmt = "%Y-%m-%d %H:%M:%S.%f"
+    events = []
+    for line in log_lines:
+        p = line.split()
+        dt    = datetime.strptime(f"{p[0]} {p[1]}", fmt)
+        delta = 1 if p[2] == "Block" else -1  # Block=+1, Release=-1
+        events.append((dt, delta))
+
+    events.sort()   # chronological
+    current = 0
+    peak    = 0
+    for _, delta in events:
+        current += delta
+        peak = max(peak, current)
+    return peak`,
+    steps:[
+      "Convert each Block to +1 and each Release to -1.",
+      "Sort all events by timestamp.",
+      "Walk through events adding the delta to a running counter.",
+      "Track the maximum value of the counter — that is the peak simultaneous blocked count."
+    ],
+    tc:"O(n log n)", sc:"O(n)",
+    hint:"This is the classic 'meeting rooms' / 'overlapping intervals' pattern. Converting events to +1/-1 and taking the running max is the canonical O(n log n) solution."
+  },
+  {
+    id:7, topic:"log", diff:"medium",
+    title:"Find IPs blocked but never released",
+    desc:"Return all IP addresses that appear in at least one Block event but have no corresponding Release event anywhere in the log.",
+    example:"Block   10.0.0.1\nBlock   10.0.0.2\nRelease 10.0.0.1",
+    output:"['10.0.0.2']",
+    solution:`def never_released(log_lines):
+    blocked  = set()
+    released = set()
+    for line in log_lines:
+        parts = line.split()
+        action, ip = parts[2], parts[3]
+        if action == "Block":
+            blocked.add(ip)
+        elif action == "Release":
+            released.add(ip)
+    return sorted(blocked - released)  # set difference`,
+    steps:[
+      "Build two sets: one for all IPs that were ever blocked, one for all that were ever released.",
+      "Set difference (blocked - released) gives IPs that were blocked but never released.",
+      "Sort for deterministic output."
+    ],
+    tc:"O(n)", sc:"O(k)",
+    hint:"Set difference A - B is cleaner and more readable than looping and checking. It handles the case where an IP was blocked multiple times but never released."
+  },
+  {
+    id:8, topic:"log", diff:"easy",
+    title:"Count total Block and Release events",
+    desc:"Write a function that returns a dict with keys 'Block' and 'Release', each mapping to the total count of that event type in the log.",
+    example:"Block   A\nRelease A\nBlock   B\nBlock   C",
+    output:"{'Block': 3, 'Release': 1}",
+    solution:`from collections import Counter
+
+def event_counts(log_lines):
+    counter = Counter()
+    for line in log_lines:
+        parts = line.split()
+        if len(parts) >= 3 and parts[2] in ("Block", "Release"):
+            counter[parts[2]] += 1
+    return dict(counter)`,
+    steps:[
+      "Split each line and check parts[2] for 'Block' or 'Release'.",
+      "Use Counter to accumulate totals for each action.",
+      "The length check guards against blank or malformed lines.",
+      "Return as a plain dict."
+    ],
+    tc:"O(n)", sc:"O(1) — only 2 keys",
+    hint:"Checking parts[2] in ('Block', 'Release') before counting guards against header lines, blank lines, or comments without needing try/except."
+  },
+  {
+    id:9, topic:"str", diff:"easy",
+    title:"Check if a string is a palindrome",
+    desc:"Write is_palindrome(s) that returns True if s reads the same forwards and backwards after removing non-alphanumeric characters and converting to lowercase.",
+    example:'"A man, a plan, a canal: Panama" → True\n"race a car" → False',
+    output:"True / False",
+    solution:`import re
+
+def is_palindrome(s):
+    cleaned = re.sub(r'[^a-z0-9]', '', s.lower())
+    return cleaned == cleaned[::-1]
+
+print(is_palindrome("A man, a plan, a canal: Panama"))  # True
+print(is_palindrome("race a car"))                       # False`,
+    steps:[
+      "Lowercase the entire string.",
+      "Remove every character that is not a-z or 0-9 using re.sub.",
+      "Compare the cleaned string with its reverse using slice [::-1]."
+    ],
+    tc:"O(n)", sc:"O(n)",
+    hint:"[::-1] reverses any sequence in Python. Don't loop manually — this one-liner is idiomatic and fast."
+  },
+  {
+    id:10, topic:"str", diff:"medium",
+    title:"Longest substring without repeating characters",
+    desc:"Given a string, find the length of the longest contiguous substring that contains no repeating characters.",
+    example:'"abcabcbb" → 3  (abc)\n"bbbbb"    → 1  (b)\n"pwwkew"   → 3  (wke)',
+    output:"Integer — length of longest such substring",
+    solution:`def length_of_longest_substring(s):
+    seen = {}     # char -> last seen index
+    left = 0
+    best = 0
+    for right, ch in enumerate(s):
+        if ch in seen and seen[ch] >= left:
+            left = seen[ch] + 1  # shrink window past the repeat
+        seen[ch] = right
+        best = max(best, right - left + 1)
+    return best`,
+    steps:[
+      "Use a sliding window bounded by [left, right].",
+      "Track each character's most recent index in a dict.",
+      "When a repeat is found inside the window, move left past its previous occurrence.",
+      "Update best = max(best, window size) after every step."
+    ],
+    tc:"O(n)", sc:"O(min(n, charset size))",
+    hint:"The condition seen[ch] >= left is critical — only shrink the window if the repeat is inside the current window, not an old occurrence before it."
+  },
+  {
+    id:11, topic:"str", diff:"medium",
+    title:"Group anagrams together",
+    desc:"Given a list of words, group words that are anagrams of each other into sublists. Return a list of groups.",
+    example:'["eat","tea","tan","ate","nat","bat"]',
+    output:'[["eat","tea","ate"], ["tan","nat"], ["bat"]]',
+    solution:`from collections import defaultdict
+
+def group_anagrams(words):
+    groups = defaultdict(list)
+    for word in words:
+        key = tuple(sorted(word))   # anagrams share the same sorted key
+        groups[key].append(word)
+    return list(groups.values())`,
+    steps:[
+      "For each word, sort its letters — all anagrams produce the same sorted tuple.",
+      "Use that tuple as the key in a defaultdict(list).",
+      "Append the original word to its group.",
+      "Return all groups as a list of lists."
+    ],
+    tc:"O(n · k log k) — k = average word length", sc:"O(n)",
+    hint:"tuple(sorted(word)) is the canonical anagram key. defaultdict(list) avoids checking whether the key exists before appending."
+  },
+  {
+    id:12, topic:"str", diff:"easy",
+    title:"Find the most frequent character",
+    desc:"Given a string, return the character that appears most often. On a tie, return the character that appears first in the string.",
+    example:'"banana" → a\n"hello"  → l',
+    output:"Single character",
+    solution:`def most_frequent_char(s):
+    counts = {}
+    for ch in s:
+        counts[ch] = counts.get(ch, 0) + 1
+    return max(counts, key=lambda c: counts[c])`,
+    steps:[
+      "Build a frequency dict by iterating through the string.",
+      "Use max() with a lambda that returns the count for each key.",
+      "Python's max() returns the first key found with the maximum value — this naturally handles the first-seen tiebreak."
+    ],
+    tc:"O(n)", sc:"O(k) — k unique chars",
+    hint:"max() on a dict iterates keys in insertion order (Python 3.7+). So the first character with the maximum count is returned, perfectly matching the tiebreak requirement."
+  },
+  {
+    id:13, topic:"lst", diff:"easy",
+    title:"Two-sum: find indices of pair that adds to target",
+    desc:"Given a list of integers and a target, return the indices [i, j] of the two numbers that add up to the target. Assume exactly one solution exists.",
+    example:"[2, 7, 11, 15], target=9  → [0, 1]\n[3, 2, 4],      target=6  → [1, 2]",
+    output:"List of two indices",
+    solution:`def two_sum(nums, target):
+    seen = {}            # value -> index
+    for i, num in enumerate(nums):
+        complement = target - num
+        if complement in seen:
+            return [seen[complement], i]
+        seen[num] = i
+    return []`,
+    steps:[
+      "Iterate with enumerate to get both index and value.",
+      "Compute complement = target - num.",
+      "If complement is already in the seen dict, return both indices.",
+      "Otherwise store num -> i for future lookups."
+    ],
+    tc:"O(n)", sc:"O(n)",
+    hint:"This is a one-pass hash map: for each number, check if its complement was seen earlier. O(n) vs O(n²) brute force — the interviewer will expect the O(n) approach."
+  },
+  {
+    id:14, topic:"lst", diff:"medium",
+    title:"Flatten a nested list to any depth",
+    desc:"Write a recursive function that flattens a list containing integers or other nested lists (at any depth) into a single flat list.",
+    example:"[1, [2, [3, 4], 5], [6, 7]] → [1, 2, 3, 4, 5, 6, 7]",
+    output:"Flat list of integers",
+    solution:`def flatten(lst):
+    result = []
+    for item in lst:
+        if isinstance(item, list):
+            result.extend(flatten(item))  # recurse into sublists
+        else:
+            result.append(item)           # base case: plain value
+    return result`,
+    steps:[
+      "Iterate each item in the list.",
+      "isinstance(item, list) checks if it is a nested list.",
+      "If yes: recurse and extend result with the flattened sublist.",
+      "If no: append the integer directly."
+    ],
+    tc:"O(n) — n = total elements across all nesting", sc:"O(d) — d = max nesting depth (call stack)",
+    hint:"extend() vs append(): extend adds every element of an iterable individually; append adds the iterable as a single item. Confusing them is the most common bug here."
+  },
+  {
+    id:15, topic:"lst", diff:"medium",
+    title:"Sliding window maximum",
+    desc:"Given a list of integers and a window size k, return a list of the maximum value in each window of size k as it slides from left to right.",
+    example:"nums=[1,3,-1,-3,5,3,6,7], k=3 → [3,3,5,5,6,7]",
+    output:"List of maximums, length = len(nums) - k + 1",
+    solution:`from collections import deque
+
+def sliding_window_max(nums, k):
+    dq = deque()   # monotonic deque storing indices
+    result = []
+    for i, num in enumerate(nums):
+        if dq and dq[0] < i - k + 1:   # remove elements outside window
+            dq.popleft()
+        while dq and nums[dq[-1]] < num:  # remove smaller elements
+            dq.pop()
+        dq.append(i)
+        if i >= k - 1:
+            result.append(nums[dq[0]])  # front is always the max
+    return result`,
+    steps:[
+      "Use a monotonic deque that stores indices in decreasing order of their values.",
+      "For each new element, pop from the back while the back's value is smaller (it can never be a future max).",
+      "Pop from the front if its index is outside the current window.",
+      "Append nums[dq[0]] to results — the front is always the window maximum."
+    ],
+    tc:"O(n) — each element added and removed at most once", sc:"O(k)",
+    hint:"Store indices, not values, in the deque — you need indices to check if elements are still within the window. This monotonic deque pattern appears in many Karat-style hard questions."
+  },
+  {
+    id:16, topic:"fn", diff:"medium",
+    title:"Write a decorator that times a function",
+    desc:"Implement a @timer decorator that prints how long the decorated function took to run (in milliseconds), then returns the original result unchanged.",
+    example:"@timer\ndef slow_add(a, b):\n    time.sleep(0.1)\n    return a + b\n\nslow_add(3, 4)\n# slow_add ran in 100.23ms",
+    output:"Original return value; timing printed as side-effect",
+    solution:`import time, functools
+
+def timer(func):
+    @functools.wraps(func)
+    def wrapper(*args, **kwargs):
+        start   = time.perf_counter()
+        result  = func(*args, **kwargs)
+        elapsed = (time.perf_counter() - start) * 1000
+        print(f"{func.__name__} ran in {elapsed:.2f}ms")
+        return result
+    return wrapper`,
+    steps:[
+      "Define outer function 'timer' that accepts func as argument.",
+      "Inner 'wrapper' accepts *args, **kwargs to forward any arguments to the original function.",
+      "Record start with time.perf_counter() — higher resolution than time.time().",
+      "Call the original func, store its result, compute elapsed, then print.",
+      "Return the original result — the decorator must be transparent."
+    ],
+    tc:"O(1) overhead", sc:"O(1)",
+    hint:"@functools.wraps(func) is essential — without it, the wrapper's __name__ and __doc__ would shadow the original's, breaking introspection and stacked decorators."
+  },
+  {
+    id:17, topic:"fn", diff:"medium",
+    title:"Fibonacci generator with optional limit",
+    desc:"Write a generator function fibonacci() that yields Fibonacci numbers. It should accept an optional limit n — if given, yield only the first n numbers; otherwise yield indefinitely.",
+    example:"list(fibonacci(10)) → [0, 1, 1, 2, 3, 5, 8, 13, 21, 34]",
+    output:"Yields integers",
+    solution:`def fibonacci(limit=None):
+    a, b = 0, 1
+    count = 0
+    while limit is None or count < limit:
+        yield a
+        a, b = b, a + b
+        count += 1
+
+# Consume as list
+print(list(fibonacci(10)))   # [0, 1, 1, 2, 3, 5, 8, 13, 21, 34]
+
+# Consume lazily
+gen = fibonacci()
+for _ in range(5):
+    print(next(gen), end=' ')  # 0 1 1 2 3`,
+    steps:[
+      "yield pauses the function and returns the current value to the caller.",
+      "Execution resumes from the yield on the next call to next().",
+      "a, b = b, a + b swaps values atomically — no temp variable needed.",
+      "limit=None makes the generator infinite by default."
+    ],
+    tc:"O(1) per yield", sc:"O(1) — constant space unlike a list of all values",
+    hint:"Generators are lazy: they produce one value at a time. A list of 1 million Fibonacci numbers uses O(n) RAM; this generator uses O(1). That's the answer the interviewer is looking for."
+  },
+  {
+    id:18, topic:"oop", diff:"medium",
+    title:"Build a Stack class with complete interface",
+    desc:"Implement a Stack class with push(item), pop() → item, peek() → item, is_empty() → bool, and size() → int. Raise IndexError on underflow for both pop and peek.",
+    example:"s = Stack()\ns.push(1); s.push(2); s.push(3)\nprint(s.peek())  # 3\nprint(s.pop())   # 3\nprint(s.size())  # 2",
+    output:"Stack instance with O(1) push, pop, peek",
+    solution:`class Stack:
+    def __init__(self):
+        self._data = []
+
+    def push(self, item):
+        self._data.append(item)
+
+    def pop(self):
+        if self.is_empty():
+            raise IndexError("pop from empty stack")
+        return self._data.pop()
+
+    def peek(self):
+        if self.is_empty():
+            raise IndexError("peek at empty stack")
+        return self._data[-1]   # don't remove
+
+    def is_empty(self):
+        return len(self._data) == 0
+
+    def size(self):
+        return len(self._data)
+
+    def __repr__(self):
+        return f"Stack({self._data})"`,
+    steps:[
+      "Use Python's list internally — append() is O(1) amortized push, list.pop() is O(1) pop.",
+      "Prefix with _ to signal _data is private by convention.",
+      "peek uses [-1] indexing without removing the element.",
+      "Both pop and peek guard against empty state — never let raw index errors escape the class."
+    ],
+    tc:"O(1) all operations", sc:"O(n)",
+    hint:"Python lists are already a stack — the class wraps the interface with meaningful names and guard clauses. list.pop() with no argument always removes and returns the last element."
+  },
+  {
+    id:19, topic:"oop", diff:"easy",
+    title:"__str__ vs __repr__ in a class",
+    desc:"Create a Product(name, price) class. Implement __str__ (human-readable) and __repr__ (developer-readable) and explain when Python calls each one.",
+    example:"p = Product('Widget', 9.99)\nprint(str(p))   # Widget — $9.99\nprint(repr(p))  # Product(name='Widget', price=9.99)",
+    output:"Different string representations for different contexts",
+    solution:`class Product:
+    def __init__(self, name, price):
+        self.name  = name
+        self.price = price
+
+    def __str__(self):
+        # Called by print(), str(), and f-strings
+        return f"{self.name} — \${self.price:.2f}"
+
+    def __repr__(self):
+        # Called by repr(), the REPL, and container types (list, dict)
+        return f"Product(name={self.name!r}, price={self.price})"
+
+p = Product("Widget", 9.99)
+print(p)           # Widget — $9.99           <- __str__
+print(repr(p))     # Product(name='Widget', price=9.99) <- __repr__
+items = [p]
+print(items)       # [Product(name='Widget', price=9.99)] <- __repr__ inside list`,
+    steps:[
+      "__str__ is for end users: readable, formatted, friendly.",
+      "__repr__ is for developers: ideally valid Python that could recreate the object.",
+      "print() calls __str__; the REPL, repr(), and collections call __repr__.",
+      "If only __repr__ is defined, Python uses it as the fallback for __str__ too."
+    ],
+    tc:"O(1)", sc:"O(1)",
+    hint:"The !r flag inside an f-string (f'{self.name!r}') adds quotes automatically: 'Widget'. Rule of thumb: __repr__ should look like a constructor call."
+  },
+  {
+    id:20, topic:"oop", diff:"medium",
+    title:"Implement a Queue using two Stacks",
+    desc:"Implement a Queue class that supports enqueue(item) and dequeue() → item using only two stacks (Python lists). The queue must be FIFO.",
+    example:"q = Queue()\nq.enqueue(1); q.enqueue(2); q.enqueue(3)\nprint(q.dequeue())  # 1\nprint(q.dequeue())  # 2",
+    output:"FIFO order using two stacks internally",
+    solution:`class Queue:
+    def __init__(self):
+        self._inbox  = []   # receives new items
+        self._outbox = []   # serves dequeue requests
+
+    def enqueue(self, item):
+        self._inbox.append(item)  # always push to inbox
+
+    def dequeue(self):
+        if not self._outbox:      # outbox empty? refill from inbox
+            while self._inbox:
+                self._outbox.append(self._inbox.pop())
+        if not self._outbox:
+            raise IndexError("dequeue from empty queue")
+        return self._outbox.pop()
+
+    def is_empty(self):
+        return not self._inbox and not self._outbox`,
+    steps:[
+      "Maintain two stacks: inbox (receives pushes) and outbox (serves pops).",
+      "enqueue always pushes to inbox — O(1).",
+      "dequeue: if outbox is empty, reverse inbox into outbox by popping all elements. Then pop from outbox.",
+      "This reversal turns LIFO order into FIFO. Each element is moved at most once, so amortized O(1) per dequeue."
+    ],
+    tc:"enqueue O(1); dequeue amortized O(1)", sc:"O(n)",
+    hint:"Each item is pushed once and popped twice (once from inbox to outbox, once from outbox to caller). Total work = O(n) for n operations → amortized O(1) each. This is a classic interview question."
+  }
+];
+
+const topicClass = {log:"b-log", str:"b-str", lst:"b-lst", fn:"b-fn", oop:"b-oop"};
+const topicLabel = {log:"Log parsing", str:"Strings", lst:"Lists & dicts", fn:"Functions", oop:"OOP"};
+const diffClass  = {easy:"b-easy", medium:"b-medium", hard:"b-hard"};
+
+function escHtml(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+function buildCard(q){
+  const stepsHtml = q.steps.map((s,i)=>`
+    <div class="step">
+      <div class="step-num">${i+1}</div>
+      <div class="step-text">${s}</div>
+    </div>`).join('');
+
+  return `
+  <div class="q-card" id="q${q.id}">
+    <div class="q-header">
+      <span class="q-num">Q${q.id}</span>
+      <div class="q-title-wrap">
+        <div class="q-title">${q.title}</div>
+        <div class="badge-row">
+          <span class="badge ${topicClass[q.topic]}">${topicLabel[q.topic]}</span>
+          <span class="badge ${diffClass[q.diff]}">${q.diff}</span>
+          ${q.real ? '<span class="badge b-real">real question</span>' : ''}
+        </div>
+      </div>
+      <svg class="q-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+    </div>
+    <div class="q-body">
+      <div class="tab-bar" data-id="${q.id}">
+        <button class="tab active" data-tab="question">Question</button>
+        <button class="tab" data-tab="solution">Solution</button>
+        <button class="tab" data-tab="explanation">Explanation</button>
+      </div>
+      <div class="tab-panel active" data-panel="question-${q.id}">
+        <div class="section-label">Problem</div>
+        <div class="q-desc">${q.desc}</div>
+        ${q.example ? `<div class="section-label section-gap">Example input</div><div class="log-block">${escHtml(q.example)}</div>` : ''}
+        ${q.output  ? `<div class="section-label section-gap">Expected output</div><div class="log-block">${escHtml(q.output)}</div>` : ''}
+      </div>
+      <div class="tab-panel" data-panel="solution-${q.id}">
+        <div class="section-label">Full solution (Python 3)</div>
+        <pre class="code-block">${escHtml(q.solution)}</pre>
+      </div>
+      <div class="tab-panel" data-panel="explanation-${q.id}">
+        <div class="section-label">Step-by-step approach</div>
+        <div class="steps">${stepsHtml}</div>
+        <div class="complexity">
+          <div class="cx"><strong>Time:</strong> ${q.tc}</div>
+          <div class="cx"><strong>Space:</strong> ${q.sc}</div>
+        </div>
+        <div class="hint">${q.hint}</div>
+      </div>
+    </div>
+  </div>`;
+}
+
+let activeFilter = 'all';
+let searchTerm   = '';
+
+function applyFilters(){
+  let list = Qs;
+  if(activeFilter !== 'all') list = list.filter(q => q.topic === activeFilter);
+  if(searchTerm) list = list.filter(q =>
+    q.title.toLowerCase().includes(searchTerm) ||
+    q.desc.toLowerCase().includes(searchTerm)
+  );
+  const container = document.getElementById('q-list');
+  const noRes     = document.getElementById('no-results');
+  const bar       = document.getElementById('results-bar');
+  bar.textContent = `Showing ${list.length} of ${Qs.length} questions`;
+  if(!list.length){ container.innerHTML = ''; noRes.style.display = 'block'; return; }
+  noRes.style.display = 'none';
+  container.innerHTML = list.map(buildCard).join('');
+  attachEvents();
+}
+
+function attachEvents(){
+  // Toggle card open/close
+  document.querySelectorAll('.q-header').forEach(h => {
+    h.addEventListener('click', () => h.closest('.q-card').classList.toggle('open'));
+  });
+  // Tab switching
+  document.querySelectorAll('.tab-bar').forEach(bar => {
+    bar.querySelectorAll('.tab').forEach(btn => {
+      btn.addEventListener('click', e => {
+        e.stopPropagation();
+        const id  = bar.dataset.id;
+        const tab = btn.dataset.tab;
+        bar.querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const card = bar.closest('.q-card');
+        card.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+        card.querySelector(`[data-panel="${tab}-${id}"]`).classList.add('active');
+      });
+    });
+  });
+}
+
+document.getElementById('filters').addEventListener('click', e => {
+  const btn = e.target.closest('.fbtn');
+  if(!btn) return;
+  document.querySelectorAll('.fbtn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  activeFilter = btn.dataset.f;
+  applyFilters();
+});
+
+document.getElementById('search').addEventListener('input', e => {
+  searchTerm = e.target.value.toLowerCase().trim();
+  applyFilters();
+});
+
+applyFilters();
+</script>
+</body>
+</html>
