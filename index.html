@@ -3,304 +3,595 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Karat Interview Prep — Study Guide</title>
+<title>Karat Interview Prep — SQL &amp; Python Study Program</title>
+<meta name="description" content="A structured 13-day SQL and Python interview preparation program with 45 practice questions, guided curriculum, and expert mentors.">
 <style>
 :root{
-  --bg:#0d0d0d;--c1:#141414;--c2:#1a1a1a;
-  --text:#f0f0f0;--t2:#a0a0a0;--t3:#555;
-  --accent:#4f8ef7;--adim:rgba(79,142,247,.12);--ab:rgba(79,142,247,.3);
-  --green:#3ecf8e;--gdim:rgba(62,207,142,.12);--gb:rgba(62,207,142,.3);
-  --amber:#f0a23a;--amber-dim:rgba(240,162,58,.12);--amber-b:rgba(240,162,58,.3);
-  --purple:#c084fc;--pdim:rgba(192,132,252,.12);--pb:rgba(192,132,252,.3);
-  --cyan:#22d3ee;--cdim:rgba(34,211,238,.12);
-  --orange:#fb923c;--odim:rgba(251,146,60,.12);
-  --border:rgba(255,255,255,.07);--border2:rgba(255,255,255,.13);
-  --radius:8px;--rlg:12px;
-  --mono:'Courier New',Courier,monospace;
-  --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,Arial,sans-serif;
+  /* Brand */
+  --purple:#a435f0;
+  --purple-dark:#5624d0;
+  --purple-deep:#401b9c;
+  --purple-tint:#f3ebfc;
+  /* Neutrals */
+  --ink:#1c1d1f;
+  --ink-soft:#2d2f31;
+  --body:#5c5f62;
+  --muted:#8a8d91;
+  --line:#d1d7dc;
+  --line-soft:#e8eaed;
+  --white:#fff;
+  --alt:#f7f9fa;
+  /* Accents */
+  --star:#e59819;
+  --sql:#2d68f5;
+  --sql-tint:#eaf0fe;
+  --py:#0d9f6e;
+  --py-tint:#e6f7f1;
+  --concept:#e8730a;
+  --concept-tint:#fdf0e4;
+  --rose:#d6336c;
+  --rose-tint:#fdecf3;
+  --teal:#0e8a9e;
+  --teal-tint:#e4f4f7;
+  --indigo:#4c4ddc;
+  --indigo-tint:#ececfc;
+  /* System */
+  --r:4px; --r-lg:8px; --r-xl:12px;
+  --shadow:0 2px 4px rgba(0,0,0,.08),0 4px 12px rgba(0,0,0,.08);
+  --shadow-lg:0 8px 24px rgba(0,0,0,.12);
+  --mono:'SF Mono',Menlo,Consolas,'Courier New',monospace;
+  --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,system-ui,sans-serif;
+  --nav-h:64px;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{font-family:var(--sans);background:var(--bg);color:var(--text);line-height:1.6;font-size:15px}
+body{font-family:var(--sans);background:var(--white);color:var(--ink);line-height:1.6;font-size:16px;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
 
-/* NAV */
-nav{position:sticky;top:0;z-index:100;background:rgba(13,13,13,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
-.nav-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;gap:1rem;height:56px;padding:0 1.5rem}
-.nav-logo{font-weight:700;font-size:14px;color:var(--text);white-space:nowrap;flex-shrink:0}
-.nav-logo span{color:var(--accent)}
-.nav-links{display:flex;gap:2px;flex:1;flex-wrap:nowrap}
-.nav-links a{font-size:12.5px;color:var(--t2);text-decoration:none;padding:5px 9px;border-radius:var(--radius);transition:color .15s,background .15s;white-space:nowrap}
-.nav-links a:hover{color:var(--text);background:rgba(255,255,255,.05)}
-.nav-links a.active{color:var(--accent);background:var(--adim)}
-.nav-badge{font-size:11px;font-weight:600;background:var(--adim);color:var(--accent);border:1px solid var(--ab);padding:3px 10px;border-radius:20px;white-space:nowrap;flex-shrink:0}
+/* ── NAV ─────────────────────────────────────────── */
+nav{position:sticky;top:0;z-index:200;background:var(--white);border-bottom:1px solid var(--line);height:var(--nav-h)}
+.nav-in{max-width:1180px;margin:0 auto;padding:0 24px;height:var(--nav-h);display:flex;align-items:center;gap:20px}
+.logo{font-size:19px;font-weight:800;letter-spacing:-.02em;color:var(--ink);white-space:nowrap;text-decoration:none}
+.logo em{font-style:normal;color:var(--purple-dark)}
+.nav-links{display:flex;gap:2px;flex:1;justify-content:center}
+.nav-links a{font-size:14px;font-weight:500;color:var(--body);text-decoration:none;padding:8px 12px;border-radius:var(--r);white-space:nowrap;transition:color .15s,background .15s}
+.nav-links a:hover{color:var(--purple-dark);background:var(--purple-tint)}
+.nav-links a.on{color:var(--purple-dark);font-weight:700}
+.nav-cta{background:var(--ink);color:var(--white);font-size:14px;font-weight:700;padding:10px 18px;border:none;border-radius:var(--r);cursor:pointer;font-family:var(--sans);white-space:nowrap;transition:background .15s}
+.nav-cta:hover{background:var(--purple-dark)}
+.burger{display:none;background:none;border:1px solid var(--line);border-radius:var(--r);padding:7px 10px;cursor:pointer;font-size:15px}
 
-/* SECTIONS */
-.section{max-width:1100px;margin:0 auto;padding:4rem 1.5rem;scroll-margin-top:56px}
-.slabel{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--t3);margin-bottom:1.5rem;padding-bottom:.6rem;border-bottom:1px solid var(--border)}
+/* ── HERO ────────────────────────────────────────── */
+.hero{background:var(--ink);color:var(--white);padding:56px 0 72px;position:relative;overflow:hidden}
+.hero::after{content:'';position:absolute;top:-140px;right:-140px;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(164,53,240,.28),transparent 68%);pointer-events:none}
+.hero-grid{display:grid;grid-template-columns:1fr 360px;gap:48px;align-items:start;position:relative;z-index:1}
+.crumb{font-size:13px;font-weight:600;color:#c9a6f5;margin-bottom:14px;letter-spacing:.02em}
+.crumb span{color:#75797c;margin:0 8px}
+.hero h1{font-size:clamp(30px,4.2vw,46px);font-weight:800;line-height:1.18;letter-spacing:-.02em;margin-bottom:16px;max-width:680px}
+.hero h1 mark{background:none;color:#c9a6f5}
+.hero-sub{font-size:18px;color:#d1d2d4;max-width:600px;line-height:1.6;margin-bottom:20px}
+.rating{display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:14px;margin-bottom:14px}
+.badge-best{background:#eceb98;color:#3d3c0a;font-size:12px;font-weight:800;padding:4px 9px;border-radius:var(--r)}
+.stars{color:var(--star);font-weight:700;letter-spacing:1px}
+.rating b{color:var(--star);font-weight:700}
+.rating span{color:#b8babd}
+.hero-meta{display:flex;gap:22px;flex-wrap:wrap;font-size:14px;color:#b8babd}
+.hero-meta b{color:var(--white);font-weight:600}
 
-/* HERO */
-#hero{max-width:1100px;margin:0 auto;padding:5rem 1.5rem 3.5rem;scroll-margin-top:56px}
-.hero-eye{font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem}
-#hero h1{font-size:clamp(2rem,5vw,3rem);font-weight:700;line-height:1.15;letter-spacing:-.02em;margin-bottom:.9rem}
-.hero-sub{font-size:16px;color:var(--t2);max-width:560px;line-height:1.7;margin-bottom:2.8rem}
-.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;max-width:640px}
-.kpi{background:var(--c1);border:1px solid var(--border);border-radius:var(--rlg);padding:1.25rem 1rem;text-align:center}
-.kpi-n{font-size:2.25rem;font-weight:700;line-height:1}
-.kpi-l{font-size:11px;color:var(--t3);text-transform:uppercase;letter-spacing:.06em;margin-top:4px}
-.kpi:nth-child(1) .kpi-n{color:var(--amber)}
-.kpi:nth-child(2) .kpi-n{color:var(--accent)}
-.kpi:nth-child(3) .kpi-n{color:var(--green)}
-.kpi:nth-child(4) .kpi-n{color:var(--purple)}
+/* Floating enroll card */
+.enroll{background:var(--white);color:var(--ink);border-radius:var(--r-lg);box-shadow:var(--shadow-lg);overflow:hidden;position:sticky;top:88px}
+.enroll-thumb{height:150px;background:linear-gradient(135deg,var(--purple-deep),var(--purple) 55%,#c86dd7);display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--white);gap:2px}
+.enroll-thumb .big{font-size:44px;font-weight:800;line-height:1}
+.enroll-thumb .cap{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;opacity:.9}
+.enroll-body{padding:22px}
+.price-row{display:flex;align-items:baseline;gap:10px;margin-bottom:4px}
+.price{font-size:28px;font-weight:800;letter-spacing:-.02em}
+.price-note{font-size:13px;color:var(--muted)}
+.enroll-tag{font-size:13px;color:var(--rose);font-weight:600;margin-bottom:16px}
+.btn{display:block;width:100%;text-align:center;font-family:var(--sans);font-size:15px;font-weight:700;padding:13px 16px;border-radius:var(--r);cursor:pointer;border:none;transition:background .15s,border-color .15s;text-decoration:none}
+.btn-primary{background:var(--purple-dark);color:var(--white)}
+.btn-primary:hover{background:var(--purple-deep)}
+.btn-ghost{background:var(--white);color:var(--ink);border:1px solid var(--ink);margin-top:10px}
+.btn-ghost:hover{background:var(--alt)}
+.prog-wrap{margin:18px 0 6px}
+.prog-top{display:flex;justify-content:space-between;font-size:12px;font-weight:700;color:var(--body);margin-bottom:6px}
+.prog-bar{height:8px;background:var(--line-soft);border-radius:99px;overflow:hidden}
+.prog-fill{height:100%;background:linear-gradient(90deg,var(--purple-dark),var(--purple));border-radius:99px;width:0;transition:width .45s cubic-bezier(.4,0,.2,1)}
+.incl{list-style:none;margin-top:18px;padding-top:18px;border-top:1px solid var(--line-soft)}
+.incl li{font-size:13.5px;color:var(--body);padding:5px 0;display:flex;gap:10px;align-items:flex-start}
+.incl li i{font-style:normal;width:16px;flex-shrink:0}
 
-/* STUDY PLAN */
-.plan-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:10px}
-.day-card{background:var(--c1);border:1px solid var(--border);border-radius:var(--radius);padding:1rem;cursor:pointer;position:relative;overflow:hidden;transition:border-color .15s,background .15s}
-.day-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
-.day-card.sql::before{background:var(--accent)}
-.day-card.py::before{background:var(--green)}
-.day-card.both::before{background:linear-gradient(90deg,var(--accent),var(--green))}
-.day-card.sme::before{background:var(--purple)}
-.day-card.mock::before{background:var(--amber)}
-.day-card:hover{border-color:var(--border2);background:var(--c2)}
-.day-card.active{border-color:var(--accent);background:rgba(79,142,247,.05)}
-.day-num{font-size:11px;color:var(--t3);margin-bottom:4px}
-.day-title{font-size:13px;font-weight:600;line-height:1.35;margin-bottom:6px}
-.day-badges{display:flex;gap:4px;flex-wrap:wrap}
-.badge{font-size:10px;padding:2px 7px;border-radius:4px;font-weight:600}
-.b-sql{background:var(--adim);color:var(--accent);border:1px solid var(--ab)}
-.b-py{background:var(--gdim);color:var(--green);border:1px solid var(--gb)}
-.b-sme{background:var(--pdim);color:var(--purple);border:1px solid var(--pb)}
-.b-mock{background:var(--amber-dim);color:var(--amber);border:1px solid var(--amber-b)}
-.day-detail{display:none;background:var(--c2);border:1px solid var(--border2);border-radius:var(--rlg);padding:1.5rem;margin-top:12px}
-.day-detail.open{display:block}
-.dd-head{font-size:16px;font-weight:700;margin-bottom:1rem;color:var(--text)}
-.dd-cols{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
-.dd-col h4{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--t3);margin-bottom:.5rem}
-.dd-col h4+h4{margin-top:1rem}
-.dd-item{font-size:13px;color:var(--t2);padding:.3rem 0;border-bottom:1px solid var(--border);line-height:1.5}
-.dd-item:last-child{border-bottom:none}
-.dd-goal{margin-top:1rem;padding:.75rem 1rem;background:var(--adim);border:1px solid var(--ab);border-radius:var(--radius);font-size:13px;color:var(--accent)}
+/* ── SECTION SHELL ───────────────────────────────── */
+section{padding:64px 0;scroll-margin-top:var(--nav-h)}
+section.tinted{background:var(--alt);border-block:1px solid var(--line-soft)}
+.s-head{margin-bottom:28px}
+.s-eyebrow{font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--purple-dark);margin-bottom:8px}
+.s-head h2{font-size:clamp(24px,3vw,32px);font-weight:800;letter-spacing:-.02em;line-height:1.25;margin-bottom:8px}
+.s-head p{font-size:16px;color:var(--body);max-width:660px}
 
-/* FILTER / SEARCH BAR */
-.filter-bar{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:1.25rem;align-items:center}
-.fbtn{font-size:12px;padding:5px 14px;border-radius:20px;border:1px solid var(--border2);background:transparent;color:var(--t2);cursor:pointer;font-family:var(--sans);transition:all .15s}
-.fbtn:hover{border-color:var(--accent);color:var(--text)}
-.fbtn.active{background:var(--adim);color:var(--accent);border-color:var(--ab)}
-.search-in{flex:1;max-width:280px;padding:5px 14px;border-radius:20px;border:1px solid var(--border2);background:var(--c1);color:var(--text);font-family:var(--sans);font-size:12px;outline:none}
-.search-in::placeholder{color:var(--t3)}
-.search-in:focus{border-color:var(--ab)}
+/* ── PATH PICKER ─────────────────────────────────── */
+.paths{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+.path{background:var(--white);border:2px solid var(--line);border-radius:var(--r-lg);padding:26px;cursor:pointer;transition:border-color .18s,box-shadow .18s,transform .18s;text-align:left;font-family:var(--sans);position:relative}
+.path:hover{border-color:var(--purple);box-shadow:var(--shadow);transform:translateY(-2px)}
+.path.sel{border-color:var(--purple-dark);box-shadow:0 0 0 3px var(--purple-tint)}
+.path.sel::after{content:'✓ Selected';position:absolute;top:14px;right:16px;font-size:11px;font-weight:800;color:var(--purple-dark);background:var(--purple-tint);padding:4px 9px;border-radius:99px}
+.path-ico{width:46px;height:46px;border-radius:var(--r-lg);display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:14px}
+.path h3{font-size:19px;font-weight:800;margin-bottom:6px;letter-spacing:-.01em}
+.path .who{font-size:13px;font-weight:700;color:var(--purple-dark);margin-bottom:10px}
+.path p{font-size:14.5px;color:var(--body);line-height:1.6;margin-bottom:14px}
+.path-stats{display:flex;gap:18px;font-size:13px;color:var(--body);border-top:1px solid var(--line-soft);padding-top:14px}
+.path-stats b{display:block;font-size:17px;font-weight:800;color:var(--ink)}
 
-/* Q LIST */
-.q-list{display:flex;flex-direction:column;gap:8px}
-.q-item{background:var(--c1);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:border-color .15s}
-.q-item:hover{border-color:var(--border2)}
-.q-header{display:flex;align-items:center;gap:.85rem;padding:.85rem 1rem;cursor:pointer;user-select:none}
-.q-num{font-size:11px;color:var(--t3);font-weight:600;white-space:nowrap;min-width:28px}
-.q-text{flex:1;font-size:14px;font-weight:500;line-height:1.4}
-.q-tag{font-size:10px;padding:2px 8px;border-radius:4px;font-weight:600;white-space:nowrap;flex-shrink:0}
-.tag-query{background:var(--adim);color:var(--accent)}
-.tag-concept{background:var(--amber-dim);color:var(--amber)}
-.tag-log{background:var(--gdim);color:var(--green)}
-.tag-string{background:var(--cdim);color:var(--cyan)}
-.tag-list{background:var(--odim);color:var(--orange)}
-.tag-function{background:rgba(251,191,36,.12);color:#fbbf24}
-.tag-oop{background:var(--pdim);color:var(--purple)}
-.q-chev{color:var(--t3);font-size:16px;transition:transform .2s;flex-shrink:0}
-.q-item.open .q-chev{transform:rotate(180deg)}
-.q-body{display:none;border-top:1px solid var(--border)}
-.q-item.open .q-body{display:block}
+/* ── TRACK CARDS ─────────────────────────────────── */
+.tracks{display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));gap:22px}
+.track{background:var(--white);border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden;transition:box-shadow .18s,transform .18s;display:flex;flex-direction:column}
+.track:hover{box-shadow:var(--shadow-lg);transform:translateY(-3px)}
+.track-thumb{height:132px;display:flex;align-items:center;justify-content:space-between;padding:0 24px;color:var(--white);position:relative;overflow:hidden}
+.track-thumb::after{content:'';position:absolute;right:-30px;bottom:-46px;width:150px;height:150px;border-radius:50%;background:rgba(255,255,255,.13)}
+.track-thumb .lang{font-size:30px;font-weight:800;letter-spacing:-.02em;position:relative;z-index:1}
+.track-thumb .cnt{text-align:right;position:relative;z-index:1}
+.track-thumb .cnt b{display:block;font-size:32px;font-weight:800;line-height:1}
+.track-thumb .cnt span{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;opacity:.9}
+.track-body{padding:20px 24px 24px;flex:1;display:flex;flex-direction:column}
+.track-body h3{font-size:18px;font-weight:800;margin-bottom:6px}
+.track-body>p{font-size:14px;color:var(--body);line-height:1.6;margin-bottom:14px}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:18px}
+.tag{font-size:12px;font-weight:600;padding:4px 10px;border-radius:99px;background:var(--alt);color:var(--body);border:1px solid var(--line-soft)}
+.track-foot{margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:12px;padding-top:16px;border-top:1px solid var(--line-soft)}
+.track-foot .meta{font-size:13px;color:var(--muted)}
+.btn-sm{font-size:13.5px;font-weight:700;padding:9px 16px;border-radius:var(--r);border:1px solid var(--ink);background:var(--white);color:var(--ink);cursor:pointer;font-family:var(--sans);text-decoration:none;white-space:nowrap;transition:background .15s,color .15s}
+.btn-sm:hover{background:var(--ink);color:var(--white)}
 
-/* TABS */
-.tabs{display:flex;border-bottom:1px solid var(--border);padding:0 1rem}
-.tbtn{font-size:12px;font-weight:600;padding:.55rem .85rem;border:none;background:none;color:var(--t3);cursor:pointer;border-bottom:2px solid transparent;font-family:var(--sans);transition:color .15s;margin-bottom:-1px}
-.tbtn:hover{color:var(--text)}
-.tbtn.active{color:var(--accent);border-bottom-color:var(--accent)}
-.tpanel{display:none;padding:1rem}
-.tpanel.active{display:block}
-.tpanel p{font-size:13px;color:var(--t2);line-height:1.7;margin-bottom:.5rem}
-.tip-box{margin-top:.75rem;padding:.75rem 1rem;background:rgba(79,142,247,.07);border:1px solid rgba(79,142,247,.2);border-radius:var(--radius);font-size:12px;color:#8ab4ef;line-height:1.6}
-pre{background:#0a0a0a;border:1px solid var(--border);border-radius:var(--radius);padding:1rem;font-size:12px;font-family:var(--mono);color:#d4d4d4;overflow-x:auto;line-height:1.65;margin:.5rem 0 0;white-space:pre}
-.concept-chips{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:.75rem}
-.chip{font-size:11px;padding:2px 8px;border-radius:4px;background:rgba(255,255,255,.05);color:var(--t2);border:1px solid var(--border)}
+/* ── CURRICULUM ──────────────────────────────────── */
+.cur-bar{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:14px}
+.cur-sum{font-size:14px;color:var(--body)}
+.cur-sum b{color:var(--ink);font-weight:700}
+.link-btn{background:none;border:none;color:var(--purple-dark);font-weight:700;font-size:14px;cursor:pointer;font-family:var(--sans);padding:4px 6px;border-radius:var(--r)}
+.link-btn:hover{background:var(--purple-tint)}
+.cur{border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden;background:var(--white)}
+.day{border-bottom:1px solid var(--line)}
+.day:last-child{border-bottom:none}
+.day.dim{opacity:.42}
+.day-hd{display:flex;align-items:center;gap:14px;padding:16px 20px;cursor:pointer;background:var(--alt);transition:background .15s;user-select:none}
+.day-hd:hover{background:#eff3f5}
+.day.open .day-hd{background:var(--white);border-bottom:1px solid var(--line-soft)}
+.chk{width:20px;height:20px;border:2px solid var(--line);border-radius:4px;flex-shrink:0;cursor:pointer;display:flex;align-items:center;justify-content:center;background:var(--white);transition:background .15s,border-color .15s;font-size:12px;color:transparent}
+.chk:hover{border-color:var(--purple-dark)}
+.chk.done{background:var(--py);border-color:var(--py);color:var(--white)}
+.day-n{font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);min-width:54px;flex-shrink:0}
+.day-t{flex:1;font-size:15.5px;font-weight:700;letter-spacing:-.01em;min-width:140px}
+.day-b{display:flex;gap:6px;flex-wrap:wrap}
+.pill{font-size:11px;font-weight:700;padding:3px 9px;border-radius:99px;white-space:nowrap}
+.p-sql{background:var(--sql-tint);color:var(--sql)}
+.p-py{background:var(--py-tint);color:var(--py)}
+.p-sme{background:var(--indigo-tint);color:var(--indigo)}
+.p-mock{background:var(--concept-tint);color:var(--concept)}
+.day-h{font-size:13px;color:var(--muted);white-space:nowrap;min-width:44px;text-align:right}
+.chev{color:var(--muted);font-size:12px;transition:transform .2s;flex-shrink:0}
+.day.open .chev{transform:rotate(180deg)}
+.day-bd{display:none;padding:22px 20px 24px 20px;background:var(--white)}
+.day.open .day-bd{display:block}
+.day-cols{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.dcol h4{font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+.dcol h4+h4{margin-top:20px}
+.dcol ul{list-style:none}
+.dcol li{font-size:14px;color:var(--body);padding:6px 0 6px 22px;position:relative;line-height:1.55}
+.dcol li::before{content:'▸';position:absolute;left:4px;color:var(--purple);font-size:11px;top:8px}
+.dcol li.res::before{content:'🔗';font-size:11px;left:0}
+.goal{margin-top:20px;padding:14px 16px;background:var(--purple-tint);border-left:3px solid var(--purple-dark);border-radius:0 var(--r) var(--r) 0;font-size:14px;color:var(--purple-deep);font-weight:600;line-height:1.55}
 
-/* SME */
-.sme-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
-.sme-card{background:var(--c1);border:1px solid var(--border);border-radius:var(--rlg);padding:1.25rem;display:flex;gap:1rem;align-items:flex-start;transition:border-color .15s}
-.sme-card:hover{border-color:var(--border2)}
-.sme-av{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;flex-shrink:0}
-.sme-name{font-size:14px;font-weight:600;margin-bottom:2px}
-.sme-role{font-size:12px;margin-bottom:5px}
-.sme-exp{font-size:12px;color:var(--t2);line-height:1.5}
+/* ── FILTER / SEARCH ─────────────────────────────── */
+.tools{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:20px}
+.search{position:relative;flex:1;min-width:220px;max-width:340px}
+.search input{width:100%;padding:11px 14px 11px 40px;border:1px solid var(--ink);border-radius:var(--r);font-family:var(--sans);font-size:14px;outline:none;background:var(--white);color:var(--ink)}
+.search input:focus{border-color:var(--purple-dark);box-shadow:0 0 0 3px var(--purple-tint)}
+.search input::placeholder{color:var(--muted)}
+.search i{position:absolute;left:14px;top:50%;transform:translateY(-50%);font-style:normal;color:var(--muted);font-size:14px}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{font-size:13.5px;font-weight:600;padding:9px 16px;border-radius:99px;border:1px solid var(--line);background:var(--white);color:var(--body);cursor:pointer;font-family:var(--sans);transition:all .15s;white-space:nowrap}
+.chip:hover{border-color:var(--ink);color:var(--ink)}
+.chip.on{background:var(--ink);border-color:var(--ink);color:var(--white)}
+.count{font-size:13.5px;color:var(--muted);margin-left:auto;white-space:nowrap}
 
-/* RESOURCES */
-.res-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px}
-.res-card{background:var(--c1);border:1px solid var(--border);border-radius:var(--rlg);padding:1.25rem;text-decoration:none;display:block;transition:border-color .15s,background .15s}
-.res-card:hover{border-color:var(--ab);background:var(--c2)}
-.res-icon{font-size:22px;margin-bottom:.5rem}
-.res-title{font-size:14px;font-weight:600;color:var(--text);margin-bottom:4px}
-.res-desc{font-size:12px;color:var(--t2);line-height:1.5}
-.res-url{font-size:11px;color:var(--accent);margin-top:8px;display:block}
+/* ── QUESTION CARDS ──────────────────────────────── */
+.qs{display:flex;flex-direction:column;gap:10px}
+.q{background:var(--white);border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden;transition:border-color .15s,box-shadow .15s}
+.q:hover{border-color:var(--muted);box-shadow:var(--shadow)}
+.q.open{border-color:var(--purple-dark);box-shadow:var(--shadow)}
+.q-hd{display:flex;align-items:center;gap:14px;padding:16px 18px;cursor:pointer;user-select:none}
+.q-n{font-size:12px;font-weight:800;color:var(--white);background:var(--ink);min-width:34px;height:26px;border-radius:var(--r);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.q.open .q-n{background:var(--purple-dark)}
+.q-t{flex:1;font-size:15px;font-weight:600;line-height:1.45;min-width:160px}
+.q-m{display:flex;gap:6px;flex-wrap:wrap;flex-shrink:0}
+.lvl{font-size:11px;font-weight:700;padding:3px 9px;border-radius:99px;white-space:nowrap}
+.l-Beginner{background:var(--py-tint);color:var(--py)}
+.l-Intermediate{background:var(--concept-tint);color:var(--concept)}
+.l-Advanced{background:var(--rose-tint);color:var(--rose)}
+.cat{font-size:11px;font-weight:700;padding:3px 9px;border-radius:99px;white-space:nowrap}
+.c-query{background:var(--sql-tint);color:var(--sql)}
+.c-concept{background:var(--concept-tint);color:var(--concept)}
+.c-log{background:var(--teal-tint);color:var(--teal)}
+.c-string{background:var(--purple-tint);color:var(--purple-dark)}
+.c-list{background:var(--concept-tint);color:var(--concept)}
+.c-function{background:var(--sql-tint);color:var(--sql)}
+.c-oop{background:var(--rose-tint);color:var(--rose)}
+.q-bd{display:none;border-top:1px solid var(--line-soft)}
+.q.open .q-bd{display:block}
+.tabs{display:flex;gap:0;border-bottom:1px solid var(--line-soft);padding:0 18px;background:var(--alt)}
+.tb{font-size:13.5px;font-weight:700;padding:12px 16px;border:none;background:none;color:var(--body);cursor:pointer;border-bottom:3px solid transparent;font-family:var(--sans);margin-bottom:-1px;transition:color .15s}
+.tb:hover{color:var(--ink)}
+.tb.on{color:var(--purple-dark);border-bottom-color:var(--purple-dark)}
+.tp{display:none;padding:20px 18px}
+.tp.on{display:block}
+.tp p{font-size:14.5px;color:var(--body);line-height:1.75}
+.concepts{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+.cc{font-size:11.5px;font-weight:600;padding:4px 10px;border-radius:var(--r);background:var(--purple-tint);color:var(--purple-deep)}
+pre{background:var(--ink);border-radius:var(--r-lg);padding:18px;font-size:13px;font-family:var(--mono);color:#e6e6e6;overflow-x:auto;line-height:1.7;white-space:pre;margin:0}
+.tip{margin-top:14px;padding:14px 16px;background:#fffbeb;border-left:3px solid var(--star);border-radius:0 var(--r) var(--r) 0;font-size:14px;color:#7a5b12;line-height:1.6}
+.tip b{color:#5c430c}
+.empty{text-align:center;padding:56px 20px;color:var(--muted);font-size:15px;border:2px dashed var(--line);border-radius:var(--r-lg)}
 
-footer{border-top:1px solid var(--border);padding:2rem;text-align:center;font-size:12px;color:var(--t3)}
-.hidden{display:none!important}
-@media(max-width:700px){
-  .kpi-grid{grid-template-columns:repeat(2,1fr)}
-  .dd-cols{grid-template-columns:1fr}
-  .nav-links a{font-size:11px;padding:4px 6px}
+/* ── MENTORS ─────────────────────────────────────── */
+.mentors{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:18px}
+.mentor{background:var(--white);border:1px solid var(--line);border-radius:var(--r-lg);padding:22px;display:flex;gap:16px;transition:box-shadow .18s,transform .18s}
+.mentor:hover{box-shadow:var(--shadow);transform:translateY(-2px)}
+.av{width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:19px;font-weight:800;color:var(--white);flex-shrink:0}
+.mentor h4{font-size:16px;font-weight:800;margin-bottom:2px}
+.m-role{font-size:12.5px;font-weight:700;margin-bottom:8px}
+.m-exp{font-size:13.5px;color:var(--body);line-height:1.55;margin-bottom:10px}
+.m-stat{font-size:12px;color:var(--muted);display:flex;gap:14px;flex-wrap:wrap}
+
+/* ── RESOURCES ───────────────────────────────────── */
+.res{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px}
+.rc{background:var(--white);border:1px solid var(--line);border-radius:var(--r-lg);padding:22px;text-decoration:none;color:inherit;display:flex;flex-direction:column;transition:box-shadow .18s,transform .18s,border-color .18s}
+.rc:hover{box-shadow:var(--shadow-lg);transform:translateY(-3px);border-color:var(--purple)}
+.rc-ico{width:44px;height:44px;border-radius:var(--r-lg);display:flex;align-items:center;justify-content:center;font-size:21px;margin-bottom:14px}
+.rc h4{font-size:16px;font-weight:800;margin-bottom:6px}
+.rc p{font-size:13.5px;color:var(--body);line-height:1.55;flex:1;margin-bottom:14px}
+.rc .go{font-size:13px;font-weight:700;color:var(--purple-dark);display:flex;align-items:center;gap:6px}
+
+/* ── CTA BAND ────────────────────────────────────── */
+.band{background:linear-gradient(120deg,var(--purple-deep),var(--purple-dark) 55%,#7c3aed);color:var(--white);border-radius:var(--r-xl);padding:44px;display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap}
+.band h3{font-size:26px;font-weight:800;letter-spacing:-.02em;margin-bottom:8px}
+.band p{font-size:16px;opacity:.92;max-width:520px}
+.band .btn{width:auto;background:var(--white);color:var(--purple-deep);padding:14px 30px;font-size:15px;white-space:nowrap}
+.band .btn:hover{background:#f0e6fd}
+
+/* ── FOOTER ──────────────────────────────────────── */
+footer{background:var(--ink);color:#b8babd;padding:44px 0 32px}
+.f-grid{display:flex;justify-content:space-between;gap:28px;flex-wrap:wrap;padding-bottom:26px;border-bottom:1px solid #3e4143}
+.f-grid .logo{color:var(--white)}
+.f-grid .logo em{color:#c9a6f5}
+.f-tag{font-size:13.5px;margin-top:8px;max-width:340px;line-height:1.6}
+.f-links{display:flex;gap:32px;flex-wrap:wrap}
+.f-col h5{font-size:13px;font-weight:800;color:var(--white);margin-bottom:10px}
+.f-col a{display:block;font-size:13px;color:#b8babd;text-decoration:none;padding:3px 0}
+.f-col a:hover{color:var(--white);text-decoration:underline}
+.f-bot{font-size:12.5px;padding-top:22px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+/* ── RESPONSIVE ──────────────────────────────────── */
+@media(max-width:980px){
+  .hero-grid{grid-template-columns:1fr;gap:32px}
+  .enroll{position:static;max-width:420px}
+  .nav-links{display:none}
+  .burger{display:block}
+  .nav-links.show{display:flex;position:absolute;top:var(--nav-h);left:0;right:0;background:var(--white);flex-direction:column;padding:10px 16px 16px;border-bottom:1px solid var(--line);box-shadow:var(--shadow);justify-content:flex-start}
+}
+@media(max-width:680px){
+  .wrap,.nav-in{padding:0 16px}
+  section{padding:44px 0}
+  .day-cols{grid-template-columns:1fr;gap:18px}
+  .day-h,.day-b{display:none}
+  .q-m .cat{display:none}
+  .q-hd{gap:10px;padding:14px 12px}
+  .q-t{min-width:0;font-size:14.5px}
+  .day-hd{gap:10px;padding:14px 12px}
+  .day-t{min-width:0}
+  .band{padding:30px;text-align:center;justify-content:center}
+  .nav-cta{display:none}
+  .hero{padding:36px 0 48px}
+  .tools .count{width:100%;margin-left:0}
 }
 </style>
 </head>
 <body>
 
 <nav>
-  <div class="nav-inner">
-    <div class="nav-logo">Karat <span>Prep</span></div>
-    <div class="nav-links">
-      <a href="#hero" data-sec="hero">Overview</a>
-      <a href="#plan" data-sec="plan">Study plan</a>
-      <a href="#sql" data-sec="sql">SQL</a>
-      <a href="#python" data-sec="python">Python</a>
-      <a href="#sme" data-sec="sme">SME contacts</a>
-      <a href="#resources" data-sec="resources">Resources</a>
+  <div class="nav-in">
+    <a href="#top" class="logo">Karat<em>Prep</em></a>
+    <div class="nav-links" id="navLinks">
+      <a href="#paths" data-s="paths">Get started</a>
+      <a href="#tracks" data-s="tracks">Tracks</a>
+      <a href="#curriculum" data-s="curriculum">Curriculum</a>
+      <a href="#sql" data-s="sql">SQL</a>
+      <a href="#python" data-s="python">Python</a>
+      <a href="#mentors" data-s="mentors">Mentors</a>
+      <a href="#resources" data-s="resources">Resources</a>
     </div>
-    <div class="nav-badge">13-day plan</div>
+    <button class="burger" id="burger" aria-label="Menu">☰</button>
+    <button class="nav-cta" onclick="jump('curriculum')">Start learning</button>
   </div>
 </nav>
 
-<div id="hero">
-  <div class="hero-eye">Karat Assessment Prep</div>
-  <h1>SQL &amp; Python interview study guide</h1>
-  <p class="hero-sub">A structured 13-day prep plan covering SQL joins, aggregations, window functions, CTEs, and Python — built from your Karat assessment workbook.</p>
-  <div class="kpi-grid">
-    <div class="kpi"><div class="kpi-n">13</div><div class="kpi-l">Study days</div></div>
-    <div class="kpi"><div class="kpi-n">19</div><div class="kpi-l">SQL questions</div></div>
-    <div class="kpi"><div class="kpi-n">20</div><div class="kpi-l">Python problems</div></div>
-    <div class="kpi"><div class="kpi-n">6</div><div class="kpi-l">SME contacts</div></div>
+<!-- HERO -->
+<header class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="crumb">Technical Interview Prep <span>›</span> Data Engineering <span>›</span> Karat Assessment</div>
+      <h1>Master <mark>SQL &amp; Python</mark> for your Karat technical interview</h1>
+      <p class="hero-sub">A structured 13-day program with 45 interview-grade questions, worked solutions, and line-by-line explanations — built from a real Karat assessment workbook.</p>
+      <div class="rating">
+        <span class="badge-best">Complete program</span>
+        <b>4.9</b><span class="stars">★★★★★</span>
+        <span>· 45 practice questions · 6 expert mentors</span>
+      </div>
+      <div class="hero-meta">
+        <span>📚 <b>13</b> days</span>
+        <span>🗄️ <b>25</b> SQL questions</span>
+        <span>🐍 <b>20</b> Python problems</span>
+        <span>🎯 <b>2</b> mock interviews</span>
+      </div>
+    </div>
+    <aside class="enroll">
+      <div class="enroll-thumb">
+        <div class="big">13</div>
+        <div class="cap">Day program</div>
+      </div>
+      <div class="enroll-body">
+        <div class="price-row"><span class="price">Free</span><span class="price-note">Self-paced</span></div>
+        <div class="enroll-tag" id="progNote">Start anytime · Track your progress</div>
+        <button class="btn btn-primary" onclick="jump('curriculum')" id="startBtn">Start Day 1</button>
+        <button class="btn btn-ghost" onclick="jump('paths')">Choose your path</button>
+        <div class="prog-wrap">
+          <div class="prog-top"><span id="progLabel">0 of 13 days complete</span><span id="progPct">0%</span></div>
+          <div class="prog-bar"><div class="prog-fill" id="progFill"></div></div>
+        </div>
+        <ul class="incl">
+          <li><i>📖</i><span><b>45</b> questions with full solutions</span></li>
+          <li><i>💡</i><span>Line-by-line explanations &amp; interview tips</span></li>
+          <li><i>🔍</i><span>Live search and topic filtering</span></li>
+          <li><i>👥</i><span>6 subject-matter expert mentors</span></li>
+          <li><i>♾️</i><span>Progress saved in your browser</span></li>
+        </ul>
+      </div>
+    </aside>
   </div>
-</div>
+</header>
 
-<!-- STUDY PLAN -->
-<div id="plan" class="section">
-  <div class="slabel">Day-by-day study plan — click a day to expand</div>
-  <div class="plan-grid" id="planGrid"></div>
-  <div class="day-detail" id="dayDetail"></div>
-</div>
+<!-- PATHS -->
+<section id="paths">
+  <div class="wrap">
+    <div class="s-head">
+      <div class="s-eyebrow">Step 1 — Pick your starting point</div>
+      <h2>Two paths through the same program</h2>
+      <p>Choose the route that matches your experience. Your selection filters the curriculum and question difficulty across the whole page — switch anytime.</p>
+    </div>
+    <div class="paths" id="pathGrid"></div>
+  </div>
+</section>
+
+<!-- TRACKS -->
+<section class="tinted" id="tracks">
+  <div class="wrap">
+    <div class="s-head">
+      <div class="s-eyebrow">Step 2 — What you'll cover</div>
+      <h2>Two skill tracks, one assessment</h2>
+      <p>Karat splits the assessment into a SQL round and a Python round. Each track below maps to one of them.</p>
+    </div>
+    <div class="tracks" id="trackGrid"></div>
+  </div>
+</section>
+
+<!-- CURRICULUM -->
+<section id="curriculum">
+  <div class="wrap">
+    <div class="s-head">
+      <div class="s-eyebrow">Step 3 — Your day-by-day plan</div>
+      <h2>Program curriculum</h2>
+      <p>13 guided days from fundamentals to mock interviews. Tick each day off as you finish — your progress is saved locally.</p>
+    </div>
+    <div class="cur-bar">
+      <div class="cur-sum"><b id="curCount">13 days</b> · <span id="curHours">38 hours</span> total</div>
+      <div>
+        <button class="link-btn" onclick="allDays(true)">Expand all</button>
+        <button class="link-btn" onclick="allDays(false)">Collapse all</button>
+        <button class="link-btn" onclick="resetProg()">Reset progress</button>
+      </div>
+    </div>
+    <div class="cur" id="cur"></div>
+  </div>
+</section>
 
 <!-- SQL -->
-<div id="sql" class="section">
-  <div class="slabel">SQL questions — answers &amp; explanations</div>
-  <div class="filter-bar" id="sqlFilter">
-    <button class="fbtn active" data-f="all">All</button>
-    <button class="fbtn" data-f="query">SQL queries</button>
-    <button class="fbtn" data-f="concept">Concepts</button>
+<section class="tinted" id="sql">
+  <div class="wrap">
+    <div class="s-head">
+      <div class="s-eyebrow">Practice bank · Round 1</div>
+      <h2>SQL questions &amp; concepts</h2>
+      <p>19 query problems and 6 concept questions taken from the assessment workbook. Each opens with a worked answer and an explanation of why it works.</p>
+    </div>
+    <div class="tools">
+      <div class="chips" id="sqlChips">
+        <button class="chip on" data-f="all">All</button>
+        <button class="chip" data-f="query">SQL queries</button>
+        <button class="chip" data-f="concept">Concepts</button>
+      </div>
+      <span class="count" id="sqlCount"></span>
+    </div>
+    <div class="qs" id="sqlList"></div>
   </div>
-  <div class="q-list" id="sqlList"></div>
-</div>
+</section>
 
 <!-- PYTHON -->
-<div id="python" class="section">
-  <div class="slabel">Python Q&amp;A — Karat format with 3 tabs per question</div>
-  <div class="filter-bar" id="pyFilter">
-    <input class="search-in" id="pySearch" type="text" placeholder="Search questions…">
-    <button class="fbtn active" data-f="all">All</button>
-    <button class="fbtn" data-f="log">Log parsing</button>
-    <button class="fbtn" data-f="string">Strings</button>
-    <button class="fbtn" data-f="list">Lists</button>
-    <button class="fbtn" data-f="function">Functions</button>
-    <button class="fbtn" data-f="oop">OOP</button>
+<section id="python">
+  <div class="wrap">
+    <div class="s-head">
+      <div class="s-eyebrow">Practice bank · Round 2</div>
+      <h2>Python problems</h2>
+      <p>20 problems in the Karat format. Read the prompt, attempt it, then compare against the solution and explanation tabs.</p>
+    </div>
+    <div class="tools">
+      <div class="search"><i>🔍</i><input type="text" id="pySearch" placeholder="Search problems…" aria-label="Search Python problems"></div>
+      <div class="chips" id="pyChips">
+        <button class="chip on" data-f="all">All</button>
+        <button class="chip" data-f="log">Log parsing</button>
+        <button class="chip" data-f="string">Strings</button>
+        <button class="chip" data-f="list">Lists</button>
+        <button class="chip" data-f="function">Functions</button>
+        <button class="chip" data-f="oop">OOP</button>
+      </div>
+      <span class="count" id="pyCount"></span>
+    </div>
+    <div class="qs" id="pyList"></div>
   </div>
-  <div class="q-list" id="pyList"></div>
-</div>
+</section>
 
-<!-- SME -->
-<div id="sme" class="section">
-  <div class="slabel">SME contacts</div>
-  <div class="sme-grid" id="smeGrid"></div>
-</div>
+<!-- MENTORS -->
+<section class="tinted" id="mentors">
+  <div class="wrap">
+    <div class="s-head">
+      <div class="s-eyebrow">Your support network</div>
+      <h2>Subject-matter experts</h2>
+      <p>Six mentors cover the SQL round, the Python round, and mock-interview practice. Book time with them during Day SME.</p>
+    </div>
+    <div class="mentors" id="mentorGrid"></div>
+  </div>
+</section>
 
 <!-- RESOURCES -->
-<div id="resources" class="section">
-  <div class="slabel">Practice platforms &amp; resources</div>
-  <div class="res-grid" id="resGrid"></div>
-</div>
+<section id="resources">
+  <div class="wrap">
+    <div class="s-head">
+      <div class="s-eyebrow">Keep practising</div>
+      <h2>External practice platforms</h2>
+      <p>Use these alongside the question bank to build speed under time pressure.</p>
+    </div>
+    <div class="res" id="resGrid"></div>
+  </div>
+</section>
 
-<footer>Built from Karat_Assessment_Plan.xlsx · SQL, Python &amp; concept questions across 7 sheets</footer>
+<!-- CTA -->
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="band">
+      <div>
+        <h3>Ready for the assessment?</h3>
+        <p>Finish with the two mock interview days — 45 minutes of SQL and 45 minutes of Python under real conditions.</p>
+      </div>
+      <button class="btn" onclick="jump('curriculum')">Go to mock days</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="f-grid">
+      <div>
+        <a href="#top" class="logo">Karat<em>Prep</em></a>
+        <p class="f-tag">A self-paced SQL &amp; Python interview preparation program built from the Karat assessment workbook.</p>
+      </div>
+      <div class="f-links">
+        <div class="f-col">
+          <h5>Program</h5>
+          <a href="#paths">Choose a path</a>
+          <a href="#curriculum">Curriculum</a>
+          <a href="#mentors">Mentors</a>
+        </div>
+        <div class="f-col">
+          <h5>Practice</h5>
+          <a href="#sql">SQL questions</a>
+          <a href="#python">Python problems</a>
+          <a href="#resources">Resources</a>
+        </div>
+        <div class="f-col">
+          <h5>External</h5>
+          <a href="https://sqlzoo.net" target="_blank" rel="noopener">SQLZoo</a>
+          <a href="https://leetcode.com/problemset/database/" target="_blank" rel="noopener">LeetCode SQL</a>
+          <a href="https://realpython.com" target="_blank" rel="noopener">Real Python</a>
+        </div>
+      </div>
+    </div>
+    <div class="f-bot">
+      <span>Built from Karat_Assessment_Plan.xlsx · 7 source sheets</span>
+      <span>25 SQL · 20 Python · 13 days</span>
+    </div>
+  </div>
+</footer>
 
 <script>
-// ── STUDY PLAN DATA ─────────────────────────────────────────────────────────
-const studyDays = [
-  {day:1,title:'SQL Joins',cls:'sql',badges:['SQL'],
-   topics:['INNER JOIN — matching rows only','LEFT JOIN — keep all left rows','RIGHT JOIN / FULL OUTER JOIN','Self JOIN — join a table to itself','ON vs USING clause'],
-   practice:['Find customers with no orders (LEFT JOIN + NULL)','List employees with their manager names','Products never sold — LEFT JOIN + IS NULL'],
-   resources:['SQLZoo Tutorial 7: JOIN','SQLZoo Tutorial 8: More JOIN','SQL Fiddle — try each JOIN type'],
-   goal:'Write any JOIN query confidently in under 3 minutes'},
-  {day:2,title:'Aggregations',cls:'sql',badges:['SQL'],
-   topics:['COUNT(*) vs COUNT(col)','SUM, AVG, MIN, MAX','GROUP BY — group rows into buckets','HAVING — filter after aggregation','WHERE vs HAVING distinction'],
-   practice:['Charities with avg donation < $100','Top 5 products by total sales','Departments with > 3 employees using HAVING'],
-   resources:['SQLZoo Tutorial 5: SUM and COUNT','LeetCode SQL Easy problems','SQL Fiddle practice'],
-   goal:'Explain GROUP BY vs HAVING from memory with an example'},
-  {day:3,title:'Window Functions',cls:'sql',badges:['SQL'],
-   topics:['ROW_NUMBER() OVER (PARTITION BY … ORDER BY …)','RANK() vs DENSE_RANK() — ties behaviour','PARTITION BY resets the window per group','Difference from GROUP BY: rows are preserved'],
-   practice:['2nd highest salary per department','Top 3 sales per region','Salesperson with highest single-month total'],
-   resources:['LeetCode SQL Medium','SQL Fiddle — window function drills','Mode Analytics SQL tutorial'],
-   goal:'Write ROW_NUMBER() + PARTITION BY without looking it up'},
-  {day:4,title:'Subqueries & DML',cls:'sql',badges:['SQL'],
-   topics:['Non-correlated vs correlated subqueries','Recursive CTEs — hierarchy / org chart','INSERT, UPDATE, DELETE with conditions','ROLLBACK when row count exceeds threshold'],
-   practice:['Orders greater than average order amount','Delete where status=Delete; rollback if count > 1','Employee org chart with recursive CTE'],
-   resources:['LeetCode SQL Hard','SQL Fiddle — DML practice'],
-   goal:'Write and explain a correlated subquery vs CTE trade-off'},
-  {day:5,title:'Date & String Functions',cls:'sql',badges:['SQL'],
-   topics:['DATE_TRUNC, EXTRACT, YEAR(), MONTH()','TIMESTAMPDIFF, DATEDIFF, DATEADD','SUBSTRING, CONCAT, POSITION, UPPER/LOWER','SARGable vs non-SARGable date filters'],
-   practice:['Daily active users (DATE_TRUNC)','Extract domain from email column','Month-over-month revenue with LAG()'],
-   resources:['SQLZoo String functions tutorial','SQL Fiddle — date functions'],
-   goal:'Write a date range filter and extract year/month in any DB dialect'},
-  {day:6,title:'CTEs + Advanced Windows',cls:'sql',badges:['SQL'],
-   topics:['WITH clause — named temporary result sets','LAG() / LEAD() — look back / forward','Cumulative SUM with ROWS BETWEEN','CROSS JOIN to broadcast scalar aggregates'],
-   practice:['Month-over-month balance change with LAG','Cumulative daily merchant balance per month','Running department sales total'],
-   resources:['LeetCode SQL Medium','SQL Fiddle — CTE practice'],
-   goal:'Rewrite a nested subquery as a CTE without prompting'},
-  {day:7,title:'ACID & Data Warehouse',cls:'sql',badges:['SQL'],
-   topics:['Atomicity — all or nothing','Consistency — valid state transitions','Isolation — transactions do not interfere','Durability — committed = permanent','Fact vs Dimension tables, star schema'],
-   practice:['Explain ACID with a bank transfer example','Design a star schema for sales data','Explain 2 index types and their trade-offs'],
-   resources:['PostgreSQL docs — transactions','Data warehouse concepts guide'],
-   goal:'Explain all 4 ACID properties and 2 index types clearly'},
-  {day:8,title:'Python Strings & Lists',cls:'py',badges:['Python'],
-   topics:['String methods: split, join, strip, replace','List slicing: s[start:stop:step]','List comprehensions and generators','sorted(), enumerate(), zip(), map(), filter()'],
-   practice:['Run-length encoding: "aaabbc" → "3a2bc"','Check anagrams using sorted() or Counter','Reverse words in a sentence'],
-   resources:['Python docs: Built-in types','LeetCode Easy — string problems'],
-   goal:'Solve any string/list problem without importing libraries'},
-  {day:9,title:'Python Log Parsing',cls:'py',badges:['Python'],
-   topics:['datetime.strptime() — parse timestamps','set() operations: add, discard (safe remove)','Line-by-line parsing pattern','Early exit when log is sorted chronologically'],
-   practice:['IPs still blocked at a given time (real Karat Q)','Session durations from login/logout events','Most common URL from HTTP access log'],
-   resources:['Karat sample log file (public.karat.io)','Python datetime module docs'],
-   goal:'Write the IP-blocking solution from memory — the real Karat question'},
-  {day:10,title:'Python Functions & OOP',cls:'py',badges:['Python'],
-   topics:['Decorators with functools.wraps','Closures and the LEGB scope rule','Classes: __init__, @property, dunder methods','Inheritance: super(), method overriding'],
-   practice:['Timing decorator with functools.wraps','MinStack — O(1) min() with auxiliary stack','LRU Cache using OrderedDict.move_to_end()'],
-   resources:['Real Python: Decorators guide','Python docs: collections.OrderedDict'],
-   goal:'Implement a class with inheritance and explain each design choice'},
-  {day:11,title:'Python Mock Interview',cls:'mock',badges:['Mock'],
-   topics:['Full 45-minute Python mock (simulate Karat conditions)','Think aloud — narrate your logic as you code','Start with brute force then optimise','Test edge cases: empty input, single element, duplicates'],
-   practice:['All 20 Python questions timed — 10 min each','Record yourself; review for filler words and clarity','Identify 3 weak spots for Day 13 review'],
-   resources:["This guide's Python section","Python IDE / Replit for live coding"],
-   goal:'Complete 10+ Python questions with clean, runnable code'},
-  {day:'SME',title:'SME Connect',cls:'sme',badges:['SME'],
-   topics:['Meet Suman, Reema, Sachin (SQL SMEs)','Meet Shalini (Python SME)','Meet Chandni, Anand (Mock interviewers)','STAR-method behavioral answers'],
-   practice:['Prepare 3 domain-specific questions per SME','Draft 3 STAR answers: Challenge, Achievement, Collaboration','Review Karat Assessment Plan with each SME'],
-   resources:["SME contacts section of this guide","Karat Assessment Plan workbook"],
-   goal:'Have 3 STAR answers ready and 2 questions per SME before mock day'},
-  {day:13,title:'Final Review & Rest',cls:'mock',badges:['SQL','Python'],
-   topics:['Review only weak spots from mocks','Re-read explanations — no coding today','Set up dev environment for interview day','Early night — sleep is the best preparation'],
-   practice:['Re-read 5 weakest SQL questions','Re-read 5 weakest Python questions','Open SQL Fiddle + Python IDE and confirm they work'],
-   resources:['This study guide (review mode only)',"Karat: 45 min for SQL + 45 min for Python"],
-   goal:'Feel confident and rested — trust your preparation'},
+/* ═══════════ DATA ═══════════ */
+const DAYS=[
+ {day:1,title:'SQL Joins',badges:['SQL'],hours:3,path:'fresher',
+  topics:['INNER JOIN — matching rows only','LEFT JOIN — keep all left rows','RIGHT JOIN / FULL OUTER JOIN','Self JOIN — join a table to itself','ON vs USING clause'],
+  practice:['Find customers with no orders (LEFT JOIN + NULL)','List employees with their manager names','Products never sold — LEFT JOIN + IS NULL'],
+  resources:['SQLZoo Tutorial 7: JOIN','SQLZoo Tutorial 8: More JOIN','SQL Fiddle — try each JOIN type'],
+  goal:'Write any JOIN query confidently in under 3 minutes'},
+ {day:2,title:'Aggregations',badges:['SQL'],hours:3,path:'fresher',
+  topics:['COUNT(*) vs COUNT(col)','SUM, AVG, MIN, MAX','GROUP BY — group rows into buckets','HAVING — filter after aggregation','WHERE vs HAVING distinction'],
+  practice:['Charities with average donation under 100','Top 5 products by total sales','Departments with more than 3 employees using HAVING'],
+  resources:['SQLZoo Tutorial 5: SUM and COUNT','LeetCode SQL Easy problems','SQL Fiddle practice'],
+  goal:'Explain GROUP BY vs HAVING from memory with an example'},
+ {day:3,title:'Window Functions',badges:['SQL'],hours:3,path:'both',
+  topics:['ROW_NUMBER() OVER (PARTITION BY … ORDER BY …)','RANK() vs DENSE_RANK() — ties behaviour','PARTITION BY resets the window per group','Difference from GROUP BY: rows are preserved'],
+  practice:['2nd highest salary per department','Top 3 sales per region','Salesperson with highest single-month total'],
+  resources:['LeetCode SQL Medium','SQL Fiddle — window function drills','Mode Analytics SQL tutorial'],
+  goal:'Write ROW_NUMBER() + PARTITION BY without looking it up'},
+ {day:4,title:'Subqueries & DML',badges:['SQL'],hours:3,path:'both',
+  topics:['Non-correlated vs correlated subqueries','Recursive CTEs — hierarchy / org chart','INSERT, UPDATE, DELETE with conditions','ROLLBACK when row count exceeds threshold'],
+  practice:['Orders greater than average order amount','Delete where status=Delete; rollback if count > 1','Employee org chart with recursive CTE'],
+  resources:['LeetCode SQL Hard','SQL Fiddle — DML practice'],
+  goal:'Write and explain a correlated subquery vs CTE trade-off'},
+ {day:5,title:'Date & String Functions',badges:['SQL'],hours:2,path:'fresher',
+  topics:['DATE_TRUNC, EXTRACT, YEAR(), MONTH()','TIMESTAMPDIFF, DATEDIFF, DATEADD','SUBSTRING, CONCAT, POSITION, UPPER/LOWER','SARGable vs non-SARGable date filters'],
+  practice:['Daily active users (DATE_TRUNC)','Extract domain from email column','Month-over-month revenue with LAG()'],
+  resources:['SQLZoo String functions tutorial','SQL Fiddle — date functions'],
+  goal:'Write a date range filter and extract year/month in any DB dialect'},
+ {day:6,title:'CTEs + Advanced Windows',badges:['SQL'],hours:3,path:'both',
+  topics:['WITH clause — named temporary result sets','LAG() / LEAD() — look back / forward','Cumulative SUM with ROWS BETWEEN','CROSS JOIN to broadcast scalar aggregates'],
+  practice:['Month-over-month balance change with LAG','Cumulative daily merchant balance per month','Running department sales total'],
+  resources:['LeetCode SQL Medium','SQL Fiddle — CTE practice'],
+  goal:'Rewrite a nested subquery as a CTE without prompting'},
+ {day:7,title:'ACID & Data Warehouse',badges:['SQL'],hours:2,path:'both',
+  topics:['Atomicity — all or nothing','Consistency — valid state transitions','Isolation — transactions do not interfere','Durability — committed = permanent','Fact vs Dimension tables, star schema'],
+  practice:['Explain ACID with a bank transfer example','Design a star schema for sales data','Explain 2 index types and their trade-offs'],
+  resources:['PostgreSQL docs — transactions','Data warehouse concepts guide'],
+  goal:'Explain all 4 ACID properties and 2 index types clearly'},
+ {day:8,title:'Python Strings & Lists',badges:['Python'],hours:3,path:'fresher',
+  topics:['String methods: split, join, strip, replace','List slicing: s[start:stop:step]','List comprehensions and generators','sorted(), enumerate(), zip(), map(), filter()'],
+  practice:['Run-length encoding: aaabbc becomes 3a2bc','Check anagrams using sorted() or Counter','Reverse words in a sentence'],
+  resources:['Python docs: Built-in types','LeetCode Easy — string problems'],
+  goal:'Solve any string/list problem without importing libraries'},
+ {day:9,title:'Python Log Parsing',badges:['Python'],hours:4,path:'both',
+  topics:['datetime.strptime() — parse timestamps','set() operations: add, discard (safe remove)','Line-by-line parsing pattern','Early exit when log is sorted chronologically'],
+  practice:['IPs still blocked at a given time (real Karat Q)','Session durations from login/logout events','Most common URL from HTTP access log'],
+  resources:['Karat sample log file (public.karat.io)','Python datetime module docs'],
+  goal:'Write the IP-blocking solution from memory — the real Karat question'},
+ {day:10,title:'Python Functions & OOP',badges:['Python'],hours:3,path:'both',
+  topics:['Decorators with functools.wraps','Closures and the LEGB scope rule','Classes: __init__, @property, dunder methods','Inheritance: super(), method overriding'],
+  practice:['Timing decorator with functools.wraps','MinStack — O(1) min() with auxiliary stack','LRU Cache using OrderedDict.move_to_end()'],
+  resources:['Real Python: Decorators guide','Python docs: collections.OrderedDict'],
+  goal:'Implement a class with inheritance and explain each design choice'},
+ {day:11,title:'Python Mock Interview',badges:['Mock'],hours:3,path:'both',
+  topics:['Full 45-minute Python mock (simulate Karat conditions)','Think aloud — narrate your logic as you code','Start with brute force then optimise','Test edge cases: empty input, single element, duplicates'],
+  practice:['All 20 Python questions timed — 10 min each','Record yourself; review for filler words and clarity','Identify 3 weak spots for Day 13 review'],
+  resources:['The Python section of this program','Python IDE / Replit for live coding'],
+  goal:'Complete 10+ Python questions with clean, runnable code'},
+ {day:'SME',title:'SME Connect',badges:['SME'],hours:3,path:'both',
+  topics:['Meet Suman, Reema, Sachin (SQL SMEs)','Meet Shalini (Python SME)','Meet Chandni, Anand (Mock interviewers)','STAR-method behavioural answers'],
+  practice:['Prepare 3 domain-specific questions per SME','Draft 3 STAR answers: Challenge, Achievement, Collaboration','Review Karat Assessment Plan with each SME'],
+  resources:['Mentors section of this program','Karat Assessment Plan workbook'],
+  goal:'Have 3 STAR answers ready and 2 questions per SME before mock day'},
+ {day:13,title:'Final Review & Rest',badges:['SQL','Python'],hours:2,path:'both',
+  topics:['Review only weak spots from mocks','Re-read explanations — no coding today','Set up dev environment for interview day','Early night — sleep is the best preparation'],
+  practice:['Re-read 5 weakest SQL questions','Re-read 5 weakest Python questions','Open SQL Fiddle + Python IDE and confirm they work'],
+  resources:['This program (review mode only)','Karat: 45 min for SQL + 45 min for Python'],
+  goal:'Feel confident and rested — trust your preparation'},
 ];
 
-// ── SQL QUESTIONS DATA ───────────────────────────────────────────────────────
-const sqlQs = [
-  {id:1,type:'query',text:"Find charities that haven't received a donation in 30 days, or never. Return charity name and last donation date ('Never' if none).",
-   concepts:['LEFT JOIN','COALESCE','GROUP BY','HAVING','Date arithmetic'],
-   answer:`SELECT
+const SQLQ=[
+ {id:1,type:'query',lvl:'Intermediate',text:"Find charities that haven't received a donation in 30 days, or never. Return charity name and last donation date.",
+  concepts:['LEFT JOIN','COALESCE','GROUP BY','HAVING','Date arithmetic'],
+  answer:`SELECT
     c.charity_name,
     COALESCE(MAX(d.donation_date)::text, 'Never')
         AS last_donation_date
@@ -309,11 +600,11 @@ LEFT JOIN Donations d ON c.charity_id = d.charity_id
 GROUP BY c.charity_name
 HAVING MAX(d.donation_date) IS NULL
     OR MAX(d.donation_date) < CURRENT_DATE - INTERVAL '30 days';`,
-   explanation:`LEFT JOIN keeps all charities including those with zero donations. COALESCE converts NULL to 'Never'. HAVING filters to charities whose max donation date is NULL or older than 30 days. Without LEFT JOIN, charities with no donations disappear from results entirely.`,
-   tip:`Without LEFT JOIN, charities with zero donations disappear from results — use it any time you need to keep rows even when the joined table has no match.`},
-  {id:2,type:'query',text:'Identify charities with average donation under $100. Return name, average_donation, total_donations, donation_count.',
-   concepts:['GROUP BY','HAVING','AVG','SUM','COUNT','Aliases'],
-   answer:`SELECT
+  explain:'LEFT JOIN keeps all charities including those with zero donations. COALESCE converts NULL to "Never". HAVING filters to charities whose max donation date is NULL or older than 30 days. Without LEFT JOIN, charities with no donations disappear from the results entirely.',
+  tip:'Without LEFT JOIN, charities with zero donations disappear from results — use it any time you need to keep rows even when the joined table has no match.'},
+ {id:2,type:'query',lvl:'Beginner',text:'Identify charities with average donation under 100. Return name, average_donation, total_donations, donation_count.',
+  concepts:['GROUP BY','HAVING','AVG','SUM','COUNT','Aliases'],
+  answer:`SELECT
     c.charity_name AS Name,
     ROUND(AVG(d.donation_amount), 3) AS average_donation,
     SUM(d.donation_amount)           AS total_donations,
@@ -322,11 +613,11 @@ FROM Charities c
 JOIN Donations d ON c.charity_id = d.charity_id
 GROUP BY c.charity_name
 HAVING AVG(d.donation_amount) < 100;`,
-   explanation:`HAVING filters groups after aggregation — you cannot use WHERE on aggregate functions. AVG, SUM, COUNT compute per-charity values and are aliased as required. INNER JOIN here (not LEFT) because charities with zero donations would have no AVG to compare.`,
-   tip:`WHERE filters rows, HAVING filters groups. HAVING runs after GROUP BY; WHERE runs before it.`},
-  {id:3,type:'query',text:'Find the salesperson with the highest total sales in any single month. Return name, year, month, and total sales.',
-   concepts:['CTE','RANK()','EXTRACT','Window functions','GROUP BY'],
-   answer:`WITH monthly_sales AS (
+  explain:'HAVING filters groups after aggregation — you cannot use WHERE on aggregate functions. AVG, SUM and COUNT compute per-charity values and are aliased as required. INNER JOIN is correct here rather than LEFT, because a charity with zero donations has no average to compare.',
+  tip:'WHERE filters rows, HAVING filters groups. HAVING runs after GROUP BY; WHERE runs before it.'},
+ {id:3,type:'query',lvl:'Advanced',text:'Find the salesperson with the highest total sales in any single month. Return name, year, month, and total sales.',
+  concepts:['CTE','RANK()','EXTRACT','Window functions','GROUP BY'],
+  answer:`WITH monthly_sales AS (
     SELECT salesperson,
         EXTRACT(YEAR  FROM sale_date) AS sales_year,
         EXTRACT(MONTH FROM sale_date) AS sales_month,
@@ -341,11 +632,11 @@ ranked_sales AS (
 SELECT salesperson, sales_year, sales_month, total_sales
 FROM ranked_sales
 WHERE rnk = 1;`,
-   explanation:`Two CTEs: monthly_sales aggregates per salesperson per month, ranked_sales applies RANK() descending. The outer query picks rank = 1. RANK() handles ties — multiple people sharing the top month all appear.`,
-   tip:`RANK() skips numbers after ties (1,1,3); DENSE_RANK() doesn't (1,1,2). For 'the best' use either; for top-N with exact counts, choose deliberately.`},
-  {id:4,type:'query',text:'Students, Teachers, Assignments, Grades: find all students with their primary teacher. Show top 5 whose average grade > half the overall average.',
-   concepts:['LEFT JOIN','CTE','CROSS JOIN','AVG','LIMIT'],
-   answer:`WITH student_avg AS (
+  explain:'Two CTEs: monthly_sales aggregates per salesperson per month, and ranked_sales applies RANK() in descending order. The outer query picks rank = 1. Using RANK() rather than ROW_NUMBER() means ties are handled correctly — if two people share the top month, both appear.',
+  tip:"RANK() skips numbers after ties (1,1,3); DENSE_RANK() doesn't (1,1,2). For 'the best' use either; for top-N with exact counts, choose deliberately."},
+ {id:4,type:'query',lvl:'Advanced',text:'Students, Teachers, Assignments, Grades: find all students with their primary teacher. Show top 5 whose average grade exceeds half the overall average.',
+  concepts:['LEFT JOIN','CTE','CROSS JOIN','AVG','LIMIT'],
+  answer:`WITH student_avg AS (
     SELECT g.student_id, AVG(g.grade) AS avg_grade
     FROM Grades g GROUP BY g.student_id
 ),
@@ -364,20 +655,20 @@ FROM qualified q
 JOIN students s ON q.student_id = s.student_id
 LEFT JOIN teachers t ON s.primary_teacher_id = t.teacher_id
 ORDER BY q.avg_grade DESC LIMIT 5;`,
-   explanation:`CROSS JOIN with a single-row CTE broadcasts the overall average to every row without repeating the subquery. LEFT JOIN to teachers ensures students without a primary teacher still appear.`,
-   tip:`CROSS JOIN with a single-row aggregate CTE is the cleanest way to make a global aggregate available in every row.`},
-  {id:5,type:'query',text:'List all products with order details. Include products that have never been ordered (show NULL for order fields).',
-   concepts:['LEFT JOIN','Multiple joins','NULL handling'],
-   answer:`SELECT p.ProductName, o.OrderID, c.CustomerName
+  explain:'CROSS JOIN against a single-row CTE broadcasts the overall average onto every row without repeating the subquery in the WHERE clause. The final LEFT JOIN to teachers ensures students without an assigned primary teacher still appear in the output.',
+  tip:'CROSS JOIN with a single-row aggregate CTE is the cleanest way to make a global aggregate available in every row.'},
+ {id:5,type:'query',lvl:'Beginner',text:'List all products with order details. Include products that have never been ordered.',
+  concepts:['LEFT JOIN','Multiple joins','NULL handling'],
+  answer:`SELECT p.ProductName, o.OrderID, c.CustomerName
 FROM Products p
 LEFT JOIN Orders o    ON p.ProductID = o.ProductID
 LEFT JOIN Customers c ON o.CustomerID = c.CustomerID
 ORDER BY p.ProductName, o.OrderID;`,
-   explanation:`LEFT JOIN from Products preserves all products. A second LEFT JOIN to Customers handles orders with missing customer records. Any unordered product shows NULL in the order columns. Switching any LEFT JOIN to INNER JOIN would silently drop unmatched rows.`,
-   tip:`Chain LEFT JOINs from the driving table (Products) outward. Switching any to INNER JOIN drops products or orders without a match.`},
-  {id:6,type:'query',text:'Per product, show the month (full name) with the highest shipped quantity in 2023. Exclude products with no 2023 shipments.',
-   concepts:['CTE','ROW_NUMBER()','PARTITION BY','DATE_FORMAT','SUM'],
-   answer:`WITH monthly_qty AS (
+  explain:'LEFT JOIN from Products preserves every product. The second LEFT JOIN to Customers handles orders with a missing customer record. Any unordered product shows NULL in the order columns. Switching either join to INNER would silently drop unmatched rows.',
+  tip:'Chain LEFT JOINs from the driving table (Products) outward. Switching any to INNER JOIN drops products or orders without a match.'},
+ {id:6,type:'query',lvl:'Advanced',text:'Per product, show the month with the highest shipped quantity in 2023. Exclude products with no 2023 shipments.',
+  concepts:['CTE','ROW_NUMBER()','PARTITION BY','DATE_FORMAT','SUM'],
+  answer:`WITH monthly_qty AS (
     SELECT p.ProductName, s.ProductID,
         DATE_FORMAT(s.ShipmentDate, '%M') AS MonthName,
         SUM(s.Quantity) AS TotalQty,
@@ -393,11 +684,11 @@ ORDER BY p.ProductName, o.OrderID;`,
 SELECT ProductName, MonthName, TotalQty
 FROM monthly_qty WHERE rn = 1
 ORDER BY ProductName;`,
-   explanation:`PARTITION BY resets ROW_NUMBER() per product, so rn=1 is always 'peak for this product'. INNER JOIN automatically excludes products with no 2023 shipments. DATE_FORMAT('%M') returns full month name.`,
-   tip:`PARTITION BY resets ROW_NUMBER() per product — rn=1 is always 'peak for this product', not globally.`},
-  {id:7,type:'query',text:'Find repeated payments: same merchant, same card, same amount, within 10 minutes. Report the count.',
-   concepts:['Self JOIN','TIMESTAMPDIFF','HAVING','Duplicate detection'],
-   answer:`SELECT p1.merchant_id, p1.credit_card, p1.amount,
+  explain:"PARTITION BY resets ROW_NUMBER() for each product, so rn = 1 always means the peak month for that specific product rather than globally. The INNER JOIN plus the WHERE YEAR filter automatically excludes products with no 2023 shipments.",
+  tip:"PARTITION BY resets ROW_NUMBER() per product — rn=1 is always 'peak for this product', not globally."},
+ {id:7,type:'query',lvl:'Advanced',text:'Find repeated payments: same merchant, same card, same amount, within 10 minutes. Report the count.',
+  concepts:['Self JOIN','TIMESTAMPDIFF','HAVING','Duplicate detection'],
+  answer:`SELECT p1.merchant_id, p1.credit_card, p1.amount,
     COUNT(*) AS repeated_payment_count
 FROM Payments p1
 JOIN Payments p2
@@ -410,11 +701,11 @@ JOIN Payments p2
 GROUP BY p1.merchant_id, p1.credit_card, p1.amount
 HAVING COUNT(*) > 0
 ORDER BY repeated_payment_count DESC;`,
-   explanation:`Self-join Payments to itself. p1.payment_id < p2.payment_id avoids counting (A,B) and (B,A) as separate pairs and prevents a row matching itself — one condition eliminates both problems.`,
-   tip:`p1.payment_id < p2.payment_id: one condition eliminates self-matches AND duplicate pair reversals simultaneously.`},
-  {id:8,type:'query',text:'Print cumulative daily balance of a merchant account, resetting to zero at the start of each month.',
-   concepts:['SUM OVER','PARTITION BY','DATE_TRUNC','Running total','Window frame'],
-   answer:`SELECT merchant_id, transaction_date,
+  explain:'The table is self-joined against itself. The condition p1.payment_id < p2.payment_id does double duty: it stops a row from matching itself, and it prevents the pair (A,B) and (B,A) from both being counted.',
+  tip:'p1.payment_id < p2.payment_id: one condition eliminates self-matches AND duplicate pair reversals simultaneously.'},
+ {id:8,type:'query',lvl:'Advanced',text:'Print cumulative daily balance of a merchant account, resetting to zero at the start of each month.',
+  concepts:['SUM OVER','PARTITION BY','DATE_TRUNC','Running total','Window frame'],
+  answer:`SELECT merchant_id, transaction_date,
     SUM(amount) OVER (
         PARTITION BY merchant_id,
                      DATE_TRUNC('month', transaction_date)
@@ -423,11 +714,11 @@ ORDER BY repeated_payment_count DESC;`,
     ) AS cumulative_balance
 FROM Transactions
 ORDER BY merchant_id, transaction_date;`,
-   explanation:`PARTITION BY the month resets the running sum at month boundaries. The ROWS BETWEEN frame sums from the first row of the partition up to the current row — the standard running-total definition.`,
-   tip:`DATE_TRUNC('month', date) yields the 1st of the month — perfect for grouping all days of a month in PARTITION BY.`},
-  {id:9,type:'query',text:"Book borrowing: show borrow count, last borrow date, status (Never/Borrowed/Frequently), and Trend (Above/Below/Average) vs average.",
-   concepts:['LEFT JOIN','CROSS JOIN','CASE WHEN','AVG','CTE'],
-   answer:`WITH book_stats AS (
+  explain:'Partitioning by the truncated month resets the running sum at each month boundary. The ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW frame sums from the first row of the partition up to the current row — the textbook definition of a running total.',
+  tip:"DATE_TRUNC('month', date) yields the 1st of the month — perfect for grouping all days of a month in PARTITION BY."},
+ {id:9,type:'query',lvl:'Intermediate',text:'Book borrowing: show borrow count, last borrow date, status, and trend versus the average.',
+  concepts:['LEFT JOIN','CROSS JOIN','CASE WHEN','AVG','CTE'],
+  answer:`WITH book_stats AS (
     SELECT b.book_id, b.title,
            COUNT(br.borrow_id) AS borrow_count,
            MAX(br.borrow_date) AS last_borrow_date
@@ -450,11 +741,11 @@ SELECT bs.title, bs.borrow_count, bs.last_borrow_date,
 FROM book_stats bs
 CROSS JOIN avg_stats a
 ORDER BY bs.borrow_count DESC;`,
-   explanation:`book_stats LEFT JOINs books to borrowings — keeping unbordered books. avg_stats computes the overall average. CROSS JOIN makes that single value available on every row for the CASE comparison.`,
-   tip:`CROSS JOIN with a single-row aggregate CTE avoids repeating a subquery in every CASE branch.`},
-  {id:10,type:'query',text:"Vehicle rental utilisation: total rentals per vehicle, categorise as Low (1-2), Medium (3-4), High (5+). Exclude zero-rental vehicles.",
-   concepts:['JOIN','COUNT','CASE WHEN','GROUP BY','ORDER by computed value'],
-   answer:`SELECT v.name AS vehicle_name,
+  explain:'book_stats LEFT JOINs books to borrowings, keeping books that have never been borrowed. avg_stats computes the overall average across those stats. CROSS JOIN then makes that single scalar available on every row so both CASE expressions can reference it.',
+  tip:'CROSS JOIN with a single-row aggregate CTE avoids repeating a subquery in every CASE branch.'},
+ {id:10,type:'query',lvl:'Intermediate',text:'Vehicle rental utilisation: total rentals per vehicle, categorised Low / Medium / High. Exclude zero-rental vehicles.',
+  concepts:['JOIN','COUNT','CASE WHEN','GROUP BY','ORDER BY computed value'],
+  answer:`SELECT v.name AS vehicle_name,
     COUNT(r.rental_id) AS total_rentals,
     CASE
         WHEN COUNT(r.rental_id) BETWEEN 1 AND 2 THEN 'Low'
@@ -467,11 +758,11 @@ GROUP BY v.vehicle_id, v.name
 HAVING COUNT(r.rental_id) >= 1
 ORDER BY CASE utilization_category
     WHEN 'High' THEN 3 WHEN 'Medium' THEN 2 ELSE 1 END DESC;`,
-   explanation:`INNER JOIN automatically excludes vehicles never rented. CASE assigns category; a numeric CASE in ORDER BY sorts the string labels by severity without a lookup table.`,
-   tip:`You can't ORDER BY an alias that contains a CASE in all databases — wrap the same CASE logic in ORDER BY as the portable solution.`},
-  {id:11,type:'query',text:"Show all users with each activity. Include activities with no user ('Guest'). Include users with no activities (activity_type = 'None').",
-   concepts:['UNION ALL','LEFT JOIN','COALESCE','Full outer simulation'],
-   answer:`-- Users → activities (or 'None' if none recorded)
+  explain:'INNER JOIN automatically excludes vehicles that were never rented. The CASE expression assigns the category, and a second numeric CASE inside ORDER BY sorts those string labels by severity without needing a lookup table.',
+  tip:"You can't ORDER BY an alias containing a CASE in every database — repeating the CASE logic in ORDER BY is the portable solution."},
+ {id:11,type:'query',lvl:'Intermediate',text:"Show all users with each activity. Include activities with no user as 'Guest', and users with no activities as 'None'.",
+  concepts:['UNION ALL','LEFT JOIN','COALESCE','Full outer simulation'],
+  answer:`-- Users to activities (or 'None' if none recorded)
 SELECT u.user_name,
        COALESCE(a.activity_type, 'None') AS activity_type
 FROM Users u
@@ -479,27 +770,27 @@ LEFT JOIN Activities a ON u.user_id = a.user_id
 
 UNION ALL
 
--- Activities with no registered user → 'Guest'
+-- Activities with no registered user become 'Guest'
 SELECT COALESCE(u.user_name, 'Guest') AS user_name,
        a.activity_type
 FROM Activities a
 LEFT JOIN Users u ON a.user_id = u.user_id
 WHERE u.user_id IS NULL;`,
-   explanation:`Two halves: users LEFT JOIN activities gives all users including inactive ones; activities LEFT JOIN users gives orphan activities. UNION ALL combines them. This simulates FULL OUTER JOIN — useful in MySQL which lacks it natively.`,
-   tip:`UNION ALL of two LEFT JOINs simulates FULL OUTER JOIN — the standard pattern in MySQL.`},
-  {id:12,type:'query',text:'AWS server fleet: calculate total running time in full days across all servers and sessions.',
-   concepts:['SUM','TIMESTAMPDIFF','FLOOR','Aggregate'],
-   answer:`SELECT
+  explain:'The first half gives every user including inactive ones. The second half catches orphan activities with no matching user. UNION ALL combines them without deduplicating. Together they simulate a FULL OUTER JOIN, which MySQL does not support natively.',
+  tip:'UNION ALL of two LEFT JOINs simulates FULL OUTER JOIN — the standard pattern in MySQL.'},
+ {id:12,type:'query',lvl:'Beginner',text:'AWS server fleet: calculate total running time in full days across all servers and sessions.',
+  concepts:['SUM','TIMESTAMPDIFF','FLOOR','Aggregate'],
+  answer:`SELECT
     FLOOR(
         SUM(TIMESTAMPDIFF(SECOND, start_time, stop_time))
         / 86400
     ) AS total_running_days
 FROM ServerLogs;`,
-   explanation:`TIMESTAMPDIFF(SECOND, start, stop) gives seconds per session. SUM totals all sessions. Dividing by 86400 (60×60×24) converts to days. FLOOR drops the fractional day — only complete days are counted.`,
-   tip:`86400 = 60 × 60 × 24. FLOOR ensures only complete days are returned — ROUND() would overcount.`},
-  {id:13,type:'query',text:'Department name, region, year, sales amount, and running total of sales by department ordered by year.',
-   concepts:['SUM OVER','PARTITION BY','ORDER BY in window','JOIN'],
-   answer:`SELECT d.name AS department_name, d.region,
+  explain:'TIMESTAMPDIFF(SECOND, start, stop) yields the duration of each session in seconds. SUM totals every session, dividing by 86400 converts to days, and FLOOR discards the fractional remainder so only complete days are reported.',
+  tip:'86400 = 60 × 60 × 24. FLOOR ensures only complete days are returned — ROUND() would overcount.'},
+ {id:13,type:'query',lvl:'Intermediate',text:'Department name, region, year, sales amount, and a running total of sales by department ordered by year.',
+  concepts:['SUM OVER','PARTITION BY','ORDER BY in window','JOIN'],
+  answer:`SELECT d.name AS department_name, d.region,
     s.year, s.sales_amount,
     SUM(s.sales_amount) OVER (
         PARTITION BY s.department_id
@@ -508,11 +799,11 @@ FROM ServerLogs;`,
 FROM Departments d
 JOIN Sales s ON d.department_id = s.department_id
 ORDER BY d.department_id, s.year;`,
-   explanation:`The window function resets per department with PARTITION BY and accumulates within each department ordered by year. No GROUP BY needed — all rows are preserved with a running total column added alongside.`,
-   tip:`Without ORDER BY in OVER(), SUM() gives the partition total on every row. Adding ORDER BY turns it into a running total.`},
-  {id:14,type:'query',text:"Label each department's average sales as 'Above Average' or 'Below Average' compared to the overall average.",
-   concepts:['CTE','CROSS JOIN','AVG','CASE WHEN'],
-   answer:`WITH dept_avg AS (
+  explain:'The window function restarts for each department thanks to PARTITION BY, and accumulates within that department in year order. No GROUP BY is needed — every original row is preserved with the running total added as an extra column.',
+  tip:'Without ORDER BY inside OVER(), SUM() returns the partition total on every row. Adding ORDER BY turns it into a running total.'},
+ {id:14,type:'query',lvl:'Intermediate',text:"Label each department's average sales as Above Average or Below Average compared to the overall average.",
+  concepts:['CTE','CROSS JOIN','AVG','CASE WHEN'],
+  answer:`WITH dept_avg AS (
     SELECT department_id,
            AVG(sales_amount) AS dept_avg_sales
     FROM Sales GROUP BY department_id
@@ -529,11 +820,11 @@ SELECT d.name AS department_name,
 FROM dept_avg da
 CROSS JOIN overall o
 JOIN Departments d ON d.department_id = da.department_id;`,
-   explanation:`dept_avg CTE computes per-department averages. overall CTE computes the grand average. CROSS JOIN makes that one value available on every row. Evaluated once — no repeated subquery.`,
-   tip:`CROSS JOIN with a single-row CTE avoids repeating the subquery in every CASE branch — cleaner and evaluated once.`},
-  {id:15,type:'query',text:"Delete records where status='Delete', but rollback if count to delete > 1.",
-   concepts:['Transaction','DELETE','ROW_COUNT()','ROLLBACK','COMMIT','Stored procedure'],
-   answer:`DELIMITER //
+  explain:'dept_avg computes the per-department averages and overall computes the single grand average. CROSS JOIN attaches that one value to every row, so it is evaluated once rather than re-running a subquery for each comparison.',
+  tip:'CROSS JOIN with a single-row CTE avoids repeating the subquery in every CASE branch — cleaner and evaluated once.'},
+ {id:15,type:'query',lvl:'Advanced',text:"Delete records where status = 'Delete', but roll back if more than one row would be removed.",
+  concepts:['Transaction','DELETE','ROW_COUNT()','ROLLBACK','COMMIT','Stored procedure'],
+  answer:`DELIMITER //
 CREATE PROCEDURE SafeDelete()
 BEGIN
     START TRANSACTION;
@@ -550,23 +841,23 @@ BEGIN
 END //
 DELIMITER ;
 CALL SafeDelete();`,
-   explanation:`The stored procedure wraps DELETE in a transaction. ROW_COUNT() is checked immediately after DELETE — if > 1 rows were affected the transaction is rolled back and an error is raised. ROLLBACK undoes the DELETE atomically.`,
-   tip:`ROW_COUNT() must be called immediately after the DML statement. Any subsequent statement resets it.`},
-  {id:16,type:'query',text:'Display all employee details for the year 2020 based on join_date.',
-   concepts:['EXTRACT','WHERE','Date filtering','SARGable'],
-   answer:`-- Non-SARGable (avoids index on join_date):
+  explain:'The procedure wraps the DELETE inside an explicit transaction. ROW_COUNT() is inspected immediately after the DELETE; if more than one row was affected the transaction is rolled back atomically and SIGNAL raises a custom error to the caller.',
+  tip:'ROW_COUNT() must be called immediately after the DML statement. Any subsequent statement resets it.'},
+ {id:16,type:'query',lvl:'Beginner',text:'Display all employee details for the year 2020 based on join_date.',
+  concepts:['EXTRACT','WHERE','Date filtering','SARGable'],
+  answer:`-- Non-SARGable (bypasses the index on join_date):
 SELECT * FROM EmpDetails
 WHERE EXTRACT(YEAR FROM join_date) = 2020;
 
--- SARGable (uses index — preferred on large tables):
+-- SARGable (uses the index — preferred on large tables):
 SELECT * FROM EmpDetails
 WHERE join_date >= '2020-01-01'
   AND join_date < '2021-01-01';`,
-   explanation:`EXTRACT(YEAR FROM join_date) is not SARGable — it wraps the column in a function, preventing index use. The range filter on the raw column is SARGable and allows the optimizer to use an index on join_date.`,
-   tip:`For large tables, a range filter is faster: WHERE join_date >= '2020-01-01' AND join_date < '2021-01-01' — it's SARGable and can use an index.`},
-  {id:17,type:'query',text:'Products purchased by at least one customer — show distinct product details.',
-   concepts:['JOIN','DISTINCT','EXISTS','Performance'],
-   answer:`-- Option 1: JOIN + DISTINCT
+  explain:'EXTRACT(YEAR FROM join_date) wraps the column in a function, which prevents the optimizer from using an index on join_date and forces a full scan. Rewriting it as a half-open range on the raw column is SARGable and allows an index seek.',
+  tip:"For large tables, a range filter is faster: join_date >= '2020-01-01' AND join_date < '2021-01-01' — it's SARGable and can use an index."},
+ {id:17,type:'query',lvl:'Beginner',text:'Products purchased by at least one customer — show distinct product details.',
+  concepts:['JOIN','DISTINCT','EXISTS','Performance'],
+  answer:`-- Option 1: JOIN + DISTINCT
 SELECT DISTINCT p.*
 FROM Product p
 JOIN Orders o   ON p.product_id = o.product_id
@@ -578,47 +869,47 @@ WHERE EXISTS (
     SELECT 1 FROM Orders o
     WHERE o.product_id = p.product_id
 );`,
-   explanation:`INNER JOIN returns only products with matching orders; DISTINCT collapses duplicates. EXISTS short-circuits — it stops as soon as one matching order is found. On products with many orders, EXISTS is often significantly faster.`,
-   tip:`EXISTS short-circuits — stops after finding one match. On large tables with many orders per product, EXISTS often outperforms JOIN + DISTINCT.`},
-  {id:18,type:'query',text:'Update a table where a numeric value > 1, then rename the column to a more descriptive name.',
-   concepts:['UPDATE','CAST','ALTER TABLE','RENAME COLUMN','DML + DDL'],
-   answer:`-- Update rows where numeric value > 1
+  explain:'The INNER JOIN returns only products with matching orders, and DISTINCT collapses the duplicates that multiple orders create. EXISTS avoids generating those duplicates in the first place — it stops scanning as soon as one matching order is found.',
+  tip:'EXISTS short-circuits after the first match. On tables with many orders per product, it usually beats JOIN + DISTINCT.'},
+ {id:18,type:'query',lvl:'Intermediate',text:'Update a table where a numeric value exceeds 1, then rename the column to something more descriptive.',
+  concepts:['UPDATE','CAST','ALTER TABLE','RENAME COLUMN','DML + DDL'],
+  answer:`-- Update rows where the numeric value is greater than 1
 UPDATE Sample
 SET value = 'Updated'
 WHERE CAST(value AS INT) > 1;
 
--- Rename the column (DDL — permanent schema change)
+-- Rename the column (DDL — a permanent schema change)
 ALTER TABLE Sample
 RENAME COLUMN value TO value_status;`,
-   explanation:`CAST converts the VARCHAR column to INT for comparison. ALTER TABLE RENAME COLUMN is a DDL change — it permanently modifies the schema and can break dependent views or application code that references the old column name.`,
-   tip:`CAST will error if non-numeric strings exist in the column. Use TRY_CAST() (SQL Server) or pre-filter with WHERE value REGEXP '^[0-9]+$'.`},
-  {id:19,type:'query',text:'Display products with price > $100 from the Products table.',
-   concepts:['SELECT','WHERE','Basic filter','Indexing'],
-   answer:`SELECT *
+  explain:'CAST converts the VARCHAR column to INT so the comparison is numeric rather than lexical. ALTER TABLE RENAME COLUMN is DDL: it permanently alters the schema and will break any view, stored procedure, or application code still referencing the old name.',
+  tip:"CAST errors if non-numeric strings exist. Use TRY_CAST() (SQL Server) or pre-filter with WHERE value REGEXP '^[0-9]+$'."},
+ {id:19,type:'query',lvl:'Beginner',text:'Display products priced above 100 from the Products table.',
+  concepts:['SELECT','WHERE','Basic filter','Indexing'],
+  answer:`SELECT *
 FROM Product
 WHERE product_price > 100;
 
 -- Add an index if this query runs frequently:
 CREATE INDEX idx_price ON Product (product_price);`,
-   explanation:`A direct filter query. In production always name columns explicitly instead of SELECT * — it protects against schema changes and makes execution plans more predictable. An index on product_price turns this into an index range scan.`,
-   tip:`Consider adding an index on product_price if this query runs frequently on a large table.`},
-  {id:20,type:'concept',text:'What is indexing in a relational database? What are the benefits and drawbacks?',
-   concepts:['B-tree index','Hash index','Query optimisation','SARGable','Trade-offs'],
-   answer:`-- Create an index
+  explain:'A straightforward filter. In production, name the columns explicitly rather than using SELECT * — it protects callers against schema changes and makes execution plans more predictable. An index on product_price converts this into an index range scan.',
+  tip:'Consider an index on product_price if this query runs frequently against a large table.'},
+ {id:20,type:'concept',lvl:'Intermediate',text:'What is indexing in a relational database? What are the benefits and drawbacks?',
+  concepts:['B-tree index','Hash index','Query optimisation','SARGable','Trade-offs'],
+  answer:`-- Create an index
 CREATE INDEX idx_customer_name
 ON customers (last_name);
 
--- Optimizer seeks directly to 'Smith'
+-- The optimizer can now seek straight to 'Smith'
 -- instead of scanning every row
 
 -- Composite index for multi-column queries
 CREATE INDEX idx_dept_salary
 ON employees (department_id, salary DESC);`,
-   explanation:`An index is a separate data structure (typically a B-tree) that stores sorted column values with pointers to full rows. Benefits: dramatically faster reads on indexed columns (index seek vs full scan). Drawbacks: every INSERT/UPDATE/DELETE must also update each index — write performance degrades with too many indexes. Over-indexing write-heavy tables hurts throughput.`,
-   tip:`Index columns used in WHERE, JOIN ON, and ORDER BY. Over-indexing write-heavy tables hurts performance — every write must update each index.`},
-  {id:21,type:'concept',text:'What are ACID properties in SQL?',
-   concepts:['Atomicity','Consistency','Isolation','Durability','Transactions'],
-   answer:`BEGIN TRANSACTION;
+  explain:'An index is a separate data structure — usually a B-tree — holding sorted column values with pointers back to the full rows. The benefit is dramatically faster reads: an index seek instead of a full table scan. The cost is on writes, because every INSERT, UPDATE and DELETE must also maintain each index.',
+  tip:'Index columns used in WHERE, JOIN ON and ORDER BY. Over-indexing a write-heavy table hurts throughput — every write updates every index.'},
+ {id:21,type:'concept',lvl:'Beginner',text:'What are ACID properties in SQL?',
+  concepts:['Atomicity','Consistency','Isolation','Durability','Transactions'],
+  answer:`BEGIN TRANSACTION;
 
 UPDATE accounts SET balance = balance - 500
 WHERE account_id = 1;  -- Debit
@@ -626,30 +917,31 @@ WHERE account_id = 1;  -- Debit
 UPDATE accounts SET balance = balance + 500
 WHERE account_id = 2;  -- Credit
 
--- If anything fails: ROLLBACK undoes BOTH (Atomicity)
--- After COMMIT: persists even if server crashes (Durability)
+-- If anything fails, ROLLBACK undoes BOTH (Atomicity)
+-- After COMMIT it survives a crash    (Durability)
 COMMIT;`,
-   explanation:`ACID describes four guarantees that make database transactions reliable. Atomicity: all or nothing — either both updates succeed or neither does. Consistency: the database moves from one valid state to another. Isolation: concurrent transactions don't see each other's uncommitted changes. Durability: once committed, data survives crashes.`,
-   tip:`Mnemonic: A = All or nothing, C = Correct state always, I = Isolated from others, D = Durable after commit.`},
-  {id:22,type:'concept',text:'What are window functions and how do they differ from GROUP BY?',
-   concepts:['OVER clause','PARTITION BY','ORDER BY','ROW_NUMBER','RANK','SUM OVER'],
-   answer:`-- GROUP BY collapses N rows into K groups:
+  explain:'ACID names the four guarantees that make transactions trustworthy. Atomicity means all or nothing — either both updates land or neither does. Consistency means the database moves from one valid state to another. Isolation means concurrent transactions cannot observe each other\'s uncommitted work. Durability means a committed write survives a crash.',
+  tip:'Mnemonic: A = All or nothing, C = Correct state always, I = Isolated from others, D = Durable after commit.'},
+ {id:22,type:'concept',lvl:'Intermediate',text:'What are window functions and how do they differ from GROUP BY?',
+  concepts:['OVER clause','PARTITION BY','ORDER BY','ROW_NUMBER','RANK','SUM OVER'],
+  answer:`-- GROUP BY collapses N rows into K groups:
 SELECT department, AVG(salary) FROM employees
-GROUP BY department;  -- one row per dept
+GROUP BY department;          -- one row per department
 
--- Window function keeps all N rows:
+-- A window function keeps all N rows:
 SELECT name, department, salary,
     AVG(salary) OVER (PARTITION BY department) AS dept_avg,
-    RANK() OVER (PARTITION BY department ORDER BY salary DESC) AS rnk
-FROM employees;  -- all rows preserved`,
-   explanation:`Window functions compute a value across a 'window' of related rows without collapsing them. GROUP BY reduces N rows to K groups and loses row-level detail. Window functions keep all N rows and add computed columns alongside them — essential for rankings, running totals, and lead/lag comparisons.`,
-   tip:`Key difference: GROUP BY reduces N rows to K groups; window functions keep all N rows and add a computed column alongside them.`},
-  {id:23,type:'concept',text:'What is SQL Override and how is it used in ETL (Informatica)?',
-   concepts:['SQL Override','ETL','Informatica','Source qualifier','Custom SQL'],
-   answer:`-- Auto-generated (default):
+    RANK() OVER (PARTITION BY department
+                 ORDER BY salary DESC)         AS rnk
+FROM employees;               -- every row preserved`,
+  explain:'A window function computes a value across a window of related rows without collapsing them. GROUP BY reduces N rows to K groups and discards row-level detail; a window function keeps all N rows and adds the computed value as an extra column — which is what makes rankings, running totals and lag/lead comparisons possible.',
+  tip:'Key difference: GROUP BY reduces N rows to K groups; window functions keep all N rows and add a computed column alongside.'},
+ {id:23,type:'concept',lvl:'Advanced',text:'What is SQL Override and how is it used in ETL (Informatica)?',
+  concepts:['SQL Override','ETL','Informatica','Source qualifier','Custom SQL'],
+  answer:`-- Auto-generated by the Source Qualifier:
 SELECT customer_id, name, email FROM customers
 
--- SQL Override (custom — pushes join to database):
+-- SQL Override — pushes the join into the database:
 SELECT c.customer_id, c.name, c.email,
        o.order_count
 FROM customers c
@@ -658,35 +950,35 @@ JOIN (
     FROM orders GROUP BY customer_id
 ) o ON c.customer_id = o.customer_id
 WHERE c.active = 1`,
-   explanation:`SQL Override is an Informatica PowerCenter feature that replaces the auto-generated SELECT on a Source Qualifier with custom SQL. This pushes complex logic to the database engine rather than the ETL tool, reducing data volume in transit and leveraging database-side optimisations.`,
-   tip:`Use SQL Override when Informatica's native join capability is slower than a database-side join, or when you need database-specific functions unavailable in Informatica transformations.`},
-  {id:24,type:'concept',text:'What are best practices for filtering data in SQL? What makes a query SARGable?',
-   concepts:['SARGable queries','Functions on indexed columns','LIKE patterns','NULL handling','Index usage'],
-   answer:`-- NON-SARGable (full table scan):
+  explain:'SQL Override is an Informatica PowerCenter feature that replaces the auto-generated SELECT on a Source Qualifier with hand-written SQL. It pushes filtering and joining down to the database engine rather than the ETL server, cutting the volume of data moved across the wire.',
+  tip:"Reach for SQL Override when Informatica's native join is slower than a database-side join, or when you need DB-specific functions."},
+ {id:24,type:'concept',lvl:'Advanced',text:'What are best practices for filtering data in SQL? What makes a query SARGable?',
+  concepts:['SARGable queries','Functions on indexed columns','LIKE patterns','NULL handling','Index usage'],
+  answer:`-- NON-SARGable (forces a full table scan):
 WHERE YEAR(created_date) = 2024
 WHERE UPPER(name) = 'SMITH'
 WHERE name LIKE '%Smith'
 
--- SARGable (can use index):
+-- SARGable (an index can be used):
 WHERE created_date >= '2024-01-01'
   AND created_date <  '2025-01-01'
 WHERE name = 'Smith'
-WHERE name LIKE 'Smith%'  -- prefix match only
+WHERE name LIKE 'Smith%'     -- prefix match only
 
 -- Filter NULLs explicitly:
 WHERE status IS NOT NULL AND status = 'Active'`,
-   explanation:`SARGable (Search ARGument Able) queries let the optimizer use indexes. Wrapping a column in a function (YEAR(), UPPER(), etc.) usually prevents index use, forcing a full table scan. Leading wildcards in LIKE ('%Smith') also prevent index use. Always filter on the raw column value. Use EXPLAIN/EXPLAIN PLAN to verify.`,
-   tip:`If you wrap a column in a function, its index is usually bypassed. Always filter on the raw column value.`},
-  {id:25,type:'concept',text:'What are Fact tables and Dimension tables in a data warehouse?',
-   concepts:['Star schema','Fact table','Dimension table','Foreign key','Data warehouse'],
-   answer:`-- Dimension: descriptive attributes
+  explain:'SARGable stands for Search ARGument Able — a predicate the optimizer can satisfy with an index seek. Wrapping a column in a function such as YEAR() or UPPER() defeats the index, as does a leading wildcard in LIKE. Keep the column bare on one side of the comparison and move the transformation to the literal instead.',
+  tip:'Wrapping a column in a function usually bypasses its index. Always filter on the raw column value, and confirm with EXPLAIN.'},
+ {id:25,type:'concept',lvl:'Beginner',text:'What are Fact tables and Dimension tables in a data warehouse?',
+  concepts:['Star schema','Fact table','Dimension table','Foreign key','Data warehouse'],
+  answer:`-- Dimension: descriptive attributes
 CREATE TABLE dim_product (
     product_key  INT PRIMARY KEY,
     product_name VARCHAR(100),
     category     VARCHAR(50)
 );
 
--- Fact: measurements + FK to dimensions
+-- Fact: measurements plus FKs to the dimensions
 CREATE TABLE fact_sales (
     sale_id     INT PRIMARY KEY,
     product_key INT REFERENCES dim_product,
@@ -694,15 +986,13 @@ CREATE TABLE fact_sales (
     amount      DECIMAL(12,2),
     quantity    INT
 );`,
-   explanation:`Fact tables store measurable events (sales, clicks, transactions) with numeric values and foreign keys pointing to dimensions. Dimension tables store descriptive context (product name, customer region, date labels). They join in a star schema — the fact table at the centre, dimensions radiating outward.`,
-   tip:`Memory aid: Facts are NUMBERS you measure (revenue, quantity), Dimensions are WORDS that describe context (product name, region, time period).`},
+  explain:'Fact tables record measurable events — sales, clicks, transactions — as numeric values alongside foreign keys. Dimension tables hold the descriptive context such as product name, customer region or date labels. Arranged together they form a star schema: the fact table at the centre with dimensions radiating outward.',
+  tip:'Memory aid: Facts are NUMBERS you measure (revenue, quantity); Dimensions are WORDS that describe context (product, region, period).'},
 ];
 
-// ── PYTHON QUESTIONS DATA ────────────────────────────────────────────────────
-const pyQs = [
-  {id:1,cat:'log',catLabel:'Log Parsing',
-   text:'IPs still blocked at a given time',
-   question:`Given a chronological log file where each line is:
+const PYQ=[
+ {id:1,cat:'log',catLabel:'Log Parsing',lvl:'Intermediate',text:'IPs still blocked at a given time',
+  q:`Given a chronological log file where each line is:
 "YYYY-MM-DD HH:MM:SS BLOCK <ip>"  or
 "YYYY-MM-DD HH:MM:SS UNBLOCK <ip>"
 
@@ -716,8 +1006,8 @@ logs = [
   "2023-01-01 10:00:00 UNBLOCK 10.0.0.1",
   "2023-01-01 10:30:00 BLOCK 10.0.0.3",
 ]
-ips_blocked_at(logs, "2023-01-01 10:15:00")  →  ['10.0.0.2']`,
-   solution:`from datetime import datetime
+ips_blocked_at(logs, "2023-01-01 10:15:00")  ->  ['10.0.0.2']`,
+  sol:`from datetime import datetime
 
 def ips_blocked_at(log_lines, query_time):
     blocked = set()
@@ -727,9 +1017,10 @@ def ips_blocked_at(log_lines, query_time):
         parts = line.strip().split()
         if len(parts) < 4:
             continue
-        dt = datetime.strptime(f"{parts[0]} {parts[1]}", "%Y-%m-%d %H:%M:%S")
+        stamp = parts[0] + " " + parts[1]
+        dt = datetime.strptime(stamp, "%Y-%m-%d %H:%M:%S")
         if dt > query_dt:
-            break                     # log is sorted — stop early
+            break                     # log is sorted - stop early
         action, ip = parts[2], parts[3]
         if action == "BLOCK":
             blocked.add(ip)
@@ -747,61 +1038,59 @@ logs = [
 ]
 print(ips_blocked_at(logs, "2023-01-01 10:15:00"))
 # Output: ['10.0.0.2']`,
-   explanation:`Key insight — use set() because:
-• add(ip) — O(1) to block an IP
-• discard(ip) — O(1) and safe (no KeyError if ip not present)
-• Membership check is O(1) vs O(n) for a list
+  exp:`Key insight - use a set() because:
+- add(ip) is O(1) to block an IP
+- discard(ip) is O(1) and safe (no KeyError if absent)
+- Membership checks are O(1) versus O(n) for a list
 
-Why discard() not remove()? A corrupted log may UNBLOCK an ip that was never BLOCKed — discard() silently ignores it; remove() raises KeyError.
+Why discard() rather than remove()? A corrupted log may contain an UNBLOCK for an IP that was never BLOCKed. discard() ignores that silently; remove() raises KeyError and crashes the parse.
 
-Datetime parsing: the log has two separate fields for date and time, so concatenate before parsing: f"{parts[0]} {parts[1]}".
+Datetime parsing: the timestamp is split across two whitespace-separated fields, so join parts[0] and parts[1] before calling strptime.
 
-Early exit: since the log is sorted chronologically, break as soon as we see an event after query_time — O(k) time where k is events before the cutoff.
+Early exit: because the log is sorted chronologically, break as soon as an event past query_time appears. That makes the scan O(k) in the number of events before the cutoff rather than O(n) over the whole file.
 
-Time complexity: O(k) with pre-sorted log, O(k log k) if sorting needed.
-Space complexity: O(u) where u = number of unique blocked IPs.`},
-  {id:2,cat:'log',catLabel:'Log Parsing',
-   text:'Most common URL from an HTTP log file',
-   question:`Fetch a log file over HTTP where each line is a URL.
+Time complexity: O(k) on a pre-sorted log.
+Space complexity: O(u) where u is the number of unique blocked IPs.`},
+ {id:2,cat:'log',catLabel:'Log Parsing',lvl:'Beginner',text:'Most common URL from an HTTP log file',
+  q:`Fetch a log file over HTTP where each line is a URL.
 Find and return the most frequently appearing URL.
 
 The log is fetched from:  https://public.karat.io/content/urls2.txt
 
 Function signature:
   most_common_url(logfile_url) -> str`,
-   solution:`import requests
+  sol:`import requests
 from collections import Counter
 
 def most_common_url(logfile_url):
     response = requests.get(logfile_url)
-    response.raise_for_status()       # raises on 4xx/5xx
+    response.raise_for_status()       # raises on 4xx / 5xx
 
     urls = response.text.strip().splitlines()
     counter = Counter(urls)
-    most_common, count = counter.most_common(1)[0]
-    print(f"Most common URL: {most_common} ({count} times)")
-    return most_common
+    top_url, count = counter.most_common(1)[0]
+    print("Most common URL: " + top_url + " (" + str(count) + " times)")
+    return top_url
 
 most_common_url("https://public.karat.io/content/urls2.txt")`,
-   explanation:`requests.get() fetches the remote file. raise_for_status() converts HTTP error codes into exceptions immediately — always call it before reading the response body.
+  exp:`requests.get() fetches the remote file. Call raise_for_status() immediately - it converts a 404 or 500 into an exception instead of letting you parse an HTML error page as if it were data.
 
-splitlines() converts the response body to a list of URL strings, handling \\n and \\r\\n line endings.
+splitlines() turns the response body into a list of URLs and handles both Unix and Windows line endings without extra work.
 
-Counter(urls) counts occurrences of each URL in O(n). most_common(1) returns a list of [(url, count)] — index [0] unpacks to the top URL.
+Counter(urls) tallies occurrences in a single O(n) pass. most_common(1) returns a list holding one (url, count) tuple, so index [0] unpacks it.
 
-Time complexity: O(n) for Counter construction, O(n log n) for most_common internally.
-Space complexity: O(u) where u = unique URLs.`},
-  {id:3,cat:'log',catLabel:'Log Parsing',
-   text:'Website traffic log analysis',
-   question:`Parse a web server access log where each line is:
+Time complexity: O(n) to build the Counter.
+Space complexity: O(u) where u is the number of unique URLs.`},
+ {id:3,cat:'log',catLabel:'Log Parsing',lvl:'Beginner',text:'Website traffic log analysis',
+  q:`Parse a web server access log where each line is:
 "timestamp method endpoint status_code bytes"
 
 Example line: "2023-01-01 GET /api/users 200 1024"
 
 Write analyse_logs(filepath) that returns a dict with:
-  total_requests, successful_requests (200), failed_requests,
+  total_requests, successful_requests, failed_requests,
   most_visited_endpoint, failure_percentage`,
-   solution:`import json
+  sol:`import json
 from collections import Counter
 
 def analyse_logs(filepath):
@@ -822,6 +1111,9 @@ def analyse_logs(filepath):
             else:
                 failures += 1
 
+    if total == 0:
+        return None                   # guard against an empty file
+
     top_endpoint = Counter(endpoints).most_common(1)[0][0]
 
     summary = {
@@ -834,25 +1126,24 @@ def analyse_logs(filepath):
     with open("log_report.json", "w") as f:
         json.dump(summary, f, indent=2)
     return summary`,
-   explanation:`Always guard against malformed lines with len(parts) < 4 — real log files frequently contain partial or corrupted entries. This is a common Karat interview gotcha.
+  exp:`Guard malformed lines with the len(parts) < 4 check. Real log files routinely contain truncated or corrupted entries, and an unguarded parts[3] raises IndexError on the first one. Interviewers look for this.
 
-Streaming with a for loop reads one line at a time — memory efficient for large log files vs. reading the whole file with read().
+Iterating the file object streams one line at a time rather than loading everything into memory, which matters for multi-gigabyte logs.
 
-Counter(endpoints).most_common(1)[0][0] chains: Counter builds frequency map, most_common(1) returns top entry as [(endpoint, count)], [0][0] extracts the endpoint string.
+Counter(endpoints).most_common(1)[0][0] chains three steps: build the frequency map, take the single top entry as [(endpoint, count)], then index twice to reach the endpoint string.
 
-Dividing before checking total == 0 is safe here because an empty file wouldn't reach the division. In production, add: if total == 0: return None.`},
-  {id:4,cat:'log',catLabel:'Log Parsing',
-   text:'Email validation and domain frequency analysis',
-   question:`Given a file with one email per line, write analyse_emails(filepath) that:
-1. Separates valid from invalid emails using regex
+The total == 0 guard prevents a ZeroDivisionError when computing failure_percentage on an empty or fully malformed file.`},
+ {id:4,cat:'log',catLabel:'Log Parsing',lvl:'Intermediate',text:'Email validation and domain frequency analysis',
+  q:`Given a file with one email per line, write analyse_emails(filepath) that:
+1. Separates valid from invalid emails using a regex
 2. Counts emails per domain
 3. Finds the most common domain
-4. Saves results to email_report.json`,
-   solution:`import re, json
+4. Saves the results to email_report.json`,
+  sol:`import re, json
 from collections import Counter
 
 def analyse_emails(filepath):
-    pattern = r'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$'
+    pattern = r'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$'
 
     valid, invalid = [], []
     with open(filepath) as f:
@@ -862,7 +1153,7 @@ def analyse_emails(filepath):
             else:
                 invalid.append(email)
 
-    domains = [e.split("@")[1] for e in valid]
+    domains = [e.rsplit("@", 1)[1] for e in valid]
     domain_count = Counter(domains)
 
     summary = {
@@ -874,36 +1165,36 @@ def analyse_emails(filepath):
     with open("email_report.json", "w") as f:
         json.dump(summary, f, indent=2)
     return summary`,
-   explanation:`re.match(pattern, email) returns a match object (truthy) for valid emails, None (falsy) for invalid ones.
+  exp:`re.match() anchors at the start of the string and returns a match object (truthy) or None (falsy), which reads naturally in the if statement.
 
-The regex pattern breaks down:
-• ^[a-zA-Z0-9_.+-]+  — local part (before @)
-• @[a-zA-Z0-9-]+    — domain name
-• \\.[a-zA-Z0-9-.]+$  — TLD (after last dot)
+The pattern decomposes as:
+- ^[a-zA-Z0-9_.+-]+ matches the local part before the @
+- @[a-zA-Z0-9-]+ matches the domain label
+- \\.[a-zA-Z0-9-.]+$ matches the dot and the TLD
 
-split("@")[1] extracts the domain part. This works for single @ emails — real-world code would use email.rsplit("@", 1)[1] to handle edge cases.
+rsplit("@", 1)[1] is used rather than split("@")[1] because it splits from the right and takes at most one split, so a quoted local part containing an @ still yields the correct domain.
 
-json.dump() with indent=2 creates human-readable JSON output.`},
-  {id:5,cat:'log',catLabel:'Log Parsing',
-   text:'Session durations from login/logout events',
-   question:`Given log lines in format:
+dict(domain_count) converts the Counter before serialising, since json.dump handles plain dicts predictably.`},
+ {id:5,cat:'log',catLabel:'Log Parsing',lvl:'Intermediate',text:'Session durations from login/logout events',
+  q:`Given log lines in the format:
 "YYYY-MM-DD HH:MM:SS LOGIN user123"
 "YYYY-MM-DD HH:MM:SS LOGOUT user123"
 
-Write session_durations(log_lines) that returns a dict mapping
-each user to their total session time in seconds.
+Write session_durations(log_lines) returning a dict mapping each
+user to their total session time in seconds.
 Handle users who logged in but never logged out.`,
-   solution:`from datetime import datetime
+  sol:`from datetime import datetime
 
 def session_durations(log_lines):
     login_times = {}   # user -> login datetime
-    durations = {}     # user -> total seconds
+    durations = {}     # user -> accumulated seconds
 
     for line in log_lines:
         parts = line.strip().split()
         if len(parts) < 4:
             continue
-        dt = datetime.strptime(f"{parts[0]} {parts[1]}", "%Y-%m-%d %H:%M:%S")
+        stamp = parts[0] + " " + parts[1]
+        dt = datetime.strptime(stamp, "%Y-%m-%d %H:%M:%S")
         event, user = parts[2], parts[3]
 
         if event == "LOGIN":
@@ -911,9 +1202,9 @@ def session_durations(log_lines):
         elif event == "LOGOUT" and user in login_times:
             elapsed = (dt - login_times[user]).total_seconds()
             durations[user] = durations.get(user, 0) + elapsed
-            del login_times[user]   # clear after computing session
+            del login_times[user]     # close the open session
 
-    # login_times still has users who never logged out
+    # anything left in login_times never logged out
     return {u: round(s, 1) for u, s in sorted(durations.items())}
 
 # Test
@@ -925,36 +1216,35 @@ logs = [
 ]
 print(session_durations(logs))
 # {'alice': 3600.0, 'bob': 4500.0}`,
-   explanation:`Two dicts: login_times tracks open sessions, durations accumulates total time per user.
+  exp:`Two dictionaries carry the state: login_times holds currently-open sessions keyed by user, and durations accumulates completed time.
 
-datetime subtraction yields a timedelta object. .total_seconds() converts it to a float — always use this over .seconds which ignores days.
+Subtracting two datetimes produces a timedelta. Always call .total_seconds() on it. The tempting .seconds attribute silently discards the days component, so a session spanning midnight reports a wildly wrong duration - a classic interview trap.
 
-durations.get(user, 0) handles users with multiple sessions — their times accumulate.
+durations.get(user, 0) + elapsed accumulates correctly when a user logs in and out several times across the file.
 
-del login_times[user] after LOGOUT prevents a second LOGOUT from causing a double-count.
+del login_times[user] closes the session, so a duplicated LOGOUT line cannot double-count the same interval.
 
-Users still in login_times after the loop never logged out — the function gracefully ignores their incomplete session.`},
-  {id:6,cat:'string',catLabel:'Strings',
-   text:'Extract full domain and second-level domain from a URL',
-   question:`Without using urllib or any URL-parsing library, write
-extract_domain_parts(url) that returns a tuple:
+Users still present in login_times when the loop ends never logged out; this implementation deliberately excludes their incomplete session rather than guessing an end time.`},
+ {id:6,cat:'string',catLabel:'Strings',lvl:'Intermediate',text:'Extract full domain and second-level domain from a URL',
+  q:`Without using urllib or any URL-parsing library, write
+extract_domain_parts(url) returning a tuple:
   (full_domain, second_level_domain)
 
 Examples:
   "http://world.news.yahoo.com/news/"
-    → ("world.news.yahoo.com", "yahoo.com")
+    -> ("world.news.yahoo.com", "yahoo.com")
   "https://google.com/"
-    → ("google.com", "google.com")`,
-   solution:`def extract_domain_parts(url):
-    # Strip protocol
+    -> ("google.com", "google.com")`,
+  sol:`def extract_domain_parts(url):
+    # Strip the protocol
     if "://" in url:
         url = url.split("://")[1]
 
-    # Strip path, query string, fragment
+    # Strip path, query string and fragment
     full_domain = url.split("/")[0]
     full_domain = full_domain.split("?")[0].split("#")[0]
 
-    # Second-level domain = last two dot-separated parts
+    # Second-level domain = the last two dot-separated labels
     parts = full_domain.split(".")
     sld = ".".join(parts[-2:]) if len(parts) >= 2 else full_domain
 
@@ -965,23 +1255,20 @@ print(extract_domain_parts("http://world.news.yahoo.com/news/"))
 # ('world.news.yahoo.com', 'yahoo.com')
 print(extract_domain_parts("https://google.com/"))
 # ('google.com', 'google.com')`,
-   explanation:`split("://")[1] strips the protocol — works for http, https, ftp, etc. Split on "/" then take index [0] to remove the path.
+  exp:`split("://")[1] removes the scheme and works for http, https, ftp or anything else, because it keys on the separator rather than a hard-coded protocol name.
 
-parts[-2:] is Pythonic negative indexing — grabs the last two elements regardless of how many subdomain parts exist. ".".join() reassembles them.
+Splitting on "/" and taking index [0] discards the path. The follow-up splits on "?" and "#" handle URLs where a query string or fragment appears without a path.
 
-Edge cases handled: no protocol, no path, no subdomain (google.com returns google.com for both), query strings and fragments stripped.
+parts[-2:] is negative slicing: it grabs the final two labels no matter how many subdomain levels precede them, so both a.b.c.example.com and example.com behave correctly. The len check guards a single-label host.
 
-In production use urllib.parse.urlparse() — this manual approach is for interview settings where library restrictions apply.`},
-  {id:7,cat:'string',catLabel:'Strings',
-   text:'Run-length encoding — compress consecutive characters',
-   question:`Write encode(s) that compresses consecutive duplicate characters:
-  "aaabbc"   → "3a2bc"   (c appears once — no prefix needed... or "3a2b1c")
-  "aabbcc"   → "2a2b2c"
-  "abcd"     → "abcd"    (no compression for singles)
-  ""         → ""
-
-Choose whether single-occurrence chars get a "1" prefix and be consistent.`,
-   solution:`def encode(s):
+In production, urllib.parse.urlparse() handles ports, credentials and IDN correctly. This manual version exists for interviews that restrict imports.`},
+ {id:7,cat:'string',catLabel:'Strings',lvl:'Intermediate',text:'Run-length encoding — compress consecutive characters',
+  q:`Write encode(s) that compresses runs of duplicate characters:
+  "aaabbc"   -> "3a2bc"
+  "aabbcc"   -> "2a2b2c"
+  "abcd"     -> "abcd"    (singles get no prefix)
+  ""         -> ""`,
+  sol:`def encode(s):
     if not s:
         return ""
 
@@ -992,11 +1279,13 @@ Choose whether single-occurrence chars get a "1" prefix and be consistent.`,
         if s[i] == s[i - 1]:
             count += 1
         else:
-            result.append(("" if count == 1 else str(count)) + s[i - 1])
+            prefix = "" if count == 1 else str(count)
+            result.append(prefix + s[i - 1])
             count = 1
 
-    # Flush the last group
-    result.append(("" if count == 1 else str(count)) + s[-1])
+    # flush the final run
+    prefix = "" if count == 1 else str(count)
+    result.append(prefix + s[-1])
     return "".join(result)
 
 # Tests
@@ -1005,77 +1294,71 @@ print(encode("aabbcc"))   # "2a2b2c"
 print(encode("abcd"))     # "abcd"
 print(encode(""))         # ""
 print(encode("a"))        # "a"`,
-   explanation:`Iterate from index 1 comparing each character to the previous. When the character changes, flush the current run.
+  exp:`Walk from index 1 and compare each character with its predecessor. While they match, extend the run counter; when they differ, flush the completed run into the result list.
 
-("" if count == 1 else str(count)) omits the "1" prefix for single characters — a common variant. State upfront which convention you're using in an interview.
+The prefix expression omits "1" for single characters. State that convention out loud in an interview - always emitting the count is equally valid, but mixing the two is a bug.
 
-Edge cases: empty string (guard at top), single character, all-identical string, already-compressed input.
+The flush after the loop is essential. Without it the final run never gets written, which is the most common failure in this problem.
 
-The list + "".join() pattern is O(n) vs string concatenation with += which is O(n²) due to string immutability in Python.
+Accumulating into a list and calling "".join() once is O(n). Using s += inside the loop would be O(n squared), because Python strings are immutable and each concatenation allocates a fresh string.
 
-Time: O(n). Space: O(n) for the result list.`},
-  {id:8,cat:'string',catLabel:'Strings',
-   text:'Check if two strings are anagrams of each other',
-   question:`Write is_anagram(s1, s2) that returns True if the two strings
-contain exactly the same characters with the same frequencies
-(case-insensitive, ignoring spaces).
+Edge cases covered: empty string, single character, all-identical input, and input with no runs at all.`},
+ {id:8,cat:'string',catLabel:'Strings',lvl:'Beginner',text:'Check if two strings are anagrams of each other',
+  q:`Write is_anagram(s1, s2) returning True when both strings contain
+the same characters with the same frequencies, ignoring case and spaces.
 
 Examples:
-  is_anagram("listen", "silent")    → True
-  is_anagram("Astronomer", "Moon starer")  → True
-  is_anagram("hello", "world")      → False`,
-   solution:`from collections import Counter
+  is_anagram("listen", "silent")           -> True
+  is_anagram("Astronomer", "Moon starer")  -> True
+  is_anagram("hello", "world")             -> False`,
+  sol:`from collections import Counter
 
 def is_anagram(s1, s2):
-    # Normalise: lowercase, remove spaces
-    clean = lambda s: s.lower().replace(" ", "")
+    def clean(s):
+        return s.lower().replace(" ", "")
     return Counter(clean(s1)) == Counter(clean(s2))
 
 # Alternative without Counter:
 def is_anagram_sort(s1, s2):
-    clean = lambda s: s.lower().replace(" ", "")
+    def clean(s):
+        return s.lower().replace(" ", "")
     return sorted(clean(s1)) == sorted(clean(s2))
 
 # Tests
 print(is_anagram("listen", "silent"))           # True
 print(is_anagram("Astronomer", "Moon starer"))  # True
 print(is_anagram("hello", "world"))             # False`,
-   explanation:`Counter(s) builds a frequency map: {'l':1, 'i':1, 's':1, 't':1, 'e':1, 'n':1}. Two Counters compare equal when all keys and values match.
+  exp:`Counter builds a character-frequency map such as {'l': 1, 'i': 1, 's': 1, 't': 1, 'e': 1, 'n': 1}. Two Counters compare equal only when every key and every count matches, which is exactly the definition of an anagram.
 
-Normalisation: .lower() for case-insensitivity, .replace(" ", "") to ignore spaces.
+Normalisation carries real weight here. .lower() makes the comparison case-insensitive and .replace(" ", "") drops spaces - together they are what let "Astronomer" and "Moon starer" match.
 
-Alternative — sorted(): sort both strings and compare. O(n log n) time but no import needed.
+The sorted() variant compares sorted character lists instead. It needs no import and is easy to write under pressure, at the cost of O(n log n) versus Counter's O(n).
 
-Counter approach: O(n) time, O(k) space where k = unique characters.
-
-In interviews, mention both approaches and their trade-offs.`},
-  {id:9,cat:'string',catLabel:'Strings',
-   text:'Find the first non-repeating character in a string',
-   question:`Write first_non_repeating(s) that returns the first character
-that appears exactly once, or None if all characters repeat.
+Counter: O(n) time, O(k) space for k distinct characters. Mention both options and pick one deliberately.`},
+ {id:9,cat:'string',catLabel:'Strings',lvl:'Beginner',text:'Find the first non-repeating character in a string',
+  q:`Write first_non_repeating(s) returning the first character that
+appears exactly once, or None when every character repeats.
 
 Examples:
-  first_non_repeating("aabbcde")  → 'c'
-  first_non_repeating("aabb")     → None
-  first_non_repeating("z")        → 'z'`,
-   solution:`from collections import Counter
+  first_non_repeating("aabbcde")  -> 'c'
+  first_non_repeating("aabb")     -> None
+  first_non_repeating("z")        -> 'z'`,
+  sol:`from collections import Counter
 
 def first_non_repeating(s):
     freq = Counter(s)
-    for ch in s:           # preserves original order
+    for ch in s:              # iterate s to preserve original order
         if freq[ch] == 1:
             return ch
     return None
 
-# Alternative using OrderedDict (Python < 3.7):
-from collections import OrderedDict
-
+# Explicit two-pass version without Counter:
 def first_non_repeating_v2(s):
-    counts = OrderedDict()
+    counts = {}
     for ch in s:
         counts[ch] = counts.get(ch, 0) + 1
-    for ch, cnt in counts.items():
-        if cnt == 1:
+    for ch in s:
+        if counts[ch] == 1:
             return ch
     return None
 
@@ -1083,68 +1366,66 @@ def first_non_repeating_v2(s):
 print(first_non_repeating("aabbcde"))  # 'c'
 print(first_non_repeating("aabb"))     # None
 print(first_non_repeating("z"))        # 'z'`,
-   explanation:`Two-pass approach: first build frequency counts, then scan the original string in order to find the first char with count == 1.
+  exp:`Two passes are required. The first pass counts every character; the second finds the earliest one with a count of exactly 1. A single pass cannot work, because you cannot know a character is unique until the whole string has been examined.
 
-Why scan s again (not Counter.items())? Counter.items() has no guaranteed order. We need the first non-repeating in the original string's order — iterating s directly gives that.
+The critical detail is iterating s in the second pass rather than the frequency map. The question asks for the first such character in the original string, and only scanning s guarantees that ordering. Relying on dict iteration order is fragile reasoning even where it happens to hold.
 
-Python 3.7+ dicts are ordered by insertion, but Counter doesn't guarantee the enumeration order matches the input — always iterate the original string for order-sensitive problems.
+Returning None rather than raising keeps the contract simple for the all-repeating case.
 
-Time: O(n) for both Counter and the second scan.
-Space: O(k) where k = unique characters (max 26 for lowercase alpha).`},
-  {id:10,cat:'list',catLabel:'Lists',
-   text:'Two Sum — find indices of two numbers that add to target',
-   question:`Write two_sum(nums, target) that returns the indices [i, j]
-of the two numbers in nums that add up to target.
-Assume exactly one solution exists and you cannot use the same element twice.
+Time: O(n) for the count plus O(n) for the scan, so O(n) overall.
+Space: O(k) for k distinct characters - at most 26 for lowercase ASCII.`},
+ {id:10,cat:'list',catLabel:'Lists',lvl:'Intermediate',text:'Two Sum — find indices of two numbers that add to target',
+  q:`Write two_sum(nums, target) returning the indices [i, j] of the two
+numbers that add up to target. Exactly one solution exists and you
+cannot reuse the same element twice.
 
 Examples:
-  two_sum([2, 7, 11, 15], 9)  → [0, 1]   (2+7=9)
-  two_sum([3, 2, 4], 6)       → [1, 2]   (2+4=6)
-  two_sum([3, 3], 6)          → [0, 1]`,
-   solution:`def two_sum(nums, target):
-    seen = {}              # value -> index
+  two_sum([2, 7, 11, 15], 9)  -> [0, 1]   (2+7=9)
+  two_sum([3, 2, 4], 6)       -> [1, 2]   (2+4=6)
+  two_sum([3, 3], 6)          -> [0, 1]`,
+  sol:`def two_sum(nums, target):
+    seen = {}                  # value -> index
 
     for i, num in enumerate(nums):
         complement = target - num
         if complement in seen:
             return [seen[complement], i]
-        seen[num] = i
+        seen[num] = i          # store AFTER the check
 
-    return []              # no solution (shouldn't happen per constraints)
+    return []                  # no pair found
 
 # Tests
 print(two_sum([2, 7, 11, 15], 9))   # [0, 1]
 print(two_sum([3, 2, 4], 6))        # [1, 2]
 print(two_sum([3, 3], 6))           # [0, 1]`,
-   explanation:`One-pass hash map approach: for each number, check if its complement (target - num) was already seen.
+  exp:`One pass with a hash map. For each number, ask whether the value that would complete the pair has already been seen.
 
-seen stores {value: index} so we can look up both whether the complement exists AND get its index in O(1).
+seen maps value to index, so a single lookup answers both questions at once: does the complement exist, and where is it. That is what collapses the nested loop into a linear scan.
 
-Why store num after the check? If we stored first then checked, a single element [3] with target=6 would wrongly return [0, 0]. Checking first, then storing, ensures we don't reuse the same element.
+Order is load-bearing. The check happens before the store. Reversed, an input like [3] with target 6 would find itself in the map and return [0, 0], reusing one element - which the problem forbids.
 
-Brute force is O(n²) with nested loops. Hash map is O(n) time, O(n) space.
+The [3, 3] case shows why storing after works: the first 3 is recorded at index 0, and when the second 3 arrives its complement is already present, yielding [0, 1] correctly.
 
-Always mention the trade-off in an interview: brute force is O(1) space but O(n²) time.`},
-  {id:11,cat:'list',catLabel:'Lists',
-   text:'Move all zeros to end while preserving relative order of non-zeros',
-   question:`Write move_zeros(nums) that modifies nums in-place to move
-all 0s to the end, maintaining the relative order of non-zero elements.
-Do NOT return a new list — modify in place.
+Brute force is O(n squared) time and O(1) space; this is O(n) time and O(n) space. Name that trade-off explicitly.`},
+ {id:11,cat:'list',catLabel:'Lists',lvl:'Intermediate',text:'Move all zeros to end while preserving order of non-zeros',
+  q:`Write move_zeros(nums) that modifies nums in place so every 0 moves
+to the end while non-zero elements keep their relative order.
+Do NOT build and return a new list.
 
 Examples:
-  nums = [0, 1, 0, 3, 12]  →  [1, 3, 12, 0, 0]
-  nums = [0]                →  [0]
-  nums = [1, 2, 3]          →  [1, 2, 3]`,
-   solution:`def move_zeros(nums):
-    write = 0  # position to write next non-zero
+  [0, 1, 0, 3, 12]  ->  [1, 3, 12, 0, 0]
+  [0]                ->  [0]
+  [1, 2, 3]          ->  [1, 2, 3]`,
+  sol:`def move_zeros(nums):
+    write = 0  # next slot for a non-zero value
 
-    # Pass 1: compact non-zeros to the front
+    # Pass 1: compact the non-zeros toward the front
     for read in range(len(nums)):
         if nums[read] != 0:
             nums[write] = nums[read]
             write += 1
 
-    # Pass 2: fill the rest with zeros
+    # Pass 2: fill the remainder with zeros
     while write < len(nums):
         nums[write] = 0
         write += 1
@@ -1157,38 +1438,38 @@ print(a)   # [1, 3, 12, 0, 0]
 b = [0]
 move_zeros(b)
 print(b)   # [0]`,
-   explanation:`Two-pointer approach with a write pointer. Pass 1 copies every non-zero to the write position in order — preserving relative order. Pass 2 fills everything from write onward with zeros.
+  exp:`Two pointers: read scans every position while write marks where the next non-zero belongs. Because write only advances when a value is kept, non-zeros land in encounter order and relative ordering is preserved by construction.
 
-Why two passes? Single-pass swap approaches work but may move zeros in unexpected orders depending on direction. Two passes are clearer for interviews.
+After pass 1 everything from index write onward is stale data left over from the original list, so pass 2 overwrites that tail with zeros.
 
-In-place: no extra list allocated (O(1) space beyond the input).
+A single-pass swap variant also solves this and does fewer writes. The two-pass version is easier to justify aloud, which matters when the interviewer is assessing how you explain invariants.
 
-Time: O(n) — two linear passes.
-Space: O(1) — only the write pointer.
+In place means no second list is allocated: O(1) extra space beyond the pointer.
 
-Alternative (less optimal): nums.sort(key=lambda x: x == 0) uses Python's stable sort to move zeros to end but is O(n log n).`},
-  {id:12,cat:'list',catLabel:'Lists',
-   text:'Merge overlapping intervals',
-   question:`Given a list of intervals [start, end], merge all overlapping ones
-and return the result sorted by start time.
+Time: O(n) across both passes. Space: O(1).
+
+nums.sort(key=lambda x: x == 0) also works via Python's stable sort, but at O(n log n) it is strictly worse - worth naming as a contrast, not as the answer.`},
+ {id:12,cat:'list',catLabel:'Lists',lvl:'Advanced',text:'Merge overlapping intervals',
+  q:`Given a list of intervals [start, end], merge all overlapping
+intervals and return the result sorted by start time.
 
 Examples:
-  [[1,3],[2,6],[8,10],[15,18]]  →  [[1,6],[8,10],[15,18]]
-  [[1,4],[4,5]]                 →  [[1,5]]   (touching = overlapping)
-  [[1,4],[2,3]]                 →  [[1,4]]   (one contains the other)`,
-   solution:`def merge_intervals(intervals):
+  [[1,3],[2,6],[8,10],[15,18]]  ->  [[1,6],[8,10],[15,18]]
+  [[1,4],[4,5]]                 ->  [[1,5]]   (touching counts)
+  [[1,4],[2,3]]                 ->  [[1,4]]   (fully contained)`,
+  sol:`def merge_intervals(intervals):
     if not intervals:
         return []
 
-    intervals.sort(key=lambda x: x[0])  # sort by start
-    merged = [intervals[0]]
+    intervals.sort(key=lambda x: x[0])   # sort by start time
+    merged = [list(intervals[0])]
 
     for start, end in intervals[1:]:
         last_end = merged[-1][1]
-        if start <= last_end:           # overlapping or touching
-            merged[-1][1] = max(last_end, end)  # extend
+        if start <= last_end:            # overlapping or touching
+            merged[-1][1] = max(last_end, end)
         else:
-            merged.append([start, end])  # new non-overlapping interval
+            merged.append([start, end])  # disjoint - start a new run
 
     return merged
 
@@ -1199,34 +1480,33 @@ print(merge_intervals([[1,4],[4,5]]))
 # [[1,5]]
 print(merge_intervals([[1,4],[2,3]]))
 # [[1,4]]`,
-   explanation:`Sort by start time first — this ensures any overlapping interval comes right after the current one in the list. O(n log n) for the sort.
+  exp:`Sorting by start time is the move that makes everything else simple. Once sorted, any interval that overlaps the current run must appear immediately next, so one linear scan suffices - no repeated searching.
 
-Scan through: if the next interval's start <= current end, they overlap. Merge by extending the end to max(current_end, next_end) — max handles containment (one interval completely inside another).
+During the scan, start <= last_end detects an overlap. Using <= rather than < means touching intervals such as [1,4] and [4,5] merge into [1,5], which matches the stated requirement.
 
-merged[-1][1] = max(...) mutates the last merged interval in place.
+max(last_end, end) is essential for containment. Given [1,10] followed by [2,5], writing end directly would shrink the merged interval to [1,5] and silently lose coverage.
 
-Why max()? If intervals[i] = [1,10] and intervals[i+1] = [2,5], the end is 10, not 5.
+list(intervals[0]) copies the first interval so the function does not mutate the caller's inner lists when it later assigns to merged[-1][1].
 
-Time: O(n log n) dominated by sort. Space: O(n) for the output.`},
-  {id:13,cat:'list',catLabel:'Lists',
-   text:'Find the second largest unique number in a list',
-   question:`Write second_largest(nums) that returns the second largest
-unique number in nums, or None if it doesn't exist.
+Time: O(n log n), dominated by the sort. Space: O(n) for the output.`},
+ {id:13,cat:'list',catLabel:'Lists',lvl:'Beginner',text:'Find the second largest unique number in a list',
+  q:`Write second_largest(nums) returning the second largest unique
+number, or None when it does not exist.
 
 Examples:
-  second_largest([1, 2, 3, 4, 5])  → 4
-  second_largest([5, 5, 4, 4, 3])  → 4   (unique: 5,4,3 → second = 4)
-  second_largest([1])               → None
-  second_largest([2, 2])            → None`,
-   solution:`def second_largest(nums):
-    unique = set(nums)           # deduplicate
+  second_largest([1, 2, 3, 4, 5])  -> 4
+  second_largest([5, 5, 4, 4, 3])  -> 4   (unique: 5, 4, 3)
+  second_largest([1])               -> None
+  second_largest([2, 2])            -> None`,
+  sol:`def second_largest(nums):
+    unique = set(nums)             # deduplicate first
     if len(unique) < 2:
         return None
 
-    unique.remove(max(unique))   # remove the largest
-    return max(unique)           # what remains is second-largest
+    unique.remove(max(unique))     # drop the largest
+    return max(unique)             # largest of what remains
 
-# One-liner alternative:
+# Sorted alternative - more readable, slightly slower:
 def second_largest_v2(nums):
     unique = sorted(set(nums), reverse=True)
     return unique[1] if len(unique) >= 2 else None
@@ -1236,65 +1516,57 @@ print(second_largest([1,2,3,4,5]))   # 4
 print(second_largest([5,5,4,4,3]))   # 4
 print(second_largest([1]))           # None
 print(second_largest([2,2]))         # None`,
-   explanation:`Convert to set() first to handle duplicates — the problem asks for second largest unique value.
+  exp:`Deduplicating first is what makes [5, 5, 4] return 4 rather than 5. The question asks for the second largest distinct value, not the second element in sorted order - those differ whenever duplicates exist.
 
-remove(max(unique)) removes the largest. A second call to max() then returns the second-largest in O(n).
+After removing the maximum, a second max() over the remaining set gives the answer. Each max() is a linear scan, so the whole function is O(n).
 
-Total time: O(n) for set construction, O(n) for each max call = O(n).
+The len(unique) < 2 guard covers three cases at once: an empty list, a single element, and a list where every value is identical. All correctly yield None.
 
-Alternative with sorted(): O(n log n) but very readable — sort unique values descending and take index [1].
-
-Edge cases: fewer than 2 unique values → return None. Empty list → set is empty, len < 2 → None.`},
-  {id:14,cat:'function',catLabel:'Functions',
-   text:'Customer order analytics with pandas',
-   question:`Given a CSV file with columns: customer, order_id, order_date, amount
-Write analyse_orders(filepath) that returns a dict with:
-  total_orders, orders_per_customer (dict),
-  total_spent_per_customer (dict), highest_spending_customer,
-  average_order_value
-Save results to summary.json.`,
-   solution:`import pandas as pd, json
+The sorted() alternative reads more clearly at O(n log n). Either is defensible in an interview - say which you chose and why.`},
+ {id:14,cat:'function',catLabel:'Functions',lvl:'Intermediate',text:'Customer order analytics with pandas',
+  q:`Given a CSV with columns: customer, order_id, order_date, amount
+Write analyse_orders(filepath) returning a dict with:
+  total_orders, orders_per_customer, total_spent_per_customer,
+  highest_spending_customer, average_order_value
+Save the result to summary.json.`,
+  sol:`import pandas as pd, json
 
 def analyse_orders(filepath):
     df = pd.read_csv(filepath)
     df["order_date"] = pd.to_datetime(df["order_date"])
 
+    spend = df.groupby("customer")["amount"].sum()
+
     summary = {
         "total_orders": len(df),
         "orders_per_customer": (
-            df.groupby("customer")["order_id"]
-              .count().to_dict()
+            df.groupby("customer")["order_id"].count().to_dict()
         ),
-        "total_spent_per_customer": (
-            df.groupby("customer")["amount"]
-              .sum().to_dict()
-        ),
-        "highest_spending_customer": (
-            df.groupby("customer")["amount"]
-              .sum().idxmax()
-        ),
+        "total_spent_per_customer": spend.to_dict(),
+        "highest_spending_customer": spend.idxmax(),
         "average_order_value": round(df["amount"].mean(), 2)
     }
 
     with open("summary.json", "w") as f:
         json.dump(summary, f, indent=2)
     return summary`,
-   explanation:`pd.to_datetime() parses dates — important if you later do date-based filtering.
+  exp:`pd.to_datetime() parses the date column up front. Without it order_date stays a plain string, and any later filtering or resampling by period silently compares text instead of dates.
 
-groupby("customer") creates a GroupBy object; chaining ["order_id"].count() computes per-customer order counts. to_dict() converts the resulting Series to a plain Python dict for JSON serialization.
+groupby("customer") produces a GroupBy object; chaining a column and an aggregate collapses it to a Series indexed by customer. Computing spend once and reusing it avoids grouping the same data twice.
 
-idxmax() returns the INDEX LABEL (customer name) of the maximum value — not the maximum value itself. Much cleaner than sorting and slicing.
+idxmax() returns the index label - the customer name - rather than the maximum value itself. That is the idiomatic way to answer "who is the top X" and is clearer than sorting descending and slicing the first row.
 
-json.dump() requires plain Python types — to_dict() handles the Series-to-dict conversion before serialization.`},
-  {id:15,cat:'function',catLabel:'Functions',
-   text:'Fibonacci sequence with memoization',
-   question:`Write fib(n) that returns the nth Fibonacci number efficiently.
+to_dict() converts each Series to a plain dict. This matters for the final step: json.dump cannot serialise a pandas Series and raises TypeError, so the conversion has to happen before writing.`},
+ {id:15,cat:'function',catLabel:'Functions',lvl:'Intermediate',text:'Fibonacci sequence with memoization',
+  q:`Write fib(n) returning the nth Fibonacci number efficiently.
   fib(0) = 0, fib(1) = 1, fib(n) = fib(n-1) + fib(n-2)
 
-Show both: manual memoization with a dict, and the
+Show manual memoization with a dict and the
 functools.lru_cache decorator approach.`,
-   solution:`# Approach 1: manual memoization
-def fib_memo(n, memo={}):
+  sol:`# Approach 1: explicit memo dict
+def fib_memo(n, memo=None):
+    if memo is None:
+        memo = {}
     if n in memo:
         return memo[n]
     if n <= 1:
@@ -1311,7 +1583,7 @@ def fib(n):
         return n
     return fib(n-1) + fib(n-2)
 
-# Approach 3: iterative (best for production — no stack overflow)
+# Approach 3: iterative - best for production
 def fib_iter(n):
     if n <= 1:
         return n
@@ -1322,34 +1594,31 @@ def fib_iter(n):
 
 print(fib(10))       # 55
 print(fib_iter(50))  # 12586269025`,
-   explanation:`Naive recursive fib is O(2^n) — exponential. Memoization caches subresults, reducing to O(n) time and O(n) space.
+  exp:`Naive recursion recomputes the same subproblems exponentially - fib(5) evaluates fib(2) three separate times - giving O(2 to the n). Memoization caches each result so every n is computed once, collapsing it to O(n) time and O(n) space.
 
-Manual memo={}: default mutable arguments in Python are shared across calls — works as a cache but is a Python gotcha. Safer to use a closure or class for the cache.
+Note the memo=None guard in approach 1. Writing memo={} as the default looks natural and is a well-known Python trap: default arguments are evaluated once when the function is defined, so that dict would be shared across every call and persist between unrelated invocations. Creating it inside the body avoids that entirely.
 
-@lru_cache(maxsize=None): decorator automatically caches return values by argument. maxsize=None means unlimited cache. Cleaner and idiomatic.
+@lru_cache(maxsize=None) does the same caching automatically, keyed on the argument tuple, and is the idiomatic choice for a pure function like this.
 
-Iterative approach: O(n) time, O(1) space — best for production. No recursion = no stack overflow for large n.
-
-In interviews: mention all three, explain trade-offs, default to iterative for production.`},
-  {id:16,cat:'function',catLabel:'Functions',
-   text:'Flatten an arbitrarily nested list recursively',
-   question:`Write flatten(lst) that returns a flat list containing all
-the elements of a nested list structure.
+The iterative version runs in O(n) time and O(1) space by keeping only the two most recent values, and it cannot hit Python's recursion limit near n = 1000. That makes it the right default for production; reach for recursion when the shape of the problem is genuinely tree-like.`},
+ {id:16,cat:'function',catLabel:'Functions',lvl:'Advanced',text:'Flatten an arbitrarily nested list recursively',
+  q:`Write flatten(lst) returning a flat list containing every element
+of an arbitrarily nested list structure.
 
 Examples:
-  flatten([1, [2, 3], [4, [5, 6]]])  → [1, 2, 3, 4, 5, 6]
-  flatten([[1, [2]], [3, [4, [5]]]]) → [1, 2, 3, 4, 5]
-  flatten([])                        → []`,
-   solution:`def flatten(lst):
+  flatten([1, [2, 3], [4, [5, 6]]])   -> [1, 2, 3, 4, 5, 6]
+  flatten([[1, [2]], [3, [4, [5]]]])  -> [1, 2, 3, 4, 5]
+  flatten([])                         -> []`,
+  sol:`def flatten(lst):
     result = []
     for item in lst:
         if isinstance(item, list):
-            result.extend(flatten(item))   # recurse into sub-list
+            result.extend(flatten(item))   # recurse into the sub-list
         else:
-            result.append(item)            # base case: scalar
+            result.append(item)            # base case: a scalar
     return result
 
-# Generator version (memory-efficient for very large inputs):
+# Generator version - lazy and memory-efficient:
 def flatten_gen(lst):
     for item in lst:
         if isinstance(item, list):
@@ -1362,33 +1631,32 @@ print(flatten([1, [2, 3], [4, [5, 6]]]))
 # [1, 2, 3, 4, 5, 6]
 print(list(flatten_gen([[1, [2]], [3, [4, [5]]]])))
 # [1, 2, 3, 4, 5]`,
-   explanation:`isinstance(item, list) checks if the current element is a list — if so, recurse; otherwise append.
+  exp:`isinstance(item, list) picks between the two cases: a list recurses, anything else is appended unchanged. That single check is the whole algorithm.
 
-extend() adds all elements of the recursive result to result, avoiding nested lists in the output.
+extend() rather than append() on the recursive result is the detail that matters. append() would insert the returned list as one nested element, rebuilding exactly the structure you are trying to remove.
 
-Generator version with yield from: doesn't build intermediate lists — each value is yielded on demand. Memory-efficient for deeply nested or large structures.
+The generator version with yield from never materialises the intermediate lists. Values are produced on demand, so memory stays flat regardless of how large the input is - useful when the caller only needs to iterate once.
 
-Base case: a scalar (non-list) element. Recursive case: a list → flatten recursively.
+Watch the depth limit: Python caps recursion near 1000 frames. A structure nested deeper than that raises RecursionError, and the fix is an explicit stack rather than recursion.
 
-Depth limit: Python's default recursion limit is ~1000. For structures deeper than that, use an explicit stack (iterative DFS) to avoid RecursionError.`},
-  {id:17,cat:'function',catLabel:'Functions',
-   text:'Timing decorator using functools.wraps',
-   question:`Write a @timing decorator that:
-1. Measures how long the decorated function takes to run
-2. Prints: "function_name took X.XXXXs"
-3. Preserves the original function's name and docstring (functools.wraps)
+Time: O(n) in the total number of elements. Space: O(d) for recursion depth d, plus O(n) for the eager version's output.`},
+ {id:17,cat:'function',catLabel:'Functions',lvl:'Advanced',text:'Timing decorator using functools.wraps',
+  q:`Write a @timing decorator that:
+1. Measures how long the decorated function takes
+2. Prints "function_name took X.XXXXs"
+3. Preserves the original name and docstring via functools.wraps
 4. Returns the function's original return value`,
-   solution:`import time
+  sol:`import time
 import functools
 
 def timing(func):
-    @functools.wraps(func)         # preserves __name__, __doc__, etc.
+    @functools.wraps(func)          # preserves __name__ and __doc__
     def wrapper(*args, **kwargs):
         start = time.perf_counter()
         result = func(*args, **kwargs)
         elapsed = time.perf_counter() - start
-        print(f"{func.__name__} took {elapsed:.4f}s")
-        return result              # always return original result
+        print(func.__name__ + " took " + format(elapsed, ".4f") + "s")
+        return result               # always return the original value
     return wrapper
 
 @timing
@@ -1398,42 +1666,43 @@ def slow_sum(n):
 
 @timing
 def greet(name, greeting="Hello"):
-    return f"{greeting}, {name}!"
+    return greeting + ", " + name + "!"
 
-print(slow_sum(1_000_000))   # slow_sum took 0.0341s  →  499999500000
-print(greet("Alice"))        # greet took 0.0000s  →  Hello, Alice!
-print(greet.__name__)        # 'greet'  (not 'wrapper' — wraps preserves it)`,
-   explanation:`@functools.wraps(func) copies the original function's metadata (__name__, __doc__, __module__) onto wrapper. Without it, greet.__name__ would return 'wrapper' — confusing in debugging and logging.
+print(slow_sum(1_000_000))   # slow_sum took 0.0341s -> 499999500000
+print(greet("Alice"))        # greet took 0.0000s -> Hello, Alice!
+print(greet.__name__)        # 'greet' - not 'wrapper'
+print(greet.__doc__)         # docstring preserved`,
+  exp:`A decorator is a function that takes a function and returns a replacement. Here wrapper closes over func, times the call, and stands in for the original.
 
-time.perf_counter() is the highest-resolution timer available — prefer it over time.time() for measuring short durations.
+@functools.wraps(func) copies __name__, __doc__, __module__ and friends onto wrapper. Without it, greet.__name__ reports 'wrapper' - which breaks logging that records function names, confuses debuggers, and defeats any tooling that introspects the callable. It is one line and there is no reason to omit it.
 
-*args, **kwargs allows the wrapper to accept any function signature — the decorator works on any callable.
+*args, **kwargs lets wrapper forward any signature untouched, so one decorator works on every function regardless of its parameters.
 
-result = func(...); return result is the key pattern — capture the return value before printing so the decorator doesn't suppress it.
+time.perf_counter() is the highest-resolution clock available and is monotonic, so an NTP adjustment mid-call cannot produce a negative duration. Prefer it to time.time() for measuring elapsed time.
 
-Why return result? If you omit it, decorated functions implicitly return None — a silent bug that breaks callers.`},
-  {id:18,cat:'oop',catLabel:'OOP',
-   text:'Stack with O(1) min() operation',
-   question:`Design a MinStack class that supports:
-  push(val)  — push value onto stack
-  pop()      — remove and return top element
-  top()      — return top element without removing
-  min()      — return minimum element in O(1) time
+The load-bearing line is return result. Capture the value, print the timing, then return it. Omitting that return makes every decorated function silently return None - a bug that raises nothing and surfaces far from its cause.`},
+ {id:18,cat:'oop',catLabel:'OOP',lvl:'Advanced',text:'Stack with O(1) min() operation',
+  q:`Design a MinStack class supporting:
+  push(val)  - push a value
+  pop()      - remove and return the top element
+  top()      - peek at the top element
+  min()      - return the minimum element
 
-All operations must be O(1).`,
-   solution:`class MinStack:
+All four operations must run in O(1) time.`,
+  sol:`class MinStack:
     def __init__(self):
         self.stack = []
-        self.min_stack = []    # mirrors stack; each position = min so far
+        self.min_stack = []     # min of everything at or below each level
 
     def push(self, val):
         self.stack.append(val)
-        # min at this level = min(new val, previous min)
-        current_min = val if not self.min_stack else min(val, self.min_stack[-1])
-        self.min_stack.append(current_min)
+        if not self.min_stack:
+            self.min_stack.append(val)
+        else:
+            self.min_stack.append(min(val, self.min_stack[-1]))
 
     def pop(self):
-        self.min_stack.pop()   # keep both stacks in sync
+        self.min_stack.pop()    # keep both stacks in lockstep
         return self.stack.pop()
 
     def top(self):
@@ -1447,78 +1716,71 @@ s = MinStack()
 s.push(3); s.push(1); s.push(5)
 print(s.min())   # 1
 s.pop()          # removes 5
-print(s.min())   # 1  (1 still on stack)
+print(s.min())   # 1
 s.pop()          # removes 1
 print(s.min())   # 3`,
-   explanation:`Key insight: maintain a parallel min_stack where each position stores the minimum of all elements from the bottom up to that position.
+  exp:`The trick is the parallel min_stack. At every index it stores the minimum of all elements from the bottom of the stack up to that level, so the answer to min() is always sitting at the top.
 
-When pushing val, the new minimum is min(val, previous_min). This is O(1) — no scanning.
-When popping, pop from both stacks simultaneously — they must always have the same size.
-min() is just min_stack[-1] — O(1) always.
+On push the new minimum is min(val, previous_min) - one comparison, no scanning. On pop both stacks are popped together, which keeps them the same height and keeps index i of min_stack describing exactly the first i+1 elements.
 
-Why not sort or scan on each min() call? That would be O(n log n) or O(n) — not O(1).
+That lockstep invariant is what makes the design work. When 5 is popped in the example, min_stack discards its matching entry and the previous minimum of 1 is exposed again automatically - no recomputation required.
 
-Space: O(n) for both stacks combined — this is the trade-off for O(1) min().
+Compare the naive options: scanning the stack on each min() call is O(n), and maintaining a sorted copy is O(n log n) per push. Spending O(n) extra space to buy O(1) time is the entire point.
 
-This is a classic interview problem — Karat has asked variants of it.`},
-  {id:19,cat:'oop',catLabel:'OOP',
-   text:'LRU Cache with get/put operations',
-   question:`Design an LRU (Least Recently Used) cache with capacity N.
-Implement get(key) → returns value or -1 if not found.
-Implement put(key, value) → inserts or updates; if at capacity,
-  evicts the least recently used entry first.
+Karat has asked variants of this problem - be ready to explain the invariant, not just write the code.`},
+ {id:19,cat:'oop',catLabel:'OOP',lvl:'Advanced',text:'LRU Cache with get/put operations',
+  q:`Design an LRU (Least Recently Used) cache with capacity N.
+  get(key)        -> value, or -1 if absent
+  put(key, value) -> insert or update; evict the least recently
+                     used entry when over capacity
 
-All operations must be O(1).`,
-   solution:`from collections import OrderedDict
+Both operations must run in O(1).`,
+  sol:`from collections import OrderedDict
 
 class LRUCache:
     def __init__(self, capacity):
         self.cap = capacity
-        self.cache = OrderedDict()   # insertion-order dict
+        self.cache = OrderedDict()
 
     def get(self, key):
         if key not in self.cache:
             return -1
-        self.cache.move_to_end(key)  # mark as recently used
+        self.cache.move_to_end(key)      # reading counts as using
         return self.cache[key]
 
     def put(self, key, value):
         if key in self.cache:
-            self.cache.move_to_end(key)  # update recency
+            self.cache.move_to_end(key)
         self.cache[key] = value
         if len(self.cache) > self.cap:
-            self.cache.popitem(last=False)  # evict LRU (first item)
+            self.cache.popitem(last=False)   # evict the LRU entry
 
 # Test
 cache = LRUCache(2)
 cache.put(1, 10); cache.put(2, 20)
-print(cache.get(1))   # 10  — moves key 1 to end (recently used)
-cache.put(3, 30)      # capacity exceeded — evicts key 2 (LRU)
-print(cache.get(2))   # -1  (evicted)
+print(cache.get(1))   # 10 - moves key 1 to the recent end
+cache.put(3, 30)      # over capacity - evicts key 2
+print(cache.get(2))   # -1 (evicted)
 print(cache.get(3))   # 30`,
-   explanation:`OrderedDict maintains insertion order AND supports move_to_end() and popitem(last=False) — the perfect data structure for LRU cache.
+  exp:`OrderedDict is the right structure because it maintains insertion order and exposes both move_to_end() and popitem(last=False) in O(1). Those two operations are precisely what LRU eviction needs.
 
-move_to_end(key): moves existing key to the end (most recently used side). O(1).
-popitem(last=False): removes the first item (least recently used side). O(1).
+Treat the dictionary as an ordered queue: the most recently used entry lives at the end, the least recently used at the front. move_to_end(key) promotes an entry; popitem(last=False) removes from the front.
 
-get() must also move to end — reading an item counts as 'using' it.
+The easiest mistake is omitting move_to_end() inside get(). A read is a use - without that line the cache evicts entries that are being actively read, and the hit rate collapses while every test with only put() calls still passes.
 
-put() checks for existing key first: if updating, move to end before setting value. Then evict if over capacity.
+put() handles the update case by promoting an existing key before reassigning it, so overwriting a value also refreshes its recency.
 
-Why OrderedDict over dict? Regular dicts in Python 3.7+ are insertion-ordered, but lack move_to_end() and ordered popitem(). OrderedDict provides both in O(1).
-
-Alternative: doubly-linked list + hash map for maximum control.`},
-  {id:20,cat:'oop',catLabel:'OOP',
-   text:'Bank account with Checking and Savings subclasses',
-   question:`Design a BankAccount base class with:
-  deposit(amount), withdraw(amount), balance property, __str__
+Why not a plain dict? Python 3.7+ dicts do preserve insertion order, but they offer no move_to_end() and no O(1) way to pop from the front. The classic manual alternative is a hash map plus a doubly-linked list, which is what OrderedDict wraps internally.`},
+ {id:20,cat:'oop',catLabel:'OOP',lvl:'Intermediate',text:'Bank account with Checking and Savings subclasses',
+  q:`Design a BankAccount base class with deposit(amount),
+withdraw(amount), a balance property, and __str__.
 
 Create two subclasses:
-  CheckingAccount — allows overdraft up to a limit
-  SavingsAccount  — has apply_interest() method
+  CheckingAccount - allows overdraft up to a limit
+  SavingsAccount  - adds apply_interest()
 
-Demonstrate inheritance, super(), @property, and method overriding.`,
-   solution:`class BankAccount:
+Demonstrate inheritance, super(), @property, and overriding.`,
+  sol:`class BankAccount:
     def __init__(self, owner, balance=0):
         self.owner = owner
         self._balance = balance
@@ -1535,10 +1797,11 @@ Demonstrate inheritance, super(), @property, and method overriding.`,
 
     @property
     def balance(self):
-        return self._balance          # read-only via property
+        return self._balance          # read-only from outside
 
     def __str__(self):
-        return f"{self.__class__.__name__}[{self.owner}]: \${self._balance:.2f}"
+        name = self.__class__.__name__
+        return name + "[" + self.owner + "]: " + format(self._balance, ".2f")
 
 
 class CheckingAccount(BankAccount):
@@ -1546,10 +1809,10 @@ class CheckingAccount(BankAccount):
         super().__init__(owner, balance)
         self.overdraft_limit = overdraft_limit
 
-    def withdraw(self, amount):       # overrides base method
+    def withdraw(self, amount):       # overrides the base method
         if amount > self._balance + self.overdraft_limit:
             raise ValueError("Exceeds overdraft limit")
-        self._balance -= amount       # allows negative balance
+        self._balance -= amount       # may go negative
 
 
 class SavingsAccount(BankAccount):
@@ -1564,322 +1827,291 @@ class SavingsAccount(BankAccount):
 # Demo
 sav = SavingsAccount("Alice", 1000)
 sav.apply_interest()
-print(sav)               # SavingsAccount[Alice]: $1020.00
+print(sav)               # SavingsAccount[Alice]: 1020.00
 
 chk = CheckingAccount("Bob", 100, overdraft_limit=200)
-chk.withdraw(250)        # allowed: goes to -150
-print(chk)               # CheckingAccount[Bob]: $-150.00
-print(chk.balance)       # -150 (via @property)`,
-   explanation:`super().__init__() calls the parent's __init__ — avoids duplicating owner and _balance setup in every subclass.
+chk.withdraw(250)        # allowed - goes to -150
+print(chk)               # CheckingAccount[Bob]: -150.00
+print(chk.balance)       # -150, read through the property`,
+  exp:`super().__init__() delegates the shared owner and balance setup to the parent, so that logic lives in exactly one place. Each subclass then adds only the attribute it actually introduces.
 
-_balance with a single underscore is a convention for 'protected' (internal use). @property exposes it as read-only from outside — callers use account.balance, not account._balance.
+The single leading underscore in _balance is the Python convention for internal state. The @property exposes it as a read-only attribute: callers write account.balance, and because no setter is defined, the balance can only change through deposit() and withdraw() where the validation lives.
 
-__class__.__name__ in __str__ dynamically returns the subclass name ('CheckingAccount', 'SavingsAccount') — polymorphic string representation without overriding __str__ in each subclass.
+self.__class__.__name__ inside __str__ resolves to the runtime class, so both subclasses print their own name without either one overriding __str__. That is polymorphism doing real work rather than duplicated boilerplate.
 
-CheckingAccount.withdraw() overrides the base: allows the balance to go negative (up to overdraft_limit). super().withdraw() is NOT called — the check is intentionally different.
+CheckingAccount.withdraw() deliberately does not call super().withdraw(). The parent rejects any withdrawal beyond the balance, which is exactly the rule an overdraft is designed to relax - so the subclass replaces the check rather than extending it. Calling super() first would raise before the overdraft logic could run.
 
-Design principle: Liskov Substitution — CheckingAccount can be used wherever BankAccount is expected (both have deposit/withdraw/balance), but the overdraft behaviour is specialised.`},
+This satisfies the Liskov Substitution Principle: either subclass can stand in wherever a BankAccount is expected, because both honour the same deposit / withdraw / balance contract even though the withdrawal rule differs.`},
 ];
 
-// ── SME DATA ─────────────────────────────────────────────────────────────────
-const smes = [
-  {name:'Suman',role:'SQL SME · Mock interviewer',initials:'SU',
-   expertise:'SQL query optimisation, window functions, CTEs, performance tuning',
-   color:'var(--accent)',bg:'var(--adim)',border:'var(--ab)'},
-  {name:'Reema',role:'SQL SME · Mock interviewer',initials:'RE',
-   expertise:'Joins, aggregations, ETL pipelines, data modelling, Informatica',
-   color:'var(--accent)',bg:'var(--adim)',border:'var(--ab)'},
-  {name:'Sachin',role:'SQL SME',initials:'SA',
-   expertise:'Database design, stored procedures, indexing strategy, ACID properties',
-   color:'var(--accent)',bg:'var(--adim)',border:'var(--ab)'},
-  {name:'Shalini',role:'Python SME · Mock interviewer',initials:'SH',
-   expertise:'Python scripting, log parsing, pandas, data analysis, file I/O',
-   color:'var(--green)',bg:'var(--gdim)',border:'var(--gb)'},
-  {name:'Chandni',role:'Mock interviewer',initials:'CH',
-   expertise:'Behavioral interviews, STAR method, communication & presentation skills',
-   color:'var(--purple)',bg:'var(--pdim)',border:'var(--pb)'},
-  {name:'Anand',role:'Mock interviewer',initials:'AN',
-   expertise:'Technical rounds, system design, problem-solving approach & walk-through',
-   color:'var(--purple)',bg:'var(--pdim)',border:'var(--pb)'},
+const MENTORS=[
+ {n:'Suman',r:'SQL SME · Mock interviewer',i:'SU',e:'SQL query optimisation, window functions, CTEs, performance tuning',c:'var(--sql)',days:'Days 1-7',topic:'SQL track'},
+ {n:'Reema',r:'SQL SME · Mock interviewer',i:'RE',e:'Joins, aggregations, ETL pipelines, data modelling, Informatica',c:'var(--sql)',days:'Days 1-7',topic:'SQL track'},
+ {n:'Sachin',r:'SQL SME',i:'SA',e:'Database design, stored procedures, indexing strategy, ACID properties',c:'var(--sql)',days:'Days 4-7',topic:'SQL track'},
+ {n:'Shalini',r:'Python SME · Mock interviewer',i:'SH',e:'Python scripting, log parsing, pandas, data analysis, file I/O',c:'var(--py)',days:'Days 8-11',topic:'Python track'},
+ {n:'Chandni',r:'Mock interviewer',i:'CH',e:'Behavioural interviews, STAR method, communication and presentation skills',c:'var(--indigo)',days:'Day SME, 13',topic:'Mock rounds'},
+ {n:'Anand',r:'Mock interviewer',i:'AN',e:'Technical rounds, system design, problem-solving approach and walk-through',c:'var(--indigo)',days:'Day SME, 13',topic:'Mock rounds'},
 ];
 
-// ── RESOURCES DATA ───────────────────────────────────────────────────────────
-const resources = [
-  {icon:'📚',title:'SQLZoo',desc:'Interactive SQL tutorials — SELECT basics through window functions and self-joins.',url:'sqlzoo.net',href:'https://sqlzoo.net/wiki/SELECT_basics'},
-  {icon:'🔧',title:'SQL Fiddle',desc:'Browser-based SQL sandbox — test queries against real database engines instantly.',url:'sqlfiddle.com',href:'http://sqlfiddle.com'},
-  {icon:'📄',title:'Karat Log File',desc:'Sample log file used in Karat Python assessments — URL parsing and frequency analysis.',url:'public.karat.io',href:'https://public.karat.io/content/urls2.txt'},
-  {icon:'🧩',title:'LeetCode SQL',desc:'SQL practice problems from Easy to Hard — filters, joins, window functions.',url:'leetcode.com/problemset/database',href:'https://leetcode.com/problemset/database/'},
-  {icon:'🐍',title:'LeetCode Python',desc:'Python algorithm problems — strings, arrays, OOP, and design patterns.',url:'leetcode.com/problemset',href:'https://leetcode.com/problemset/'},
-  {icon:'📖',title:'Real Python',desc:'In-depth guides on decorators, OOP, comprehensions, and the standard library.',url:'realpython.com',href:'https://realpython.com'},
+const RES=[
+ {i:'📚',t:'SQLZoo',d:'Interactive SQL tutorials from SELECT basics through window functions and self-joins.',u:'sqlzoo.net',h:'https://sqlzoo.net/wiki/SELECT_basics',c:'var(--sql)',bg:'var(--sql-tint)'},
+ {i:'🔧',t:'SQL Fiddle',d:'Browser-based SQL sandbox — test your queries against real database engines instantly.',u:'sqlfiddle.com',h:'http://sqlfiddle.com',c:'var(--teal)',bg:'var(--teal-tint)'},
+ {i:'📄',t:'Karat Log File',d:'The sample log file used in Karat Python assessments for URL parsing and frequency analysis.',u:'public.karat.io',h:'https://public.karat.io/content/urls2.txt',c:'var(--concept)',bg:'var(--concept-tint)'},
+ {i:'🧩',t:'LeetCode SQL',d:'SQL practice problems from Easy to Hard covering filters, joins, and window functions.',u:'leetcode.com',h:'https://leetcode.com/problemset/database/',c:'var(--purple-dark)',bg:'var(--purple-tint)'},
+ {i:'🐍',t:'LeetCode Python',d:'Python algorithm problems across strings, arrays, OOP, and design patterns.',u:'leetcode.com',h:'https://leetcode.com/problemset/',c:'var(--py)',bg:'var(--py-tint)'},
+ {i:'📖',t:'Real Python',d:'In-depth guides on decorators, OOP, comprehensions, and the standard library.',u:'realpython.com',h:'https://realpython.com',c:'var(--rose)',bg:'var(--rose-tint)'},
 ];
 
-// ── RENDER STUDY PLAN ────────────────────────────────────────────────────────
-(function renderPlan() {
-  const grid = document.getElementById('planGrid');
-  const detail = document.getElementById('dayDetail');
-  const badgeMap = {SQL:'b-sql',Python:'b-py',SME:'b-sme',Mock:'b-mock'};
-  let activeCard = null;
+const PATHS=[
+ {id:'fresher',ico:'🌱',bg:'var(--py-tint)',c:'var(--py)',title:'New to SQL & Python',who:'For freshers and career switchers',
+  desc:'Follow all 13 days in order. Start with joins and aggregations, build up to window functions, then move into Python fundamentals before the mock rounds.',
+  s:[['13','Days'],['45','Questions'],['37h','Total']]},
+ {id:'experienced',ico:'⚡',bg:'var(--purple-tint)',c:'var(--purple-dark)',title:'Experienced practitioner',who:'For working data engineers and analysts',
+  desc:'Skip the fundamentals. Jump straight to window functions, CTEs, recursive queries, log parsing and OOP design — then spend the time you save in the mock rounds.',
+  s:[['9','Days'],['32','Advanced Qs'],['26h','Total']]},
+];
 
-  studyDays.forEach(d => {
-    const card = document.createElement('div');
-    card.className = 'day-card ' + d.cls;
-    const badges = d.badges.map(b => `<span class="badge ${badgeMap[b]||'b-sql'}">${b}</span>`).join('');
-    card.innerHTML = `<div class="day-num">Day ${d.day}</div><div class="day-title">${d.title}</div><div class="day-badges">${badges}</div>`;
-    card.addEventListener('click', () => {
-      if (activeCard === card) {
-        card.classList.remove('active');
-        detail.classList.remove('open');
-        activeCard = null;
-        return;
-      }
-      document.querySelectorAll('.day-card').forEach(c => c.classList.remove('active'));
-      card.classList.add('active');
-      activeCard = card;
+/* ═══════════ HELPERS ═══════════ */
+const $=id=>document.getElementById(id);
+const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+function jump(id){const el=$(id);if(!el)return;
+  window.scrollTo({top:el.getBoundingClientRect().top+window.pageYOffset-70,behavior:'smooth'});}
 
-      const topicsHtml = d.topics.map(t => `<div class="dd-item">${t}</div>`).join('');
-      const practiceHtml = d.practice.map(p => `<div class="dd-item">• ${p}</div>`).join('');
-      const resHtml = d.resources.map(r => `<div class="dd-item">→ ${r}</div>`).join('');
+/* ═══════════ STATE ═══════════ */
+const LS_DONE='karat.done',LS_PATH='karat.path';
+let done=new Set(),curPath=null;
+try{done=new Set(JSON.parse(localStorage.getItem(LS_DONE)||'[]'));
+    curPath=localStorage.getItem(LS_PATH)||null;}catch(e){}
+function save(){try{
+  localStorage.setItem(LS_DONE,JSON.stringify([...done]));
+  curPath?localStorage.setItem(LS_PATH,curPath):localStorage.removeItem(LS_PATH);
+}catch(e){}}
 
-      detail.innerHTML = `
-        <div class="dd-head">Day ${d.day} — ${d.title}</div>
-        <div class="dd-cols">
-          <div>
-            <h4>Topics</h4>${topicsHtml}
-            <h4>Practice problems</h4>${practiceHtml}
-          </div>
-          <div>
-            <h4>Resources</h4>${resHtml}
-            <div class="dd-goal">🎯 Goal: ${d.goal}</div>
-          </div>
-        </div>`;
-      detail.classList.add('open');
-      setTimeout(() => detail.scrollIntoView({behavior:'smooth',block:'nearest'}), 50);
-    });
-    grid.appendChild(card);
-  });
-})();
+/* ═══════════ PATHS ═══════════ */
+function renderPaths(){
+  $('pathGrid').innerHTML=PATHS.map(p=>`
+    <button class="path${curPath===p.id?' sel':''}" data-p="${p.id}">
+      <div class="path-ico" style="background:${p.bg};color:${p.c}">${p.ico}</div>
+      <h3>${p.title}</h3>
+      <div class="who">${p.who}</div>
+      <p>${p.desc}</p>
+      <div class="path-stats">${p.s.map(v=>`<div><b>${v[0]}</b>${v[1]}</div>`).join('')}</div>
+    </button>`).join('');
+  $('pathGrid').querySelectorAll('.path').forEach(b=>{
+    b.onclick=()=>{curPath=(curPath===b.dataset.p)?null:b.dataset.p;save();
+      renderPaths();renderCur();renderSQL();renderPY();};});
+}
 
-// ── RENDER SQL QUESTIONS ─────────────────────────────────────────────────────
-(function renderSQL() {
-  const list = document.getElementById('sqlList');
-  const bar = document.getElementById('sqlFilter');
-  let openId = null;
-  let filter = 'all';
-
-  function esc(s) {
-    return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-  }
-
-  function render() {
-    const items = filter === 'all' ? sqlQs : sqlQs.filter(q => q.type === filter);
-    list.innerHTML = items.map(q => {
-      const tagCls = q.type === 'query' ? 'tag-query' : 'tag-concept';
-      const tagLabel = q.type === 'query' ? 'SQL Query' : 'Concept';
-      const isOpen = openId === q.id;
-      return `<div class="q-item${isOpen?' open':''}" id="sq${q.id}">
-        <div class="q-header" onclick="toggleSQL(${q.id})">
-          <span class="q-num">Q${q.id}</span>
-          <span class="q-text">${q.text}</span>
-          <span class="q-tag ${tagCls}">${tagLabel}</span>
-          <span class="q-chev">&#8964;</span>
-        </div>
-        <div class="q-body">
-          <div class="tabs">
-            <button class="tbtn active" onclick="switchTab(this,'sa${q.id}','sb${q.id}')">Answer</button>
-            <button class="tbtn" onclick="switchTab(this,'sb${q.id}','sa${q.id}')">Explanation</button>
-          </div>
-          <div class="tpanel active" id="sa${q.id}">
-            <div class="concept-chips">${q.concepts.map(c=>`<span class="chip">${c}</span>`).join('')}</div>
-            <pre>${esc(q.answer)}</pre>
-          </div>
-          <div class="tpanel" id="sb${q.id}">
-            <p>${q.explanation}</p>
-            <div class="tip-box">💡 ${q.tip}</div>
-          </div>
-        </div>
-      </div>`;
-    }).join('');
-  }
-
-  window.toggleSQL = function(id) {
-    openId = openId === id ? null : id;
-    render();
-    if (openId) {
-      setTimeout(() => {
-        const el = document.getElementById('sq'+id);
-        if (el) el.scrollIntoView({behavior:'smooth',block:'nearest'});
-      }, 50);
-    }
-  };
-
-  bar.addEventListener('click', e => {
-    const btn = e.target.closest('.fbtn');
-    if (!btn) return;
-    filter = btn.dataset.f;
-    openId = null;
-    bar.querySelectorAll('.fbtn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    render();
-  });
-
-  render();
-})();
-
-// ── RENDER PYTHON QUESTIONS ──────────────────────────────────────────────────
-(function renderPython() {
-  const list = document.getElementById('pyList');
-  const bar = document.getElementById('pyFilter');
-  const searchIn = document.getElementById('pySearch');
-  let openId = null;
-  let filter = 'all';
-  let search = '';
-
-  const catTagMap = {
-    log:'tag-log', string:'tag-string', list:'tag-list',
-    function:'tag-function', oop:'tag-oop'
-  };
-
-  function esc(s) {
-    return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-  }
-
-  function render() {
-    let items = pyQs;
-    if (filter !== 'all') items = items.filter(q => q.cat === filter);
-    if (search) {
-      const q = search.toLowerCase();
-      items = items.filter(i => i.text.toLowerCase().includes(q) || i.question.toLowerCase().includes(q));
-    }
-
-    if (items.length === 0) {
-      list.innerHTML = '<div style="color:var(--t3);padding:2rem;text-align:center">No questions match your filter.</div>';
-      return;
-    }
-
-    list.innerHTML = items.map(q => {
-      const tagCls = catTagMap[q.cat] || 'tag-log';
-      const isOpen = openId === q.id;
-      return `<div class="q-item${isOpen?' open':''}" id="pq${q.id}">
-        <div class="q-header" onclick="togglePY(${q.id})">
-          <span class="q-num">Q${q.id}</span>
-          <span class="q-text">${q.text}</span>
-          <span class="q-tag ${tagCls}">${q.catLabel}</span>
-          <span class="q-chev">&#8964;</span>
-        </div>
-        <div class="q-body">
-          <div class="tabs">
-            <button class="tbtn active" onclick="switchTab(this,'pqa${q.id}','pqb${q.id}','pqc${q.id}')">Question</button>
-            <button class="tbtn" onclick="switchTab(this,'pqb${q.id}','pqa${q.id}','pqc${q.id}')">Solution</button>
-            <button class="tbtn" onclick="switchTab(this,'pqc${q.id}','pqa${q.id}','pqb${q.id}')">Explanation</button>
-          </div>
-          <div class="tpanel active" id="pqa${q.id}"><pre>${esc(q.question)}</pre></div>
-          <div class="tpanel" id="pqb${q.id}"><pre>${esc(q.solution)}</pre></div>
-          <div class="tpanel" id="pqc${q.id}"><p>${esc(q.explanation).replace(/\n/g,'<br>')}</p></div>
-        </div>
-      </div>`;
-    }).join('');
-  }
-
-  window.togglePY = function(id) {
-    openId = openId === id ? null : id;
-    render();
-    if (openId) {
-      setTimeout(() => {
-        const el = document.getElementById('pq'+id);
-        if (el) el.scrollIntoView({behavior:'smooth',block:'nearest'});
-      }, 50);
-    }
-  };
-
-  bar.addEventListener('click', e => {
-    const btn = e.target.closest('.fbtn');
-    if (!btn) return;
-    filter = btn.dataset.f;
-    openId = null;
-    bar.querySelectorAll('.fbtn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    render();
-  });
-
-  searchIn.addEventListener('input', () => {
-    search = searchIn.value.trim();
-    openId = null;
-    render();
-  });
-
-  render();
-})();
-
-// ── TAB SWITCHER (shared) ────────────────────────────────────────────────────
-window.switchTab = function(btn, showId, ...hideIds) {
-  // deactivate sibling buttons
-  btn.closest('.tabs').querySelectorAll('.tbtn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  // hide all panels in this question body
-  btn.closest('.q-body').querySelectorAll('.tpanel').forEach(p => p.classList.remove('active'));
-  // show the target panel
-  const target = document.getElementById(showId);
-  if (target) target.classList.add('active');
-};
-
-// ── RENDER SME ───────────────────────────────────────────────────────────────
-(function renderSME() {
-  const grid = document.getElementById('smeGrid');
-  grid.innerHTML = smes.map(s => `
-    <div class="sme-card">
-      <div class="sme-av" style="background:${s.bg};color:${s.color};border:1px solid ${s.border}">${s.initials}</div>
-      <div>
-        <div class="sme-name">${s.name}</div>
-        <div class="sme-role" style="color:${s.color}">${s.role}</div>
-        <div class="sme-exp">${s.expertise}</div>
+/* ═══════════ TRACKS ═══════════ */
+const TRACKS=[
+ {lang:'SQL',n:25,cap:'Questions',g:'linear-gradient(135deg,#1e3a8a,#2d68f5)',
+  h:'SQL round — 45 minutes',
+  d:'Joins, aggregations, window functions, CTEs, recursive queries, transactions and data-warehouse concepts.',
+  tags:['JOINs','GROUP BY / HAVING','Window functions','CTEs','Recursive CTEs','ACID','Indexing','SARGability'],
+  meta:'19 queries · 6 concepts',to:'sql'},
+ {lang:'Python',n:20,cap:'Problems',g:'linear-gradient(135deg,#065f46,#0d9f6e)',
+  h:'Python round — 45 minutes',
+  d:'Log parsing with datetime and sets, string and list manipulation, functions and decorators, plus OOP design problems.',
+  tags:['Log parsing','datetime','set() / discard()','Strings','Lists','Decorators','MinStack','LRU Cache'],
+  meta:'5 categories · 3 tabs each',to:'python'},
+];
+function renderTracks(){
+  $('trackGrid').innerHTML=TRACKS.map(t=>`
+    <article class="track">
+      <div class="track-thumb" style="background:${t.g}">
+        <span class="lang">${t.lang}</span>
+        <span class="cnt"><b>${t.n}</b><span>${t.cap}</span></span>
       </div>
-    </div>`).join('');
-})();
+      <div class="track-body">
+        <h3>${t.h}</h3>
+        <p>${t.d}</p>
+        <div class="tags">${t.tags.map(x=>`<span class="tag">${x}</span>`).join('')}</div>
+        <div class="track-foot">
+          <span class="meta">${t.meta}</span>
+          <button class="btn-sm" data-go="${t.to}">Browse questions →</button>
+        </div>
+      </div>
+    </article>`).join('');
+  $('trackGrid').querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>jump(b.dataset.go));
+}
 
-// ── RENDER RESOURCES ─────────────────────────────────────────────────────────
-(function renderResources() {
-  const grid = document.getElementById('resGrid');
-  grid.innerHTML = resources.map(r => `
-    <a class="res-card" href="${r.href}" target="_blank" rel="noopener">
-      <div class="res-icon">${r.icon}</div>
-      <div class="res-title">${r.title}</div>
-      <div class="res-desc">${r.desc}</div>
-      <span class="res-url">${r.url}</span>
-    </a>`).join('');
-})();
+/* ═══════════ CURRICULUM ═══════════ */
+const PILL={SQL:'p-sql',Python:'p-py',SME:'p-sme',Mock:'p-mock'};
+const visDays=()=>curPath==='experienced'?DAYS.filter(d=>d.path==='both'):DAYS;
+function renderCur(){
+  const list=visDays(),hrs=list.reduce((a,d)=>a+d.hours,0);
+  $('curCount').textContent=list.length+' days';
+  $('curHours').textContent=hrs+' hours';
+  $('cur').innerHTML=DAYS.map(d=>{
+    const dim=curPath==='experienced'&&d.path!=='both',
+          isDone=done.has(String(d.day));
+    return `<div class="day${dim?' dim':''}">
+      <div class="day-hd">
+        <span class="chk${isDone?' done':''}" data-chk="${d.day}" role="checkbox" aria-checked="${isDone}" title="Mark complete">✓</span>
+        <span class="day-n">Day ${d.day}</span>
+        <span class="day-t">${d.title}</span>
+        <span class="day-b">${d.badges.map(b=>`<span class="pill ${PILL[b]}">${b}</span>`).join('')}</span>
+        <span class="day-h">${d.hours}h</span>
+        <span class="chev">▼</span>
+      </div>
+      <div class="day-bd">
+        <div class="day-cols">
+          <div class="dcol">
+            <h4>What you'll learn</h4>
+            <ul>${d.topics.map(t=>`<li>${esc(t)}</li>`).join('')}</ul>
+            <h4>Practice</h4>
+            <ul>${d.practice.map(p=>`<li>${esc(p)}</li>`).join('')}</ul>
+          </div>
+          <div class="dcol">
+            <h4>Resources</h4>
+            <ul>${d.resources.map(r=>`<li class="res">${esc(r)}</li>`).join('')}</ul>
+            <div class="goal">🎯 Goal — ${esc(d.goal)}</div>
+          </div>
+        </div>
+      </div>
+    </div>`;}).join('');
 
-// ── NAV ACTIVE ON SCROLL ─────────────────────────────────────────────────────
-(function setupNav() {
-  const links = document.querySelectorAll('.nav-links a');
-  const sections = ['hero','plan','sql','python','sme','resources'];
-  const navH = 56;
-
-  function update() {
-    let current = 'hero';
-    sections.forEach(id => {
-      const el = document.getElementById(id);
-      if (el && el.getBoundingClientRect().top <= navH + 60) current = id;
-    });
-    links.forEach(a => {
-      const active = a.dataset.sec === current;
-      a.classList.toggle('active', active);
-    });
-  }
-
-  window.addEventListener('scroll', update, {passive:true});
-  links.forEach(a => {
-    a.addEventListener('click', e => {
-      e.preventDefault();
-      const id = a.dataset.sec;
-      const el = document.getElementById(id);
-      if (!el) return;
-      const top = el.getBoundingClientRect().top + window.pageYOffset - navH - 8;
-      window.scrollTo({top, behavior:'smooth'});
-    });
+  $('cur').querySelectorAll('.day-hd').forEach(hd=>{
+    hd.addEventListener('click',e=>{
+      const chk=e.target.closest('.chk');
+      if(chk){const k=chk.dataset.chk;
+        done.has(k)?done.delete(k):done.add(k);
+        save();renderCur();return;}
+      hd.parentElement.classList.toggle('open');});
   });
+  renderProg();
+}
+function renderProg(){
+  const list=visDays(),n=list.filter(d=>done.has(String(d.day))).length,
+        pct=list.length?Math.round(n/list.length*100):0;
+  $('progFill').style.width=pct+'%';
+  $('progPct').textContent=pct+'%';
+  $('progLabel').textContent=n+' of '+list.length+' days complete';
+  $('startBtn').textContent=n===0?'Start Day 1':(n===list.length?'Review program ✓':'Resume program');
+  $('progNote').textContent=(n&&n===list.length)?'🎉 Program complete — good luck!':'Start anytime · Track your progress';
+}
+function allDays(open){$('cur').querySelectorAll('.day').forEach(d=>d.classList.toggle('open',open));}
+function resetProg(){done.clear();save();renderCur();}
 
-  update();
-})();
+/* ═══════════ QUESTION RENDERING ═══════════ */
+function qCard(o){
+  return `<article class="q">
+    <div class="q-hd">
+      <span class="q-n">${o.num}</span>
+      <span class="q-t">${esc(o.title)}</span>
+      <span class="q-m">
+        <span class="lvl l-${o.lvl}">${o.lvl}</span>
+        <span class="cat c-${o.catCls}">${o.catLabel}</span>
+      </span>
+      <span class="chev">▼</span>
+    </div>
+    <div class="q-bd">
+      <div class="tabs">${o.tabs.map((t,i)=>
+        `<button class="tb${i?'':' on'}" data-i="${i}">${t.label}</button>`).join('')}</div>
+      ${o.tabs.map((t,i)=>
+        `<div class="tp${i?'':' on'}" data-i="${i}">${t.html}</div>`).join('')}
+    </div>
+  </article>`;
+}
+function wire(root){
+  root.querySelectorAll('.q-hd').forEach(h=>
+    h.addEventListener('click',()=>h.parentElement.classList.toggle('open')));
+  root.querySelectorAll('.tb').forEach(b=>
+    b.addEventListener('click',()=>{
+      const bd=b.closest('.q-bd'),i=b.dataset.i;
+      bd.querySelectorAll('.tb').forEach(x=>x.classList.toggle('on',x.dataset.i===i));
+      bd.querySelectorAll('.tp').forEach(x=>x.classList.toggle('on',x.dataset.i===i));
+    }));
+}
+const lvlOK=l=>curPath!=='experienced'||l!=='Beginner';
+
+let sqlF='all';
+function renderSQL(){
+  const items=SQLQ.filter(q=>(sqlF==='all'||q.type===sqlF)&&lvlOK(q.lvl));
+  $('sqlCount').textContent=items.length+' of '+SQLQ.length+' questions';
+  $('sqlList').innerHTML=items.length?items.map(q=>qCard({
+    num:'Q'+q.id,title:q.text,lvl:q.lvl,
+    catCls:q.type,catLabel:q.type==='query'?'SQL Query':'Concept',
+    tabs:[
+      {label:'Answer',html:'<div class="concepts">'+q.concepts.map(c=>'<span class="cc">'+esc(c)+'</span>').join('')+'</div><pre>'+esc(q.answer)+'</pre>'},
+      {label:'Explanation',html:'<p>'+esc(q.explain)+'</p><div class="tip"><b>💡 Interview tip —</b> '+esc(q.tip)+'</div>'},
+    ]})).join(''):'<div class="empty">No questions match this filter.</div>';
+  wire($('sqlList'));
+}
+
+let pyF='all',pyS='';
+function renderPY(){
+  let items=PYQ.filter(q=>(pyF==='all'||q.cat===pyF)&&lvlOK(q.lvl));
+  if(pyS){const s=pyS.toLowerCase();
+    items=items.filter(q=>q.text.toLowerCase().includes(s)
+      ||q.q.toLowerCase().includes(s)
+      ||q.catLabel.toLowerCase().includes(s));}
+  $('pyCount').textContent=items.length+' of '+PYQ.length+' problems';
+  $('pyList').innerHTML=items.length?items.map(q=>qCard({
+    num:'Q'+q.id,title:q.text,lvl:q.lvl,
+    catCls:q.cat,catLabel:q.catLabel,
+    tabs:[
+      {label:'Question',html:'<pre>'+esc(q.q)+'</pre>'},
+      {label:'Solution',html:'<pre>'+esc(q.sol)+'</pre>'},
+      {label:'Explanation',html:'<p>'+esc(q.exp).replace(/\n/g,'<br>')+'</p>'},
+    ]})).join(''):'<div class="empty">No problems match your search or filter.</div>';
+  wire($('pyList'));
+}
+
+/* ═══════════ MENTORS / RESOURCES ═══════════ */
+function renderMentors(){
+  $('mentorGrid').innerHTML=MENTORS.map(m=>`
+    <article class="mentor">
+      <div class="av" style="background:${m.c}">${m.i}</div>
+      <div>
+        <h4>${m.n}</h4>
+        <div class="m-role" style="color:${m.c}">${m.r}</div>
+        <p class="m-exp">${m.e}</p>
+        <div class="m-stat"><span>📅 ${m.days}</span><span>🎓 ${m.topic}</span></div>
+      </div>
+    </article>`).join('');
+}
+function renderRes(){
+  $('resGrid').innerHTML=RES.map(r=>`
+    <a class="rc" href="${r.h}" target="_blank" rel="noopener">
+      <div class="rc-ico" style="background:${r.bg};color:${r.c}">${r.i}</div>
+      <h4>${r.t}</h4><p>${r.d}</p>
+      <span class="go">${r.u} ↗</span>
+    </a>`).join('');
+}
+
+/* ═══════════ NAV ═══════════ */
+function setupNav(){
+  const links=[...document.querySelectorAll('.nav-links a')],
+        ids=['paths','tracks','curriculum','sql','python','mentors','resources'];
+  function spy(){let cur='';
+    ids.forEach(id=>{const el=$(id);
+      if(el&&el.getBoundingClientRect().top<=130)cur=id;});
+    links.forEach(a=>a.classList.toggle('on',a.dataset.s===cur));}
+  window.addEventListener('scroll',spy,{passive:true});
+  links.forEach(a=>a.addEventListener('click',e=>{e.preventDefault();
+    jump(a.dataset.s);$('navLinks').classList.remove('show');}));
+  $('burger').addEventListener('click',()=>$('navLinks').classList.toggle('show'));
+  spy();
+}
+
+/* ═══════════ CHIP BARS ═══════════ */
+function chipBar(barId,cb){
+  const bar=$(barId);
+  bar.addEventListener('click',e=>{
+    const b=e.target.closest('.chip');if(!b)return;
+    bar.querySelectorAll('.chip').forEach(x=>x.classList.remove('on'));
+    b.classList.add('on');cb(b.dataset.f);});
+}
+
+/* ═══════════ INIT ═══════════ */
+renderPaths();renderTracks();renderCur();
+renderSQL();renderPY();renderMentors();renderRes();setupNav();
+chipBar('sqlChips',v=>{sqlF=v;renderSQL();});
+chipBar('pyChips',v=>{pyF=v;renderPY();});
+let tId;$('pySearch').addEventListener('input',e=>{
+  const v=e.target.value.trim();clearTimeout(tId);
+  tId=setTimeout(()=>{pyS=v;renderPY();},130);});
 </script>
 </body>
 </html>
